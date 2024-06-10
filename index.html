@@ -27,16 +27,19 @@
         let recorder;
         let stream;
 
-        document.getElementById('start').onclick = async () => {
-            stream = await html2canvas(document.querySelector('.animated-div')).then(canvas => {
-                return canvas.captureStream(60);
-            });
+        async function startRecording() {
+            let canvas = await html2canvas(document.querySelector('.animated-div'));
+            stream = canvas.captureStream(60);
 
             recorder = new RecordRTC(stream, {
                 type: 'video'
             });
 
             recorder.startRecording();
+        }
+
+        document.getElementById('start').onclick = () => {
+            startRecording();
 
             // 5 saniye (5000 milisaniye) sonra kaydı otomatik olarak durdur
             setTimeout(() => {
@@ -46,6 +49,7 @@
                         let url = URL.createObjectURL(blob);
                         let video = document.getElementById('video');
                         video.src = url;
+                        video.play();
                     });
                 }
             }, 5000);
@@ -58,6 +62,7 @@
                     let url = URL.createObjectURL(blob);
                     let video = document.getElementById('video');
                     video.src = url;
+                    video.play();
                 });
             }
         };
