@@ -21,39 +21,34 @@
     <video id="video" controls></video>
     <button id="start">Start Recording</button>
     <button id="stop">Stop Recording</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/recordrtc/RecordRTC.min.js"></script>
     <script>
-        let recorder;
+        let mediaRecorder;
+        let recordedChunks = [];
 
         document.getElementById('start').onclick = () => {
-            html2canvas(document.querySelector('.animated-div')).then(canvas => {
-                let stream = canvas.captureStream(60);
-                recorder = new RecordRTC(stream, {
-                    type: 'video'
-                });
+            let stream = document.querySelector('.animated-div').captureStream();
+            mediaRecorder = new MediaRecorder(stream);
 
-                recorder.startRecording();
-                console.log("Recording started...");
-            }).catch(error => {
-                console.error("Error capturing canvas:", error);
-            });
+            mediaRecorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = () => {
+                let blob = new Blob(recordedChunks, { type: 'video/webm' });
+                let url = URL.createObjectURL(blob);
+                let video = document.getElementById('video');
+                video.src = url;
+                video.play();
+            };
+
+            mediaRecorder.start();
         };
 
         document.getElementById('stop').onclick = () => {
-            if (recorder) {
-                recorder.stopRecording(() => {
-                    let blob = recorder.getBlob();
-                    console.log("Recording stopped, blob size:", blob.size);
-
-                    let url = URL.createObjectURL(blob);
-                    let video = document.getElementById('video');
-                    video.src = url;
-                    video.currentTime = 0;
-                    video.play();
-                });
-            } else {
-                console.warn("Recorder is not available or not started yet.");
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
             }
         };
     </script>
