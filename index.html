@@ -25,46 +25,26 @@
     <script src="https://cdn.jsdelivr.net/npm/recordrtc/RecordRTC.min.js"></script>
     <script>
         let recorder;
-        let stream;
-
-        async function startRecording() {
-            let canvas = await html2canvas(document.querySelector('.animated-div'));
-            stream = canvas.captureStream(60);
-
-            recorder = new RecordRTC(stream, {
-                type: 'video'
-            });
-
-            recorder.startRecording();
-        }
+        let recordedChunks = [];
 
         document.getElementById('start').onclick = () => {
-            startRecording();
-
-            // 5 saniye (5000 milisaniye) sonra kaydı otomatik olarak durdur
-            setTimeout(() => {
-                if (recorder && recorder.getState() === 'recording') {
-                    recorder.stopRecording(() => {
-                        let blob = recorder.getBlob();
-                        let url = URL.createObjectURL(blob);
-                        let video = document.getElementById('video');
-                        video.src = url;
-                        video.play();
-                    });
-                }
-            }, 5000);
+            html2canvas(document.querySelector('.animated-div')).then(canvas => {
+                let stream = canvas.captureStream(60);
+                recorder = new RecordRTC(stream, {
+                    type: 'video'
+                });
+                recorder.startRecording();
+            });
         };
 
         document.getElementById('stop').onclick = () => {
-            if (recorder && recorder.getState() === 'recording') {
-                recorder.stopRecording(() => {
-                    let blob = recorder.getBlob();
-                    let url = URL.createObjectURL(blob);
-                    let video = document.getElementById('video');
-                    video.src = url;
-                    video.play();
-                });
-            }
+            recorder.stopRecording(() => {
+                let blob = recorder.getBlob();
+                let url = URL.createObjectURL(blob);
+                let video = document.getElementById('video');
+                video.src = url;
+                video.play();
+            });
         };
     </script>
 </body>
