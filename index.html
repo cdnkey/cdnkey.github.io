@@ -24,46 +24,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/recordrtc/RecordRTC.min.js"></script>
     <script>
-        let mediaRecorder;
-        let recordedChunks = [];
-        let stream = document.getElementById('animated-div');
+        let recorder;
+        let stream;
 
         document.getElementById('start').onclick = async () => {
             stream = await html2canvas(document.querySelector('.animated-div')).then(canvas => {
                 return canvas.captureStream(60);
             });
-            mediaRecorder = new MediaRecorder(stream, {
-                mimeType: 'video/webm; codecs=vp9'
+
+            recorder = new RecordRTC(stream, {
+                type: 'video'
             });
-            mediaRecorder.ondataavailable = event => {
-                if (event.data.size > 0) {
-                    recordedChunks.push(event.data);
-                }
-            };
-            mediaRecorder.start();
-            
+
+            recorder.startRecording();
+
             // 5 saniye (5000 milisaniye) sonra kaydı otomatik olarak durdur
             setTimeout(() => {
-                if (mediaRecorder.state !== 'inactive') {
-                    mediaRecorder.stop();
+                if (recorder && recorder.getState() === 'recording') {
+                    recorder.stopRecording(() => {
+                        let blob = recorder.getBlob();
+                        let url = URL.createObjectURL(blob);
+                        let video = document.getElementById('video');
+                        video.src = url;
+                    });
                 }
             }, 5000);
         };
 
         document.getElementById('stop').onclick = () => {
-            if (mediaRecorder.state !== 'inactive') {
-                mediaRecorder.stop();
+            if (recorder && recorder.getState() === 'recording') {
+                recorder.stopRecording(() => {
+                    let blob = recorder.getBlob();
+                    let url = URL.createObjectURL(blob);
+                    let video = document.getElementById('video');
+                    video.src = url;
+                });
             }
-        };
-
-        mediaRecorder.onstop = () => {
-            let blob = new Blob(recordedChunks, {
-                type: 'video/webm'
-            });
-            let url = URL.createObjectURL(blob);
-            let video = document.getElementById('video');
-            video.src = url;
-            recordedChunks = [];
         };
     </script>
 </body>
