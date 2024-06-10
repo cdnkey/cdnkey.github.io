@@ -25,7 +25,6 @@
     <script src="https://cdn.jsdelivr.net/npm/recordrtc/RecordRTC.min.js"></script>
     <script>
         let recorder;
-        let recordedChunks = [];
 
         document.getElementById('start').onclick = () => {
             html2canvas(document.querySelector('.animated-div')).then(canvas => {
@@ -33,23 +32,29 @@
                 recorder = new RecordRTC(stream, {
                     type: 'video'
                 });
+
                 recorder.startRecording();
+                console.log("Recording started...");
+            }).catch(error => {
+                console.error("Error capturing canvas:", error);
             });
         };
 
         document.getElementById('stop').onclick = () => {
-            recorder.stopRecording(() => {
-                let blob = recorder.getBlob();
-                let url = URL.createObjectURL(blob);
-                let video = document.getElementById('video');
-                video.src = url;
+            if (recorder) {
+                recorder.stopRecording(() => {
+                    let blob = recorder.getBlob();
+                    console.log("Recording stopped, blob size:", blob.size);
 
-                // Videonun süresini ayarla
-                video.onloadedmetadata = () => {
+                    let url = URL.createObjectURL(blob);
+                    let video = document.getElementById('video');
+                    video.src = url;
                     video.currentTime = 0;
                     video.play();
-                };
-            });
+                });
+            } else {
+                console.warn("Recorder is not available or not started yet.");
+            }
         };
     </script>
 </body>
