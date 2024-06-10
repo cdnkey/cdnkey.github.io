@@ -17,18 +17,37 @@
     </style>
 </head>
 <body>
-    <div class="animated-div"></div>
+    <div class="container">
+        <canvas class="animated-canvas"></canvas>
+    </div>
     <video id="video" controls></video>
     <button id="start">Start Recording</button>
     <button id="stop">Stop Recording</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         let mediaRecorder;
         let recordedChunks = [];
 
-        document.getElementById('start').onclick = () => {
-            let stream = document.querySelector('.animated-div').captureStream();
-            mediaRecorder = new MediaRecorder(stream);
+        document.getElementById('start').onclick = async () => {
+            let canvas = document.querySelector('.animated-canvas');
+            let context = canvas.getContext('2d');
 
+            // Canvas boyutlarını ayarla
+            canvas.width = 100;
+            canvas.height = 100;
+
+            // Canvas'a animasyonu çiz
+            let frames = 150; // 30 fps x 5 saniye
+            for (let i = 0; i < frames; i++) {
+                context.fillStyle = i % 2 === 0 ? 'red' : 'yellow';
+                context.fillRect(0, 0, 100, 100);
+                await new Promise(resolve => setTimeout(resolve, 1000 / 30)); // 30 fps
+            }
+
+            // Canvas'ı yakala ve video akışına dönüştür
+            let stream = canvas.captureStream(30);
+            mediaRecorder = new MediaRecorder(stream);
+            
             mediaRecorder.ondataavailable = event => {
                 if (event.data.size > 0) {
                     recordedChunks.push(event.data);
