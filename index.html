@@ -43,7 +43,12 @@
                 let url = URL.createObjectURL(blob);
                 let video = document.getElementById('video');
                 video.src = url;
-                video.play();
+
+                // Videonun süresini ayarla
+                video.onloadedmetadata = () => {
+                    video.currentTime = 0;
+                    video.play();
+                };
             });
         };
     </script>
