@@ -2,74 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Animation to Video</title>
-    <style>
-        @keyframes example {
-            from {background-color: red;}
-            to {background-color: yellow;}
-        }
-        .animated-div {
-            width: 100px;
-            height: 100px;
-            animation: example 5s infinite;
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <canvas class="animated-canvas"></canvas>
-    </div>
-    <video id="video" controls></video>
-    <button id="start">Start Recording</button>
-    <button id="stop">Stop Recording</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        let mediaRecorder;
-        let recordedChunks = [];
-
-        document.getElementById('start').onclick = async () => {
-            let canvas = document.querySelector('.animated-canvas');
-            let context = canvas.getContext('2d');
-
-            // Canvas boyutlarını ayarla
-            canvas.width = 100;
-            canvas.height = 100;
-
-            // Canvas'a animasyonu çiz
-            let frames = 150; // 30 fps x 5 saniye
-            for (let i = 0; i < frames; i++) {
-                context.fillStyle = i % 2 === 0 ? 'red' : 'yellow';
-                context.fillRect(0, 0, 100, 100);
-                await new Promise(resolve => setTimeout(resolve, 1000 / 30)); // 30 fps
-            }
-
-            // Canvas'ı yakala ve video akışına dönüştür
-            let stream = canvas.captureStream(30);
-            mediaRecorder = new MediaRecorder(stream);
-            
-            mediaRecorder.ondataavailable = event => {
-                if (event.data.size > 0) {
-                    recordedChunks.push(event.data);
-                }
-            };
-
-            mediaRecorder.onstop = () => {
-                let blob = new Blob(recordedChunks, { type: 'video/webm' });
-                let url = URL.createObjectURL(blob);
-                let video = document.getElementById('video');
-                video.src = url;
-                video.play();
-            };
-
-            mediaRecorder.start();
-        };
-
-        document.getElementById('stop').onclick = () => {
-            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-                mediaRecorder.stop();
-            }
-        };
-    </script>
+    <video controls width="600"></video>
+    <button>record</button>
+    <script src="script.js"></script>
 </body>
 </html>
