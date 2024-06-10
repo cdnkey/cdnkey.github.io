@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<script async>
-			window.open('https://www.keycdn.com/', '_blank');
-		</script>
-	</head>
-	<body>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation to Video</title>
+    <style>
+        @keyframes example {
+            from {background-color: red;}
+            to {background-color: yellow;}
+        }
+        .animated-div {
+            width: 100px;
+            height: 100px;
+            animation: example 5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-div"></div>
+    <video id="video" controls></video>
+    <button id="start">Start Recording</button>
+    <button id="stop">Stop Recording</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0-alpha.12/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/recordrtc/RecordRTC.min.js"></script>
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+        let stream = document.getElementById('animated-div');
+
+        document.getElementById('start').onclick = async () => {
+            stream = await html2canvas(document.querySelector('.animated-div')).then(canvas => {
+                return canvas.captureStream(60);
+            });
+            mediaRecorder = new MediaRecorder(stream, {
+                mimeType: 'video/webm; codecs=vp9'
+            });
+            mediaRecorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+            mediaRecorder.start();
+            
+            // 5 saniye (5000 milisaniye) sonra kaydı otomatik olarak durdur
+            setTimeout(() => {
+                if (mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+            }, 5000);
+        };
+
+        document.getElementById('stop').onclick = () => {
+            if (mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+        };
+
+        mediaRecorder.onstop = () => {
+            let blob = new Blob(recordedChunks, {
+                type: 'video/webm'
+            });
+            let url = URL.createObjectURL(blob);
+            let video = document.getElementById('video');
+            video.src = url;
+            recordedChunks = [];
+        };
+    </script>
+</body>
 </html>
