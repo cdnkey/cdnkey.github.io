@@ -85,8 +85,8 @@ let videoContainer = document.querySelector(".video");
 document.body.style.background = "#000000";
 const videoPlayer = document.getElementById('videoPlayer');
 let videoParts = [
-	'https://cdnkey.github.io//20240602_004416_edited',
-	'https://cdnkey.github.io/20240602_004416_edited2',
+	'https://i.imghippo.com/files/WLvY61718398143.mov',
+	'https://i.imghippo.com/files/BIzG61718398398.bin',
 ];
 let combinedBlob;
 
