@@ -84,29 +84,6 @@ document.body.style.zoom = "1";
 	document.body.style.touchAction = "none";
 document.body.style.background = "#000000";
 
-let combinedBlob;
-
-function combinePartsAndPlay() {
-	const blobParts = [];
-
-	const fetchPromises = videoParts.map(part => fetch(part).then(response => response.blob()));
-
-	Promise.all(fetchPromises)
-	.then(blobs => {
-		blobs.forEach(blob => blobParts.push(blob));
-		combinedBlob = new Blob(blobParts, {
-			type: 'video/quicktime'
-		});
-		videoPlayer.src = URL.createObjectURL(combinedBlob);
-		videoPlayer.play();
-	})
-	.catch(error => {
-		console.error('Hata oluştu:', error);
-	});
-}
-
-window.onload = combinePartsAndPlay;
-
 const video = document.getElementById('videoPlayer');
 const videoControl = document.querySelector('.video-control');
 const videoSliderContainer = document.querySelector('.video-slider-container');
