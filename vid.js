@@ -80,14 +80,10 @@ let videoContainer = document.querySelector(".video");
 			</div>
 		</div>
 	`;
-/*document.body.style.zoom = "1";
-	document.body.style.touchAction = "none";*/
+document.body.style.zoom = "1";
+	document.body.style.touchAction = "none";
 document.body.style.background = "#000000";
-const videoPlayer = document.getElementById('videoPlayer');
-let videoParts = [
-	'https://i.imghippo.com/files/WLvY61718398143.mov',
-	'https://i.imghippo.com/files/BIzG61718398398.bin',
-];
+
 let combinedBlob;
 
 function combinePartsAndPlay() {
