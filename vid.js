@@ -80,8 +80,8 @@ let videoContainer = document.querySelector(".video");
 			</div>
 		</div>
 	`;
-document.body.style.zoom = "1";
-	document.body.style.touchAction = "none";
+/*document.body.style.zoom = "1";
+document.body.style.touchAction = "none";*/
 document.body.style.background = "#000000";
 
 const video = document.getElementById('videoPlayer');
