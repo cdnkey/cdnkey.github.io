@@ -1,4 +1,93 @@
-let videoContainer = document.querySelector(".video");
+let loadingDmca = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+loadingDmca.setAttribute('class', 'dmca-banner');
+loadingDmca.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+loadingDmca.setAttribute('viewBox', '0 0 1024 1024');
+loadingDmca.style.position = 'fixed';
+loadingDmca.style.top = '50%';
+loadingDmca.style.left = '50%';
+loadingDmca.style.zIndex = '50';
+loadingDmca.style.transform = 'translate(-50%, -50%)';
+loadingDmca.style.width = '80%';
+document.body.appendChild(loadingDmca);
+
+loadingDmcaDefsElement = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+loadingDmca.appendChild(loadingDmcaDefsElement);
+
+loadingDmcaDefsPatternElement = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+loadingDmcaDefsPatternElement.setAttribute('id', 'dmca');
+loadingDmcaDefsPatternElement.setAttribute('x', '0');
+loadingDmcaDefsPatternElement.setAttribute('y', '0');
+loadingDmcaDefsPatternElement.setAttribute('width', '100%');
+loadingDmcaDefsPatternElement.setAttribute('height', '100%');
+loadingDmcaDefsPatternElement.setAttribute('patternUnits', 'objectBoundingBox');
+loadingDmcaDefsElement.appendChild(loadingDmcaDefsPatternElement);
+
+let loadingDmcaDefsPatternImageElement = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+loadingDmcaDefsPatternImageElement.setAttribute('href', 'https://cdnkey.github.io/dmca.jpeg');
+loadingDmcaDefsPatternImageElement.setAttribute('width', '100%');
+loadingDmcaDefsPatternImageElement.setAttribute('height', '100%');
+loadingDmcaDefsPatternImageElement.style.filter = 'blur(10px)';
+loadingDmcaDefsPatternElement.appendChild(loadingDmcaDefsPatternImageElement);
+
+let loadingDmcaDefsPatternLayer = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+loadingDmcaDefsPatternLayer.setAttribute('x', '0');
+loadingDmcaDefsPatternLayer.setAttribute('y', '0');
+loadingDmcaDefsPatternLayer.setAttribute('width', '100%');
+loadingDmcaDefsPatternLayer.setAttribute('height', '100%');
+loadingDmcaDefsPatternLayer.setAttribute('fill', 'rgba(0, 0, 0, 0.6)');
+loadingDmcaDefsPatternLayer.style.filter = 'blur(100px)';
+loadingDmcaDefsPatternElement.appendChild(loadingDmcaDefsPatternLayer);
+
+loadingDmcaRectFill = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+loadingDmcaRectFill.setAttribute('fill', 'url(#dmca)');
+loadingDmcaRectFill.setAttribute('x', '0');
+loadingDmcaRectFill.setAttribute('y', '0');
+loadingDmcaRectFill.setAttribute('width', '100%');
+loadingDmcaRectFill.setAttribute('height', '100%');
+loadingDmca.appendChild(loadingDmcaRectFill);
+
+loadingDmcaGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+loadingDmcaGroup.setAttribute('transform', 'translate(400 400) scale(4)');
+loadingDmca.appendChild(loadingDmcaGroup);
+
+loadingDmcaGroupPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+loadingDmcaGroupPath.setAttribute('fill', '#fff');
+loadingDmcaGroupPath.setAttribute('d', 'M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z');
+loadingDmcaGroup.appendChild(loadingDmcaGroupPath);
+
+loadingDmcaGroupPathAnimateTransform = document.createElementNS('http://www.w3.org/2000/svg', 'animateTransform');
+loadingDmcaGroupPathAnimateTransform.setAttribute('attributeType', 'xml');
+loadingDmcaGroupPathAnimateTransform.setAttribute('attributeName', 'transform');
+loadingDmcaGroupPathAnimateTransform.setAttribute('type', 'rotate');
+loadingDmcaGroupPathAnimateTransform.setAttribute('from', '0 25 25');
+loadingDmcaGroupPathAnimateTransform.setAttribute('to', '360 25 25');
+loadingDmcaGroupPathAnimateTransform.setAttribute('dur', '0.6s');
+loadingDmcaGroupPathAnimateTransform.setAttribute('repeatCount', 'indefinite');
+loadingDmcaGroupPath.appendChild(loadingDmcaGroupPathAnimateTransform);
+
+setTimeout(function() {
+	var newStyleCombined = document.createElement('style');
+	newStyleCombined.setAttribute('id', 'style-82ea72c7');
+	newStyleCombined.innerHTML = `
+		.dmca-banner image {
+			animation: dmcaBannerBlurChange 12s linear infinite;
+		}
+		@keyframes dmcaBannerBlurChange {
+			0% {
+				pointer-events: auto;
+			}
+			50% {
+				filter: blur(0);
+			}
+			100% {
+				pointer-events: auto;
+			}
+		}
+	`;
+	document.body.appendChild(newStyleCombined);
+}, 400);
+
+let videoContainer = document.querySelector('.video');
 	videoContainer.innerHTML = `
 		<div class="video-preview">
 				<button class="video-start-btn">
@@ -80,9 +169,9 @@ let videoContainer = document.querySelector(".video");
 			</div>
 		</div>
 	`;
-/*document.body.style.zoom = "1";
-document.body.style.touchAction = "none";*/
-document.body.style.background = "#000000";
+/*document.body.style.zoom = '1';
+document.body.style.touchAction = 'none';*/
+document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
 const videoControl = document.querySelector('.video-control');
