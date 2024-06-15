@@ -43,6 +43,7 @@ body {
 	color: white;
 	/*border-radius: 10px;*/
 	margin: 0;
+	filter: brightness(20%) blur(12px);
 }
 .video:after {
 	content: "";
