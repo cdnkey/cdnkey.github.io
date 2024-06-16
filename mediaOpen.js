@@ -19,3 +19,13 @@ let allXmlnsNameSpace = document.querySelectorAll('svg');
 allXmlnsNameSpace.forEach(function(allXmlnsNameSpace) {
 	allXmlnsNameSpace.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const svgs = document.querySelectorAll('svg[viewBox]');
+
+    svgs.forEach(svg => {
+        const viewBoxValue = svg.getAttribute('viewBox');
+        const newViewBoxValue = `0 0 ${viewBoxValue}`;
+        svg.setAttribute('viewBox', newViewBoxValue);
+    });
+});
