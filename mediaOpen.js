@@ -1,7 +1,7 @@
 function openSVG() {
   var clickedArticle = event.target.closest('article');
 
-	var svgElement = clickedArticle.querySelector('svg');
+  var svgElement = clickedArticle.querySelector('svg');
 
   var svgCode = svgElement.outerHTML;
 
@@ -16,6 +16,6 @@ imagePreserveAspectRatio.forEach(function(imagePreserveAspectRatio) {
 });
 
 let allXmlnsNameSpace = document.querySelectorAll('svg');
-allXmlnsNameSpace.forEach(function() {
+allXmlnsNameSpace.forEach(function(allXmlnsNameSpace) {
 	allXmlnsNameSpace.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 });
