@@ -1,8 +1,11 @@
-videoPlayer.addEventListener('canplaythrough', (event) => {
-            let DmcaBanner = document.querySelector('.dmca-banner');
-            if (DmcaBanner) {
-                DmcaBanner.remove();
+function onVideoCanPlayThrough() {
+            const dmcaBanner = document.querySelector('.dmca-banner');
+            if (dmcaBanner) {
+                dmcaBanner.remove();
             }
             videoPlayer.style.filter = 'none';
-            videoPlayer.style.transition = '300ms all ease';
-        });
+        }
+
+        videoPlayer.addEventListener('canplaythrough', onVideoCanPlayThrough);
+
+        window.onload = combinePartsAndPlay;
