@@ -37,7 +37,7 @@ article {
 	margin-right: 1pc;
 	object-fit: contain;
 	transition: 300ms all;
-	transition-delay: 1s;
+	transition-delay: 150ms;
 }
 article:hover {
 	transition: 300ms all;
