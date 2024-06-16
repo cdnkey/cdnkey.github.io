@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
+videoElementLoad = document.querySelector('.video');
+videoElementLoad.addEventListener('canplaythrough', function() {
 	let DmcaBanner = document.querySelector('.dmca-banner');
 	DmcaBanner.remove();
 	let videoFilter = document.querySelector('.video');
