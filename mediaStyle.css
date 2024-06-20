@@ -31,10 +31,11 @@ article {
 	-2px 0px 4px #303030,
 	0px 2px 4px #303030,
 	0px -2px 4px #303030;
-	width: 40%;
-	/*margin-top: 1pc;
+	width: auto;
+	height: auto;
+	margin-top: 1pc;
 	margin-left: 1pc;
-	margin-right: 1pc;*/
+	margin-right: 1pc;
 	object-fit: contain;
 	transition: 300ms all;
 	transition-delay: 150ms;
