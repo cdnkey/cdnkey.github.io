@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-const svgElements = document.querySelectorAll('.gallery article svg');
+/*const svgElements = document.querySelectorAll('.gallery article svg');
 			
 svgElements.forEach(svg => {
 	const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-	rect.setAttribute('width', '100vw');
-	rect.setAttribute('height', '100vh');
+	rect.setAttribute('width', '100%');
+	rect.setAttribute('height', '100%');
 	rect.setAttribute('fill', '#000000');
 	
 	svg.appendChild(rect);
-});
+});*/
