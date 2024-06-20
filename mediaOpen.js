@@ -37,7 +37,7 @@ svgElements.forEach(svg => {
 	rect.setAttribute('width', '100%');
 	rect.setAttribute('height', '100%');
 	rect.setAttribute('fill', '#000000');
-	rect.setAttribute('opacity', '0');
+	rect.setAttribute('opacity', '1');
 	
 	svg.appendChild(rect);
 });
