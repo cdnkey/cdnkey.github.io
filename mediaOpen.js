@@ -29,3 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
         svg.setAttribute('viewBox', newViewBoxValue);
     });
 });
+
+const svgElements = document.querySelectorAll('.gallery article svg');
+			
+svgElements.forEach(svg => {
+	const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+	rect.setAttribute('width', '100%');
+	rect.setAttribute('height', '100%');
+	rect.setAttribute('fill', '#000000');
+	rect.setAttribute('opacity', '0');
+	
+	svg.appendChild(rect);
+});
