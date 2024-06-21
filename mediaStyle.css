@@ -50,6 +50,7 @@ article:hover svg {
 }
 svg {
 	opacity: 1;
+	display: block;
 }
 article svg image[preserveAspectRatio="xMidYMid meet"] {
 	width: 100%;
