@@ -51,6 +51,11 @@ article:hover svg {
 svg {
 	opacity: 1;
 	display: block;
+	pointer-events: none;
+	-webkit-pointer-events: none;
+	-moz-pointer-events: none;
+	-ms-pointer-events: none;
+	-o-pointer-events: none;
 }
 article svg image[preserveAspectRatio="xMidYMid meet"] {
 	width: 100%;
