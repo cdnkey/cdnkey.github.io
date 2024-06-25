@@ -1,4 +1,3 @@
-// Tarayıcı bilgilerini almak için bir fonksiyon
 function getBrowserInfo() {
   var ua = navigator.userAgent;
   var tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
@@ -15,10 +14,8 @@ function getBrowserInfo() {
   return M.join(' ');
 }
 
-// Tarayıcı bilgisini al
 var browserInfo = getBrowserInfo();
 
-// Eğer tarayıcı Chrome değilse veya istediğiniz sürüm değilse, HTML belgesinin içeriğini boşalt
 if (!browserInfo.includes('Chrome/89')) {
-  document.documentElement.innerHTML = '';
+  document.body.style.display = 'none';
 }
