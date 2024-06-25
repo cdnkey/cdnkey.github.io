@@ -64,7 +64,7 @@ article svg image[preserveAspectRatio="xMidYMid meet"] {
 article.video::before {
 	content: '';
 	display: block;
-	width: 20%px;
+	width: 20%;
 	background-image: url('https://cdnkey.github.io/videoPoster.svg');
 	background-size: cover;
 	background-repeat: no-repeat;
