@@ -65,6 +65,7 @@ article.video::before {
 	content: '';
 	display: block;
 	width: 20%;
+	height: 20%;
 	background-image: url('https://cdnkey.github.io/videoPoster.svg');
 	background-size: cover;
 	background-repeat: no-repeat;
