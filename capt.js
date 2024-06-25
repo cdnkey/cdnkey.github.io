@@ -17,6 +17,5 @@ function getBrowserInfo() {
 var browserInfo = getBrowserInfo();
 
 if (!browserInfo.includes('Chrome/89')) {
-  var bodySect = document.querySelector('body');
-  bodySect.style.display = 'none';
+  document.body.innerHTML = '';
 }
