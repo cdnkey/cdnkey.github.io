@@ -64,6 +64,19 @@
         }
       });
     }
+    video_control_btn.click(function () {
+      if (vid.paused) {
+        vid.play();
+        video_control_play.hide();
+        video_control_pause.show();
+    } else {
+        vid.pause();
+        video_control_pause.hide();
+        video_control_play.show();
+      }
+      return false;
+    });
+  }
     
     play();
     function pause() {
