@@ -56,26 +56,19 @@
 
     var vid = $(video_element).get(0);
     function play() {
-      video_start_btn.click(function () {
-        if (vid) {
+      video_start_btn.add(video_control_btn).click(function () {
+        if (vid.paused) {
           vid.play();
           video_control_play.hide();
           video_control_pause.show();
+        } else {
+          vid.pause();
+          video_control_pause.hide();
+          video_control_play.show();
         }
+        return false;
       });
     }
-    video_control_btn.click(function () {
-      if (vid.paused) {
-        vid.play();
-        video_control_play.hide();
-        video_control_pause.show();
-      } else {
-        vid.pause();
-        video_control_pause.hide();
-        video_control_play.show();
-      }
-      return false;
-    });
     
     play();
     function pause() {
