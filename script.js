@@ -61,6 +61,7 @@
         video_control_play.hide();
         video_control_pause.show();
       }
+    }
     function pause() {
       vid.pause();
       video_control_pause.hide();
