@@ -72,15 +72,10 @@
       video_control_play.show();
     }
     video_control_btn.click(function () {
-      console.log("Butona tıklandı");
       if (vid.paused) {
-        vid.play();
-        video_control_play.hide();
-        video_control_pause.show();
+        play();
       } else {
-        vid.pause();
-        video_control_pause.hide();
-        video_control_play.show();
+        pause();
       }
     });
     function loading() {
