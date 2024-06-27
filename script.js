@@ -187,11 +187,13 @@
     $(vid).on("progress", function () {
       loading();
     });
-    video_control_play.click(function () {
-      play();
-    });
-    video_control_pause.click(function () {
-      pause();
+    video_control_btn.click(function () {
+      if (vid.paused) {
+        play();
+      } else {
+        pause();
+      }
+      return false;
     });
     video_top.click(function () {
       if (vid.paused) {
