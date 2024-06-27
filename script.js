@@ -72,6 +72,7 @@
       video_control_play.show();
     }
     video_control_btn.click(function () {
+      console.log("Butona tıklandı");
       if (vid.paused) {
         vid.play();
         video_control_play.hide();
