@@ -71,6 +71,18 @@
       video_control_pause.hide();
       video_control_play.show();
     }
+    video_control_btn.click(function () {
+      if (vid.paused) {
+        vid.play();
+        video_control_play.hide();
+        video_control_pause.show();
+      } else {
+        vid.pause();
+        video_control_pause.hide();
+        video_control_play.show();
+      }
+      return false;
+    });
     function loading() {
       if (vid.readyState === 4) {
         video_loading.hide();
