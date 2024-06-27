@@ -2,7 +2,7 @@ function onVideoCanPlayThrough() {
             const dmcaBanner = document.querySelector('.dmca-banner');
             if (dmcaBanner) {
                 dmcaBanner.remove();
-                document.body.pointerEvents = 'auto';
+                document.body..style.pointerEvents = 'auto';
             }
             videoPlayer.style.filter = 'none';
         }
