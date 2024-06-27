@@ -4,6 +4,7 @@ function onVideoCanPlayThrough() {
                 dmcaBanner.remove();
             }
             videoPlayer.style.filter = 'none';
+            document.body.pointerEvents = 'auto';
         }
 
         videoPlayer.addEventListener('canplaythrough', onVideoCanPlayThrough);
