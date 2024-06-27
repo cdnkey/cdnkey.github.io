@@ -1,4 +1,3 @@
-document.body.style.pointerEvents = 'none';
 let loadingDmca = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 loadingDmca.setAttribute('class', 'dmca-banner');
 loadingDmca.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
