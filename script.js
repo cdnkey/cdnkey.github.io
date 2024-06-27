@@ -56,7 +56,7 @@
 
     var vid = $(video_element).get(0);
     function play() {
-      vid.play();
+      //vid.play();
       video_control_play.hide();
       video_control_pause.show();
     }
