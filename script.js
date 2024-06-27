@@ -81,7 +81,6 @@
         video_control_pause.hide();
         video_control_play.show();
       }
-      return false;
     });
     function loading() {
       if (vid.readyState === 4) {
