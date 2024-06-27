@@ -56,7 +56,15 @@
 
     var vid = $(video_element).get(0);
     function play() {
-      video_start_btn.add(video_control_btn).click(function () {
+      video_start_btn.click(function () {
+        if (vid) {
+          vid.play();
+          video_control_play.hide();
+          video_control_pause.show();
+        }
+      });
+
+      video_control_btn.click(function () {
         if (vid.paused) {
           vid.play();
           video_control_play.hide();
@@ -71,6 +79,7 @@
     }
     
     play();
+    
     function pause() {
       vid.pause();
       video_control_pause.hide();
