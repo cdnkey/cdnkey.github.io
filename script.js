@@ -56,9 +56,13 @@
 
     var vid = $(video_element).get(0);
     function play() {
-      vid.play();
-      video_controls_play.hidde();
-      video_controls_pause.show();
+      video_start_btn.click(function () {
+        if (vid) {
+          vid.play();
+          video_control_play.hide();
+          video_control_pause.show();
+        }
+      });
     }
     
     play();
@@ -76,43 +80,6 @@
         pause();
       }
     }
-
-    //eklenen
-
-    function togglePlayPause() {
-      if (vid.paused || vid.ended) {
-        play();
-      } else {
-        pause();
-      }
-    }
-    video_start_btn.click(function () {
-      togglePlayPause();
-    });
-
-    video_control_btn.click(function () {
-      togglePlayPause();
-    });
-
-    $(vid).on("ended", function () {
-      pause();
-    });
-
-    $(vid).on("pause", function () {
-      video_control_pause.hide();
-      video_control_play.show();
-    });
-
-    $(vid).on("play", function () {
-      video_control_play.hide();
-      video_control_pause.show();
-    });
-
-    $(vid).on("progress", function () {
-      loading();
-    });
-  }
-    //ek bitiş
     function voiceOn() {
       vid.muted = true;
       $(video_voice_on).hide();
