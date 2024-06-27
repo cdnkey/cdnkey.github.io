@@ -56,8 +56,8 @@
 
     var vid = $(video_element).get(0);
     function play() {
-      video_start_btn.addEventListener('click', function() {
-        vid.play();
+      video_start_btn.click(function () {
+        vid.get(0).play();
       });
       video_control_play.hide();
       video_control_pause.show();
