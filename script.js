@@ -55,24 +55,29 @@
     const video_contextMenu = $root.find(".video-contextMenu");
 
     var vid = $(video_element).get(0);
+    var isPlaying = false;
+    
     function play() {
       video_start_btn.click(function () {
         if (vid) {
           vid.play();
+          isPlaying = true;
           video_control_play.hide();
           video_control_pause.show();
         }
       });
 
       video_control_btn.click(function () {
-        if (vid.paused) {
-          vid.play();
-          video_control_play.hide();
-          video_control_pause.show();
-        } else {
+        if (isPlaying) {
           vid.pause();
+          isPlaying = false;
           video_control_pause.hide();
           video_control_play.show();
+        } else {
+          vid.play();
+          isPlaying = true;
+          video_control_play.hide();
+          video_control_pause.show();
         }
         return false;
       });
