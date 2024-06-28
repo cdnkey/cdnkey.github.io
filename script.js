@@ -71,7 +71,7 @@
           video_control_play.hide();
           video_control_pause.show();
         } else {
-          vid.pause();
+          //vid.pause();
           video_control_pause.hide();
           video_control_play.show();
         }
