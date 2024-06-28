@@ -81,11 +81,11 @@
     
     play();
     
-    /*function pause() {
+    function pause() {
       vid.pause();
       video_control_pause.hide();
       video_control_play.show();
-    }*/
+    }
     function loading() {
       if (vid.readyState === 4) {
         video_loading.hide();
@@ -202,14 +202,14 @@
     $(vid).on("progress", function () {
       loading();
     });
-    video_control_btn.click(function () {
+    /*video_control_btn.click(function () {
       if (vid.paused) {
         play();
       } else {
         pause();
       }
       return false;
-    });
+    });*/
     video_top.click(function () {
       if (vid.paused) {
         play();
