@@ -290,10 +290,18 @@
     $(vid).on("ended", function () {
       video_reset.css("display", "flex");
     });
+    
     video_reset_btn.click(function () {
-      play();
+      vid.currentTime = 0;
+      vid.play();
+      video_control_play.hide();
+      video_control_pause.show();
       video_reset.css("display", "none");
     });
+    /*video_reset_btn.click(function () {
+      play();
+      video_reset.css("display", "none");
+    });*/
     $(video).on("contextmenu", function (event) {
       event.preventDefault();
       video_contextMenu.show().css({
