@@ -71,7 +71,7 @@
           video_control_play.hide();
           video_control_pause.show();
         } else {
-          //vid.pause();
+          vid.pause();
           video_control_pause.hide();
           video_control_play.show();
         }
@@ -81,11 +81,11 @@
     
     play();
     
-    function pause() {
+    /*function pause() {
       vid.pause();
       video_control_pause.hide();
       video_control_play.show();
-    }
+    }*/
     function loading() {
       if (vid.readyState === 4) {
         video_loading.hide();
