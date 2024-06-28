@@ -80,6 +80,10 @@
     }
     
     play();
+
+    video_reset_btn.click(function () {
+      play()
+    });
     
     function pause() {
       vid.pause();
@@ -290,10 +294,10 @@
     $(vid).on("ended", function () {
       video_reset.css("display", "flex");
     });
-    video_reset_btn.click(function () {
+    /*video_reset_btn.click(function () {
       play();
       video_reset.css("display", "none");
-    });
+    });*/
     $(video).on("contextmenu", function (event) {
       event.preventDefault();
       video_contextMenu.show().css({
