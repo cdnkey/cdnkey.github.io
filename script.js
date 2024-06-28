@@ -202,14 +202,7 @@
     $(vid).on("progress", function () {
       loading();
     });
-    /*video_control_btn.click(function () {
-      if (vid.paused) {
-        play();
-      } else {
-        pause();
-      }
-      return false;
-    });*/
+    
     video_top.click(function () {
       if (vid.paused) {
         play();
@@ -298,10 +291,7 @@
       video_control_pause.show();
       video_reset.css("display", "none");
     });
-    /*video_reset_btn.click(function () {
-      play();
-      video_reset.css("display", "none");
-    });*/
+    
     $(video).on("contextmenu", function (event) {
       event.preventDefault();
       video_contextMenu.show().css({
