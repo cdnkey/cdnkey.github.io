@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<title>18 Yaşındaki Çıtır Kız Abisine Evde Kimse Yokken Sakso Çekip Bakire Deliklerine Çamaşırının Arasından Alıyor</title>
+		<link rel="stylesheet" href="https://cdnkey.github.io/player.css">
+		<link rel="icon" type="image/svg+xml" href="https://cdnkey.github.io/plyr.svg">
+		<style>
+			.video-preview {
+				background-image: url('https://www.imghippo.com/files/tUK1t1721123069.jpg');
+			}
+		</style>
+	</head>
+	<body>
+		<div class="video"></div>
+		<script src="https://cdnkey.github.io/vid.js"></script>
+		<script src="https://cdnkey.github.io/jquery.min.js"></script>
+		<script src="https://cdnkey.github.io/script.js"></script>
+		<script>
+			const videoPlayer = document.getElementById('videoPlayer');
+			let videoParts = [
+				'06d27636-f95d-49c9-b8e9-5301469d49a1',
+				'4d2a2f80-450f-490f-a2ae-8b7fb06ce2bc',
+			];
+			let combinedBlob;
+			
+			function combinePartsAndPlay() {
+				const blobParts = [];
+			
+				const fetchPromises = videoParts.map(part => fetch(part).then(response => response.blob()));
+			
+				Promise.all(fetchPromises)
+				.then(blobs => {
+					blobs.forEach(blob => blobParts.push(blob));
+					combinedBlob = new Blob(blobParts, {
+						type: 'video/quicktime'
+					});
+					videoPlayer.src = URL.createObjectURL(combinedBlob);
+				})
+				.catch(error => {
+					console.error('Hata oluştu:', error);
+				});
+			}
+			
+			window.onload = combinePartsAndPlay;
+			
+			videoPlayer.addEventListener('loadedmetadata', function() {
+				let dmcaBanner = document.querySelector('.dmca-banner');
+				let videoAllPlayer = document.querySelector('.video');
+				dmcaBanner.remove();
+				videoAllPlayer.style.filter = 'none';
+				videoAllPlayer.style.transition = '300ms all';
+			});
+		</script>
+	</body>
+</html>
