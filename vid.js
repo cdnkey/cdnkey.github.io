@@ -164,7 +164,7 @@ let videoContainer = document.querySelector('.video');
 				</div>
 			</div>
 			<div class="video-player">
-				<video id="videoPlayer" data-video allowfullscreen="false" poster="false" controlsList="nodownload" src>
+				<video id="videoPlayer" data-video allowfullscreen="false" controlsList="nodownload">
 				</video>
 			</div>
 		</div>
