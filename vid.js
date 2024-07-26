@@ -10,10 +10,10 @@ loadingDmca.style.transform = 'translate(-50%, -50%)';
 loadingDmca.style.width = '80%';
 document.body.appendChild(loadingDmca);
 
-loadingDmcaDefsElement = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+let loadingDmcaDefsElement = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
 loadingDmca.appendChild(loadingDmcaDefsElement);
 
-loadingDmcaDefsPatternElement = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+let loadingDmcaDefsPatternElement = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
 loadingDmcaDefsPatternElement.setAttribute('id', 'dmca');
 loadingDmcaDefsPatternElement.setAttribute('x', '0');
 loadingDmcaDefsPatternElement.setAttribute('y', '0');
@@ -38,7 +38,7 @@ loadingDmcaDefsPatternLayer.setAttribute('fill', 'rgba(0, 0, 0, 0.6)');
 loadingDmcaDefsPatternLayer.style.filter = 'blur(100px)';
 loadingDmcaDefsPatternElement.appendChild(loadingDmcaDefsPatternLayer);
 
-loadingDmcaRectFill = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+let loadingDmcaRectFill = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
 loadingDmcaRectFill.setAttribute('fill', 'url(#dmca)');
 loadingDmcaRectFill.setAttribute('x', '0');
 loadingDmcaRectFill.setAttribute('y', '0');
@@ -46,16 +46,15 @@ loadingDmcaRectFill.setAttribute('width', '100%');
 loadingDmcaRectFill.setAttribute('height', '100%');
 loadingDmca.appendChild(loadingDmcaRectFill);
 
-loadingDmcaGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+let loadingDmcaGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 loadingDmcaGroup.setAttribute('transform', 'translate(400 400) scale(4)');
 loadingDmca.appendChild(loadingDmcaGroup);
-
 loadingDmcaGroupPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 loadingDmcaGroupPath.setAttribute('fill', '#fff');
 loadingDmcaGroupPath.setAttribute('d', 'M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z');
 loadingDmcaGroup.appendChild(loadingDmcaGroupPath);
 
-loadingDmcaGroupPathAnimateTransform = document.createElementNS('http://www.w3.org/2000/svg', 'animateTransform');
+let loadingDmcaGroupPathAnimateTransform = document.createElementNS('http://www.w3.org/2000/svg', 'animateTransform');
 loadingDmcaGroupPathAnimateTransform.setAttribute('attributeType', 'xml');
 loadingDmcaGroupPathAnimateTransform.setAttribute('attributeName', 'transform');
 loadingDmcaGroupPathAnimateTransform.setAttribute('type', 'rotate');
@@ -169,8 +168,7 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
-/*document.body.style.zoom = '1';
-document.body.style.touchAction = 'none';*/
+
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
