@@ -163,7 +163,7 @@ let videoContainer = document.querySelector('.video');
 				</div>
 			</div>
 			<div class="video-player">
-				<video id="videoPlayer" data-video allowfullscreen="false" poster="false" controlsList="nodownload">
+				<video id="videoPlayer" data-video allowfullscreen="false" poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
 				</video>
 			</div>
 		</div>
