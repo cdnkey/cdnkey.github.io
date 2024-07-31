@@ -7,40 +7,21 @@
 </head>
 <body>
 	<script>
-		(function() {
-			'use strict';
-			const el = new Image();
-			let consoleIsOpen = false;
-			let consoleOpened = false;
+		let devtoolsOpen = false;
+let threshold = 160; // DevTools'un genişlik veya yükseklik değişikliği için bir eşik değeri
 
-			Object.defineProperty(el, 'id', {
-				get: () => {
-					consoleIsOpen = true;
-				}
-			});
+setInterval(() => {
+    let widthThreshold = window.innerWidth < window.outerWidth - threshold;
+    let heightThreshold = window.innerHeight < window.outerHeight - threshold;
 
-			const verify = () => {
-				console.dir(el);
-				if (consoleIsOpen === false && consoleOpened === true) {
-					// console closed
-					window.dispatchEvent(new Event('devtools-opened'));
-					consoleOpened = false;
-				} else if (consoleIsOpen === true && consoleOpened === false) {
-					// console opened
-					window.dispatchEvent(new Event('devtools-closed'));
-					consoleOpened = true;
-				}
-				consoleIsOpen = false;
-				setTimeout(verify, 1000);
-
-			}
-
-			verify();
-		})();
-
-		// Use like this
-		// window.addEventListener('devtools-opened', ()=>{});
-		// window.addEventListener('devtools-closed', ()=>{});
+    if (widthThreshold || heightThreshold) {
+        devtoolsOpen = true;
+        console.log('DevTools açıldı');
+    } else {
+        devtoolsOpen = false;
+        console.log('DevTools kapalı');
+    }
+}, 1000);
 	</script>
 </body>
 </html>
