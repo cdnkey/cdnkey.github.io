@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DevTools Detection</title>
+</head>
+<body>
+	<script>
+		(function() {
+			'use strict';
+			const el = new Image();
+			let consoleIsOpen = false;
+			let consoleOpened = false;
+
+			Object.defineProperty(el, 'id', {
+				get: () => {
+					consoleIsOpen = true;
+				}
+			});
+
+			const verify = () => {
+				console.dir(el);
+				if (consoleIsOpen === false && consoleOpened === true) {
+					// console closed
+					window.dispatchEvent(new Event('devtools-opened'));
+					consoleOpened = false;
+				} else if (consoleIsOpen === true && consoleOpened === false) {
+					// console opened
+					window.dispatchEvent(new Event('devtools-closed'));
+					consoleOpened = true;
+				}
+				consoleIsOpen = false;
+				setTimeout(verify, 1000);
+
+			}
+
+			verify();
+		})();
+
+		// Use like this
+		// window.addEventListener('devtools-opened', ()=>{});
+		// window.addEventListener('devtools-closed', ()=>{});
+	</script>
+</body>
+</html>
