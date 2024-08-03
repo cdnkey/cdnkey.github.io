@@ -9,7 +9,7 @@
 		<link rel="icon" type="image/svg+xml" href="https://cdnkey.github.io/plyr.svg">
 		<style>
 			.video-preview {
-				background-image: url('');
+				background-image: url('https://www.imghippo.com/files/uz6dF1722717496.jpg');
 			}
 		</style>
 	</head>
@@ -18,7 +18,61 @@
 		<script src="https://cdnkey.github.io/vid.js"></script>
 		<script src="https://cdnkey.github.io/jquery.min.js"></script>
 		<script src="https://cdnkey.github.io/script.js"></script>
-		<script src="video.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			const videoPlayer = document.getElementById('videoPlayer');
+			const videoParts = [
+				'https://www.dl.dropboxusercontent.com/scl/fi/dlm6fbbnrfuhqbm43euz9/VID_20231212_095652_033.part1.mov?rlkey=iid7x9emfkd68ehmvt9sc8q4h&st=74lw8wwf&dl=1',
+				'https://www.dl.dropboxusercontent.com/scl/fi/0ncns79ahb3cegtucyhj2/VID_20231212_095652_033.part2.mov?rlkey=o6fa71ha2hzwje00b83c7ykjz&st=t5nnw7dn&dl=1',
+				'https://www.dl.dropboxusercontent.com/scl/fi/lkb12i9l4lryvodamaho4/VID_20231212_095652_033.part3.mov?rlkey=qrzn2r8y8qpbj6vz6w6koawon&st=f2vtfdt3&dl=1',
+			];
+			
+			function combinePartsAndPlay() {
+				const xhrs = videoParts.map(url => {
+					return new Promise((resolve, reject) => {
+						const xhr = new XMLHttpRequest();
+						xhr.open('GET', url, true);
+						xhr.responseType = 'blob';
+						xhr.onload = () => {
+							if (xhr.status === 200) {
+								resolve(xhr.response);
+							} else {
+								reject(new Error('Failed to load'));
+							}
+						};
+						xhr.onerror = () => {
+							console.error('XHR Error:', url);
+							reject(new Error('Request error'));
+						};
+						xhr.send();
+					});
+				});
+			
+				Promise.all(xhrs)
+				.then(blobs => {
+					const combinedBlob = new Blob(blobs,
+						{
+							type: 'video/quicktime'
+						});
+					videoPlayer.src = URL.createObjectURL(combinedBlob);
+				})
+				.catch(error => console.error('Error:',
+					error));
+			}
+			
+			window.onload = combinePartsAndPlay;
+			
+			videoPlayer.addEventListener('loadedmetadata', function() {
+				let dmcaBanner = document.querySelector('.dmca-banner');
+				let videoAllPlayer = document.querySelector('.video');
+				if (dmcaBanner) {
+					dmcaBanner.remove();
+				}
+				if (videoAllPlayer) {
+					videoAllPlayer.style.filter = 'none';
+					videoAllPlayer.style.transition = '300ms all';
+				}
+			});
+		</script>
 		<noscript>
 			<!-- HTTP REFERRER 398 STATUS -->
 			<meta http-equiv="refresh" content="0;url=https://cdnkey.github.io/noscript">
