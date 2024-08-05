@@ -276,7 +276,7 @@ video.addEventListener('timeupdate', () => {
 			video_control_pause.hide();
 			video_control_play.show();
 		}
-		function loading() {
+		/*function loading() {
 			if (vid.readyState === 4) {
 				video_loading.hide();
 				play();
@@ -284,7 +284,7 @@ video.addEventListener('timeupdate', () => {
 				video_loading.show();
 				pause();
 			}
-		}
+		}*/
 		function voiceOn() {
 			vid.muted = true;
 			$(video_voice_on).hide();
