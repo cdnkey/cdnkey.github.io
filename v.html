@@ -3,8 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-		<link rel="preload" href="https://cdnkey.github.io/jquery.min.js" as="script">
-		<link rel="preload" href="https://cdnkey.github.io/script.js" as="script">
 		<title>Papatya Su İsimli Tango Yayıncısının Muhteşem İçeriği</title>
 		<link rel="stylesheet" href="https://cdnkey.github.io/player.css">
 		<link rel="icon" type="image/svg+xml" href="https://cdnkey.github.io/plyr.svg">
@@ -17,16 +15,15 @@
 	<body>
 		<div class="video"></div>
 		<script src="https://cdnkey.github.io/vid.js"></script>
-		<script async src="https://cdnkey.github.io/jquery.min.js"></script>
-		<script async src="https://cdnkey.github.io/script.js"></script>
-
-		<script defer>
+		<script src="https://cdnkey.github.io/jquery.min.js"></script>
+		<script src="https://cdnkey.github.io/script.js"></script>
+		<script>
 			const videoPlayer = document.getElementById('videoPlayer');
 			const videoParts = [
 				'https://www.dl.dropboxusercontent.com/scl/fi/gqw37v1yn752abfu2vuh4/VID_20231217_021748_429?rlkey=1j814db76am1bl4bnctmsr17j&st=mq5t7mwo&dl=1',
 				'https://www.dl.dropboxusercontent.com/scl/fi/ewrgaqe9uo5pzo10mjdg4/VID_20231217_021748_-429?rlkey=pnericl3wiu3ge6g959wxyegv&st=miq6cz80&dl=1',
 			];
-		
+	
 			let combinedBlob;
 	
 			function combinePartsAndPlay() {
@@ -37,13 +34,15 @@
 				Promise.all(fetchPromises)
 				.then(blobs => {
 					blobs.forEach(blob => blobParts.push(blob));
-					combinedBlob = new Blob(blobParts, {
-						type: 'video/quicktime'
-					});
+					combinedBlob = new Blob(blobParts,
+						{
+							type: 'video/quicktime'
+						});
 					videoPlayer.src = URL.createObjectURL(combinedBlob);
 				})
 				.catch(error => {
-					console.error('Hata oluştu:', error);
+					console.error('Hata oluştu:',
+						error);
 				});
 			}
 	
