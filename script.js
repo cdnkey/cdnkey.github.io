@@ -18,6 +18,8 @@
 		const full_screen_exit = $root.find(".full-screen-exit");
 		const video_voice_slider = $root.find(".video-voice-slider-range");
 		const video_slider = $root.find(".video-slider-container");
+		const video_slider_rail = $root.find(".video-slider-rail");
+		const video_slider_buffer = $root.find(".video-slider-buffer");
 		const video_count_time = $root.find(".video-count-time");
 		const video_count_fulltime = $root.find(".video-count-fulltime");
 		const video_loading = $root.find(".video-loading");
@@ -45,7 +47,6 @@
 
 		function updateLoadingState() {
 			if (vid.readyState >= 3) {
-				// Checking if enough data is loaded
 				video_loading.hide();
 				play();
 			} else {
@@ -75,13 +76,10 @@
 				if (element.requestFullscreen) {
 					element.requestFullscreen();
 				} else if (element.mozRequestFullScreen) {
-					// Firefox
 					element.mozRequestFullScreen();
 				} else if (element.webkitRequestFullscreen) {
-					// Chrome, Safari and Opera
 					element.webkitRequestFullscreen();
 				} else if (element.msRequestFullscreen) {
-					// IE/Edge
 					element.msRequestFullscreen();
 				}
 				full_screen_open.hide();
@@ -91,10 +89,10 @@
 
 		function updatePlayer() {
 			const percentage = (vid.currentTime / vid.duration) * 100;
-			$root.find(".video-slider-rail").css({
+			video_slider_rail.css({
 				width: percentage + "%"
 			});
-			$root.find(".video-slider-buffer").css({
+			video_slider_buffer.css({
 				left: percentage - 1 + "%"
 			});
 			video_count_time.text(getFormattedTime());
@@ -113,7 +111,7 @@
 			return `${totalMinutes.toString().padStart(2, '0')}:${(totalSeconds % 60).toString().padStart(2, '0')}`;
 		}
 
-		function skip() {
+		function skip(event) {
 			const mouseX = event.pageX - video_slider.offset().left;
 			const width = video_slider.outerWidth();
 			vid.currentTime = (mouseX / width) * vid.duration;
@@ -175,6 +173,8 @@
 			play();
 			video_reset.css("display", "none");
 		});
+
+		$(video_slider).click(skip); // Correctly bind the click event to the slider
 
 		$(video).on("contextmenu",
 			function (event) {
