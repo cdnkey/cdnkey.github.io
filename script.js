@@ -30,7 +30,7 @@
 		var vid = video_element;
 
 		function play() {
-			if (vid) {
+			if (vid && vid.paused) {
 				vid.play();
 				video_control_play.hide();
 				video_control_pause.show();
@@ -38,7 +38,7 @@
 		}
 
 		function pause() {
-			if (vid) {
+			if (vid && !vid.paused) {
 				vid.pause();
 				video_control_pause.hide();
 				video_control_play.show();
@@ -48,7 +48,6 @@
 		function updateLoadingState() {
 			if (vid.readyState >= 3) {
 				video_loading.hide();
-				play();
 			} else {
 				video_loading.show();
 				pause();
