@@ -88,3 +88,17 @@ article svg image[preserveAspectRatio="xMidYMid meet"] {
 	width: 100%;
 	height: 100%;
 }
+.back {
+	display: inline-block;
+}
+.back::before {
+	content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%2212.01%200.01%2027.98%2051.99%22%3E%3Cpath%20d%3D%22M38%2C52a2%2C2%2C0%2C0%2C1-1.41-.59l-24-24a2%2C2%2C0%2C0%2C1%2C0-2.82l24-24a2%2C2%2C0%2C0%2C1%2C2.82%2C0%2C2%2C2%2C0%2C0%2C1%2C0%2C2.82L16.83%2C26%2C39.41%2C48.59A2%2C2%2C0%2C0%2C1%2C38%2C52Z%22%2F%3E%3C%2Fsvg%3E');
+	display: block;
+	width: 15px;
+	padding: 20px;
+	transition: 300ms all;
+}
+.back:hover::before {
+	opacity: 0.4;
+	transition: 300ms opacity;
+}
