@@ -6,9 +6,6 @@
 	padding: 0;
 }
 html {
-	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-	"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-	sans-serif;
 	font-size: 16px;
 	font-weight: normal;
 	line-height: 1.5;
@@ -18,9 +15,7 @@ html {
 	color: rgb(20, 23, 26);
 }
 body {
-	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-	"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-	sans-serif;
+	font-family: "Anek Devanagari", sans-serif;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -41,11 +36,10 @@ body {
 	flex-direction: column;
 	transition: all 0.3s ease;
 	color: white;
-	/*border-radius: 10px;*/
 	margin: 0;
 	filter: brightness(20%) blur(12px);
 }
-.video:after {
+.video::after {
 	content: "";
 	position: absolute;
 	width: 100%;
@@ -557,15 +551,6 @@ video {
 .video-reset-btn::before {
 	content: '\54\65\6b\72\61\72\20\69\7a\6c\65';
 }
-/*
-.video-count-time::before {
-	content: '\30\3a\32\35';
-	
-}
-.video-count-fulltime::before {
-	content: '\30\3a\35\32';
-}
-*/
 .video-count-line::before {
 	content: '\2f';
 }
