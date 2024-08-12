@@ -23,6 +23,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: rgb(20, 23, 26);
 	touch-action: none;
+	background: #000;
 	-webkit-touch-action: none;
 	-moz-touch-action: none;
 	-ms-touch-action: none;
