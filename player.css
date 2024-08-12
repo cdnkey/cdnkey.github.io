@@ -424,7 +424,7 @@ body {
 	background: #ffffff82;
 }
 
-/*.video-loading-spinner {
+.video-loading-spinner {
 	width: 55px;
 	height: 55px;
 	border: 5px solid #ffffff;
@@ -489,7 +489,7 @@ body {
 	background: #00000061;
 	z-index: 1;
 	transition: all 0.3s ease;
-}*/
+}
 
 .video-reset {
 	position: absolute;
