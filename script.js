@@ -173,9 +173,9 @@
 			video_reset.css("display", "none");
 		});
 
-		$(video_slider).click(skip); // Correctly bind the click event to the slider
+		$(video_slider).click(skip);
 
-		$(video).on("contextmenu",
+		$(vid).on("contextmenu",
 			function (event) {
 				event.preventDefault();
 				video_contextMenu.show().css({
@@ -187,6 +187,19 @@
 		$(window).click(function () {
 			video_contextMenu.fadeOut("fast");
 		});
+
+		// Play/Pause button state updates based on video status
+		$(vid).on("play",
+			function () {
+				video_control_play.hide();
+				video_control_pause.show();
+			});
+
+		$(vid).on("pause",
+			function () {
+				video_control_pause.hide();
+				video_control_play.show();
+			});
 	}
 
 	$.fn.twitterVideoPlayer = function () {
