@@ -188,7 +188,6 @@
 			video_contextMenu.fadeOut("fast");
 		});
 
-		// Play/Pause button state updates based on video status
 		$(vid).on("play",
 			function () {
 				video_control_play.hide();
