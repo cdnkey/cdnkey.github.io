@@ -49,7 +49,7 @@ articles.forEach(article => {
 var folder = document.querySelectorAll('.folder');
 folder.forEach(function(folder) {
 	folderAssets = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-	folderAssets.setAttribute('viewBox', '0 0 512 512');
+	folderAssets.setAttribute('viewBox', '512 512');
 	folder.prepend(folderAssets);
 
 	folderImage = document.createElementNS('http://www.w3.org/2000/svg', 'image');
