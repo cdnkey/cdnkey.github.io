@@ -21,16 +21,13 @@ allXmlnsNameSpace.forEach(function(allXmlnsNameSpace) {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-	const svgs = document.querySelectorAll('svg[viewBox]');
+    const svgs = document.querySelectorAll('svg[viewBox]');
 
-	svgs.forEach(svg => {
-		const viewBoxValue = svg.getAttribute('viewBox');
-
-		if (!svg.classList.contains('folder-asset')) {
-			const newViewBoxValue = `0 0 ${viewBoxValue}`;
-			svg.setAttribute('viewBox', newViewBoxValue);
-		}
-	});
+    svgs.forEach(svg => {
+        const viewBoxValue = svg.getAttribute('viewBox');
+        const newViewBoxValue = `0 0 ${viewBoxValue}`;
+        svg.setAttribute('viewBox', newViewBoxValue);
+    });
 });
 
 const articles = document.querySelectorAll('article');
@@ -50,15 +47,15 @@ articles.forEach(article => {
 });
 
 var folder = document.querySelectorAll('.folder');
-
 folder.forEach(function(folder) {
 	folderAssets = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-	folderAssets.setAttribute('viewBox', '0 0 512 512');
-	folderAssets.classList.add('folder-asset');
+	folderAssets.setAttribute('viewBox', '512 512');
 	folder.prepend(folderAssets);
 
 	folderImage = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 	folderImage.setAttribute('href', 'https://cdnkey.github.io/folder.svg');
+	folderImage.setAttribute('width', '100%');
+	folderImage.setAttribute('height', '100%');
+	folderImage.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 	folderAssets.appendChild(folderImage);
 });
