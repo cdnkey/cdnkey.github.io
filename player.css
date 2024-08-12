@@ -550,7 +550,7 @@ video {
 }
 .video-reset-btn::before {
 	content: '\54\65\6b\72\61\72\20\69\7a\6c\65';
-	font-family: "Anek Devanagari", sans-serif;
+	font-family: roboto;
 }
 .video-count-line::before {
 	content: '\2f';
