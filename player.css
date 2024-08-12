@@ -20,6 +20,11 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: rgb(20, 23, 26);
+	touch-action: none;
+	-webkit-touch-action: none;
+	-moz-touch-action: none;
+	-ms-touch-action: none;
+	-o-touch-action: none;
 }
 :root {
 	--primary: rgb(29, 161, 242);
@@ -28,7 +33,7 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: #000;
+	background: #fff;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -552,7 +557,7 @@ body {
 	transition: all 0.1s ease;
 }
 video {
-	object-fit: contain;
+	/*object-fit: contain;*/
 }
 .video-reset-btn::before {
 	content: '\54\65\6b\72\61\72\20\69\7a\6c\65';
