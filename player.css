@@ -397,7 +397,13 @@ body {
 	overflow: hidden;
 	user-select: none;
 }
-
+.video-start-btn:hover {
+	opacity: 0.444;
+	transition: 300ms all ease;
+}
+.video-start-btn {
+	transition: 300ms all ease;
+}
 .video-slider {
 	width: 100%;
 	position: relative;
@@ -479,9 +485,12 @@ body {
 	user-select: none;
 	cursor: pointer;
 	appearance: none;
+	transition: 300ms all ease;
 }
 .video-reset-btn:hover {
 	background: #000000;
+	opacity: 0.8;
+	transition: 300ms all ease;
 }
 
 .video-contextMenu {
