@@ -6,15 +6,17 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	outline: none;
+	outline: none !important;
+	tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-ms-tap-highlight-color: transparent;
+	-o-tap-highlight-color: transparent;
 	touch-action: none;
 	-webkit-touch-action: none;
 	-moz-touch-action: none;
 	-ms-touch-action: none;
 	-o-touch-action: none;
-}
-*:focus {
-	outline: none !important;
 }
 html {
 	font-size: 16px;
