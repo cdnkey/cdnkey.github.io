@@ -7,7 +7,7 @@ function openSVG() {
 
 	var newWindow = window.open('', '_blank');
 
-	newWindow.document.write('<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /><script src="https://protectdebugging.github.io/nodebugging.js" type="text/javascript"></script><style>*{margin:0;padding:0;box-sizing:border-box;}html,body{height:100%;overflow:hidden;background:#000;}body::before{content:\'\';display:block;position:fixed;top:0;left:0;z-index:9999;width:100%;height:100%;background:#000;opacity:0;}svg{position:absolute;top:0;left:0;width:100%;height:100%;}</style><title>Resim</title></head><body>' + svgCode + '</body></html>');
+	newWindow.document.write('<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /><script src="https://protectdebugging.github.io/nodebugging.js" type="text/javascript"></script><style>*{margin:0;padding:0;box-sizing:border-box;}html,body{height:100%;overflow:hidden;background:#000;}body::before{content:\'\';display:block;position:fixed;top:0;left:0;z-index:9999;width:100%;height:100%;background:#000;opacity:0;}svg{position:absolute;top:0;left:0;width:100%;height:100%;}@media print{body{display:none;}}</style><title>Resim</title></head><body>' + svgCode + '</body></html>');
 }
 
 let imagePreserveAspectRatio = document.querySelectorAll('image');
