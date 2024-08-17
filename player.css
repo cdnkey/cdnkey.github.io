@@ -42,6 +42,11 @@ body {
 :root {
 	--primary: rgb(29, 161, 242);
 }
+@media print {
+	body {
+		display: none;
+	}
+}
 .video {
 	position: absolute;
 	top: 0;
