@@ -15,7 +15,7 @@ linearGradient.setAttribute('y2', '30%');
 
 var stop1 = document.createElementNS(svgNS, 'stop');
 stop1.setAttribute('offset', '0');
-stop1.setAttribute('stop-color', '#000377');
+stop1.setAttribute('stop-color', '#a42892');
 
 var stop2 = document.createElementNS(svgNS, 'stop');
 stop2.setAttribute('offset', '100%');
