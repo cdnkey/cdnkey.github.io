@@ -489,7 +489,8 @@ body {
 }
 .video-reset-btn:hover {
 	background: #000000;
-	opacity: 0.1;
+	filter: saturate(30);
+	box-shadow: 0px 0px 30px #fff;
 	transition: 300ms all ease;
 }
 
