@@ -72,6 +72,7 @@ article:hover svg {
 article.folder {
 	box-shadow: none;
 	transition: 300ms all linear;
+	border: 2px solid blue;
 }
 article.folder:hover {
 	transform: none;
