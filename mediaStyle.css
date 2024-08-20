@@ -45,6 +45,7 @@ header {
 	flex-wrap: wrap;
 	/*align-items: center;
 	justify-content: center;*/
+	padding-bottom: 120px;
 }
 article {
 	box-shadow: 2px 0px 4px #303030,
@@ -86,9 +87,6 @@ article.folder p {
 	-webkit-pointer-events: none;		-moz-pointer-events: none;
 	-ms-pointer-events: none;
 	-o-pointer-events: none;
-}
-main {
-	padding-top: 30px;
 }
 svg {
 	opacity: 1;
