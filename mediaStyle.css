@@ -43,8 +43,8 @@ header {
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
+	/*align-items: center;
+	justify-content: center;*/
 }
 article {
 	box-shadow: 2px 0px 4px #303030,
