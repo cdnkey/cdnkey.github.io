@@ -87,6 +87,9 @@ article.folder p {
 	-ms-pointer-events: none;
 	-o-pointer-events: none;
 }
+main {
+	padding-top: 30px;
+}
 svg {
 	opacity: 1;
 	display: block;
