@@ -43,7 +43,6 @@ header {
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
 	justify-content: center;
 	padding-bottom: 120px;
 }
@@ -73,6 +72,8 @@ article.folder {
 	box-shadow: none;
 	transition: 300ms all linear;
 	border: 2px solid blue;
+	word-wrap: break-word;
+	word-break: break-word;
 }
 article.folder:hover {
 	transform: none;
