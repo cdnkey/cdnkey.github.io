@@ -173,38 +173,26 @@ let videoContainer = document.querySelector('.video');
 	`;
 let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
-let hideControlsTimeout;
-
-function hideControls() {
-	videoPlayerControls.style.opacity = '0';
-	videoPlayerControls.style.pointerEvents = 'none';
-	videoPlayerControls.style.webkitPointerEvents = 'none';
-	videoPlayerControls.style.mozPointerEvents = 'none';
-	videoPlayerControls.style.msPointerEvents = 'none';
-	videoPlayerControls.style.oPointerEvents = 'none';
-}
-
-function showControls() {
-	videoPlayerControls.style.opacity = '1';
-	videoPlayerControls.style.pointerEvents = 'auto';
-	videoPlayerControls.style.webkitPointerEvents = 'auto';
-	videoPlayerControls.style.mozPointerEvents = 'auto';
-	videoPlayerControls.style.msPointerEvents = 'auto';
-	videoPlayerControls.style.oPointerEvents = 'auto';
-}
-
-// Başlangıç düğmesine tıklama olayında zamanlayıcı başlat
 videoStartBtn.addEventListener('click', function() {
-	clearTimeout(hideControlsTimeout);
-	showControls(); // Kontrolleri hemen göster
-
-	hideControlsTimeout = setTimeout(hideControls, 3200);
+    // 3.2 saniye sonra opacity'yi 0 yap ve pointer-events'i none yap
+    setTimeout(function() {
+        videoPlayerControls.style.opacity = '0';
+        videoPlayerControls.style.pointerEvents = 'none';
+        videoPlayerControls.style.webkitPointerEvents = 'none';
+        videoPlayerControls.style.mozPointerEvents = 'none';
+        videoPlayerControls.style.msPointerEvents = 'none';
+        videoPlayerControls.style.oPointerEvents = 'none';
+    }, 3200);
 });
 
-// Video konteynerine tıklama olayında zamanlayıcıyı temizle ve kontrolleri göster
 videoContainer.addEventListener('click', function() {
-	clearTimeout(hideControlsTimeout);
-	showControls();
+    // Kontrolleri hemen görünür yap
+    videoPlayerControls.style.opacity = '1';
+    videoPlayerControls.style.pointerEvents = 'auto';
+    videoPlayerControls.style.webkitPointerEvents = 'auto';
+    videoPlayerControls.style.mozPointerEvents = 'auto';
+    videoPlayerControls.style.msPointerEvents = 'auto';
+    videoPlayerControls.style.oPointerEvents = 'auto';
 });
 document.body.style.background = '#000000';
 
