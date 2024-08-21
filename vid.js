@@ -175,8 +175,6 @@ let videoContainer = document.querySelector('.video');
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
-let video_start_btn = document.querySelector('.video-start-btn');
-const videoControl = document.querySelector('.video-control');
 const videoSliderContainer = document.querySelector('.video-slider-container');
 
 video.addEventListener('timeupdate', () => {
@@ -191,7 +189,7 @@ video.addEventListener('timeupdate', () => {
 		videoSliderContainer.style.opacity = '1';
 	}
 });
-
+let video_start_btn = document.querySelector('.video-start-btn');
 video_start_btn.addEventListener('click', function() {
 	let video_preview = document.querySelector('.video-preview');
 	let newStyleCreate = document.createElement('style');
