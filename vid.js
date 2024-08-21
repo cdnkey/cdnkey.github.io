@@ -173,26 +173,46 @@ let videoContainer = document.querySelector('.video');
 	`;
 let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
-videoStartBtn.addEventListener('click', function() {
-    // 3.2 saniye sonra opacity'yi 0 yap ve pointer-events'i none yap
-    setTimeout(function() {
-        videoPlayerControls.style.opacity = '0';
-        videoPlayerControls.style.pointerEvents = 'none';
-        videoPlayerControls.style.webkitPointerEvents = 'none';
-        videoPlayerControls.style.mozPointerEvents = 'none';
-        videoPlayerControls.style.msPointerEvents = 'none';
-        videoPlayerControls.style.oPointerEvents = 'none';
-    }, 3200);
-});
+ let hideControlsTimeout;
 
-videoContainer.addEventListener('click', function() {
-    // Kontrolleri hemen görünür yap
+// Kontrolleri gizleme fonksiyonu
+function hideControls() {
+    videoPlayerControls.style.opacity = '0';
+    videoPlayerControls.style.pointerEvents = 'none';
+    videoPlayerControls.style.webkitPointerEvents = 'none';
+    videoPlayerControls.style.mozPointerEvents = 'none';
+    videoPlayerControls.style.msPointerEvents = 'none';
+    videoPlayerControls.style.oPointerEvents = 'none';
+}
+
+// Kontrolleri gösterme fonksiyonu
+function showControls() {
     videoPlayerControls.style.opacity = '1';
     videoPlayerControls.style.pointerEvents = 'auto';
     videoPlayerControls.style.webkitPointerEvents = 'auto';
     videoPlayerControls.style.mozPointerEvents = 'auto';
     videoPlayerControls.style.msPointerEvents = 'auto';
     videoPlayerControls.style.oPointerEvents = 'auto';
+}
+
+// Başlangıç düğmesine tıklama olayında zamanlayıcı başlat
+videoStartBtn.addEventListener('click', function() {
+    // Mevcut zamanlayıcıyı temizle
+    clearTimeout(hideControlsTimeout);
+    // Kontrolleri hemen göster
+    showControls();
+    // Gizleme zamanlayıcısını başlat
+    hideControlsTimeout = setTimeout(hideControls, 3200);
+});
+
+// Video konteynerine tıklama olayında zamanlayıcıyı temizle ve kontrolleri göster
+videoContainer.addEventListener('click', function() {
+    // Mevcut zamanlayıcıyı temizle
+    clearTimeout(hideControlsTimeout);
+    // Kontrolleri hemen göster
+    showControls();
+    // Gizleme zamanlayıcısını yeniden başlat
+    hideControlsTimeout = setTimeout(hideControls, 3200);
 });
 document.body.style.background = '#000000';
 
