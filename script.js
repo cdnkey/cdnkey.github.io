@@ -17,7 +17,6 @@
 		const full_screen_exit = $root.find(".full-screen-exit");
 		const video_slider = $root.find(".video-slider-container");
 		const video_slider_rail = $root.find(".video-slider-rail");
-		const video_slider_buffer = $root.find(".video-slider-buffer");
 		const video_count_time = $root.find(".video-count-time");
 		const video_count_fulltime = $root.find(".video-count-fulltime");
 		const video_loading = $root.find(".video-loading");
@@ -88,9 +87,6 @@
 			const percentage = (vid.currentTime / vid.duration) * 100;
 			video_slider_rail.css({
 				width: percentage + "%"
-			});
-			video_slider_buffer.css({
-				left: percentage - 1 + "%"
 			});
 			video_count_time.text(getFormattedTime());
 			video_count_fulltime.text(getFormattedFullTime());
