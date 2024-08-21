@@ -141,57 +141,6 @@ body {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-bottom: 10px;
-	animation: playerHidden 400ms linear forwards;
-}
-@keyframes playerHidden {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-		pointer-events: none;
-		-webkit-pointer-events: none;
-		-moz-pointer-events: none;
-		-ms-pointer-events: none;
-		-o-pointer-events: none;
-		user-select: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		-o-user-select: none;
-	}
-		
-}
-body:hover .video-player-controls {
-	animation: playerVisible 400ms linear forwards;
-}
-@keyframes playerVisible {
-	from {
-		opacity: 0;
-		pointer-events: none;
-		-webkit-pointer-events: none;
-		-moz-pointer-events: none;
-		-ms-pointer-events: none;
-		-o-pointer-events: none;
-		user-select: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		-o-user-select: none;
-	}
-	to {
-		opacity: 0;
-		pointer-events: auto;
-		-webkit-pointer-events: auto;
-		-moz-pointer-events: auto;
-		-ms-pointer-events: auto;
-		-o-pointer-events: auto;
-		user-select: auto;
-		-webkit-user-select: auto;
-		-moz-user-select: auto;
-		-ms-user-select: auto;
-		-o-user-select: auto;
-	}
 }
 .video-player-controls .row {
 	display: flex;
