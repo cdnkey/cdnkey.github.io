@@ -175,7 +175,6 @@ let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
 let hideControlsTimeout;
 
-// Kontrolleri gizleme fonksiyonu
 function hideControls() {
     videoPlayerControls.style.opacity = '0';
     videoPlayerControls.style.pointerEvents = 'none';
@@ -187,7 +186,6 @@ function hideControls() {
 	
 }
 
-// Kontrolleri gösterme fonksiyonu
 function showControls() {
     videoPlayerControls.style.opacity = '1';
     videoPlayerControls.style.pointerEvents = 'auto';
@@ -198,24 +196,16 @@ function showControls() {
     videoPlayerControls.style.transition = '250ms ease';
 }
 
-// Başlangıç düğmesine tıklama olayında zamanlayıcı başlat
 videoStartBtn.addEventListener('click', function() {
-    // Mevcut zamanlayıcıyı temizle
     clearTimeout(hideControlsTimeout);
-    // Kontrolleri hemen göster
     showControls();
-    // Gizleme zamanlayıcısını başlat
-    hideControlsTimeout = setTimeout(hideControls, 3200);
+    hideControlsTimeout = setTimeout(hideControls, 2300);
 });
 
-// Video konteynerine tıklama olayında zamanlayıcıyı temizle ve kontrolleri göster
 videoContainer.addEventListener('click', function() {
-    // Mevcut zamanlayıcıyı temizle
     clearTimeout(hideControlsTimeout);
-    // Kontrolleri hemen göster
     showControls();
-    // Gizleme zamanlayıcısını yeniden başlat
-    hideControlsTimeout = setTimeout(hideControls, 3200);
+    hideControlsTimeout = setTimeout(hideControls, 2300);
 });
 document.body.style.background = '#000000';
 
