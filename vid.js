@@ -186,7 +186,7 @@ videoStartBtn.addEventListener('click', function() {
 	}, 3200);
 });
 
-videoContainer.addEventListener('onmouseover', function() {
+videoContainer.addEventListener('click', function() {
 	videoPlayerControls.style.opacity = '1';
 	videoPlayerControls.style.pointerEvents = 'auto';
 	videoPlayerControls.style.webkitPointerEvents = 'auto';
