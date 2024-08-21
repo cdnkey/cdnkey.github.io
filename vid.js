@@ -172,6 +172,13 @@ let videoContainer = document.querySelector('.video');
 		</div>
 	`;
 
+let videoPlayerControls = document.querySelector('.video-player-controls');
+setTimeout(function() {
+	videoPlayerControls.style.opacity = '0';
+	videoPlayerControls.style.pointerEvents = 'none';
+	videoPlayerControls.style.transition = '300ms all ease';
+}, 3200);
+
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
