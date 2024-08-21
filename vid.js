@@ -173,7 +173,7 @@ let videoContainer = document.querySelector('.video');
 	`;
 let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
- let hideControlsTimeout;
+let hideControlsTimeout;
 
 // Kontrolleri gizleme fonksiyonu
 function hideControls() {
@@ -183,6 +183,8 @@ function hideControls() {
     videoPlayerControls.style.mozPointerEvents = 'none';
     videoPlayerControls.style.msPointerEvents = 'none';
     videoPlayerControls.style.oPointerEvents = 'none';
+    videoPlayerControls.style.transition = '250ms ease';
+	
 }
 
 // Kontrolleri gösterme fonksiyonu
@@ -193,6 +195,7 @@ function showControls() {
     videoPlayerControls.style.mozPointerEvents = 'auto';
     videoPlayerControls.style.msPointerEvents = 'auto';
     videoPlayerControls.style.oPointerEvents = 'auto';
+    videoPlayerControls.style.transition = '250ms ease';
 }
 
 // Başlangıç düğmesine tıklama olayında zamanlayıcı başlat
