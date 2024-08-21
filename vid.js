@@ -136,13 +136,7 @@ let videoContainer = document.querySelector('.video');
 							<span class="video-count-time"></span><span class="video-count-line"></span><span class="video-count-fulltime"></span>
 						</div>
 						<div class="video-voice">
-							<div class="video-voice-slider">
-								<div class="video-voice-slider-rail" role="slider">
-									<div class="video-voice-slider-buffer"></div>
-									<input class="video-voice-slider-range" type="range" min="0" max="1" value="1" step="0.01" />
-								</div>
-							</div>
-							<button class="video-voice-btn">
+                                                                <button class="video-voice-btn">
 								<svg class="video-voice-on" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
 									<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
 									<path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"></path>
