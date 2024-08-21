@@ -171,13 +171,16 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
-
+let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
-setTimeout(function() {
-	videoPlayerControls.style.opacity = '0';
-	videoPlayerControls.style.pointerEvents = 'none';
-	videoPlayerControls.style.transition = '300ms all ease';
-}, 3200);
+
+videoStartBtn.addEventListener('click', function() {
+	setTimeout(function() {
+		videoPlayerControls.style.opacity = '0';
+		videoPlayerControls.style.pointerEvents = 'none';
+		videoPlayerControls.style.transition = '300ms all ease';
+	}, 3200);
+});
 
 document.body.style.background = '#000000';
 
