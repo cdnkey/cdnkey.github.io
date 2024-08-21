@@ -178,8 +178,22 @@ videoStartBtn.addEventListener('click', function() {
 	setTimeout(function() {
 		videoPlayerControls.style.opacity = '0';
 		videoPlayerControls.style.pointerEvents = 'none';
+		videoPlayerControls.style.webkitPointerEvents = 'none';
+		videoPlayerControls.style.mozPointerEvents = 'none';
+		videoPlayerControls.style.msPointerEvents = 'none';
+		videoPlayerControls.style.oPointerEvents = 'none';
 		videoPlayerControls.style.transition = '300ms all ease';
 	}, 3200);
+});
+
+videoContainer.addEventListener('onmouseover', function() {
+	videoPlayerControls.style.opacity = '1';
+	videoPlayerControls.style.pointerEvents = 'auto';
+	videoPlayerControls.style.webkitPointerEvents = 'auto';
+	videoPlayerControls.style.mozPointerEvents = 'auto';
+	videoPlayerControls.style.msPointerEvents = 'auto';
+	videoPlayerControls.style.oPointerEvents = 'auto';
+	videoPlayerControls.style.transition = '300ms all ease';
 });
 
 document.body.style.background = '#000000';
