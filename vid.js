@@ -173,31 +173,38 @@ let videoContainer = document.querySelector('.video');
 	`;
 let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
-
 let hideControlsTimeout;
 
-videoStartBtn.addEventListener('click', function() {
-	clearTimeout(hideControlsTimeout);
-	hideControlsTimeout = setTimeout(function() {
-		videoPlayerControls.style.opacity = '0';
-		videoPlayerControls.style.pointerEvents = 'none';
-		videoPlayerControls.style.webkitPointerEvents = 'none';
-		videoPlayerControls.style.mozPointerEvents = 'none';
-		videoPlayerControls.style.msPointerEvents = 'none';
-		videoPlayerControls.style.oPointerEvents = 'none';
-		videoPlayerControls.style.transition = '300ms all ease';
-	}, 3200);
-});
+function hideControls() {
+	videoPlayerControls.style.opacity = '0';
+	videoPlayerControls.style.pointerEvents = 'none';
+	videoPlayerControls.style.webkitPointerEvents = 'none';
+	videoPlayerControls.style.mozPointerEvents = 'none';
+	videoPlayerControls.style.msPointerEvents = 'none';
+	videoPlayerControls.style.oPointerEvents = 'none';
+}
 
-videoContainer.addEventListener('click', function() {
+function showControls() {
 	videoPlayerControls.style.opacity = '1';
 	videoPlayerControls.style.pointerEvents = 'auto';
 	videoPlayerControls.style.webkitPointerEvents = 'auto';
 	videoPlayerControls.style.mozPointerEvents = 'auto';
 	videoPlayerControls.style.msPointerEvents = 'auto';
 	videoPlayerControls.style.oPointerEvents = 'auto';
-	videoPlayerControls.style.transition = '300ms all ease';
+}
+
+// Başlangıç düğmesine tıklama olayında zamanlayıcı başlat
+videoStartBtn.addEventListener('click', function() {
 	clearTimeout(hideControlsTimeout);
+	showControls(); // Kontrolleri hemen göster
+
+	hideControlsTimeout = setTimeout(hideControls, 3200);
+});
+
+// Video konteynerine tıklama olayında zamanlayıcıyı temizle ve kontrolleri göster
+videoContainer.addEventListener('click', function() {
+	clearTimeout(hideControlsTimeout);
+	showControls();
 });
 document.body.style.background = '#000000';
 
