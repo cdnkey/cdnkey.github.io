@@ -284,14 +284,6 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 0;
-	opacity: 0;
-	transform: scale(0);
-	transition: transform 300ms ease, opacity 300ms ease;
-}
-.video-voice-slider-rail:hover .video-voice-slider-range {
-	opacity: 1;
-	transform: scale(1);
-	transition: transform 300ms ease, opacity 300ms ease;
 }
 .video-voice-slider-range {
 	-webkit-appearance: none;
