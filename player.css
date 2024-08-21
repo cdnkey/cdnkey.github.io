@@ -163,7 +163,7 @@ body {
 		
 }
 body:hover .video-player-controls {
-	animation: playerVisible 400ms linear;
+	animation: playerVisible 400ms linear forwards;
 }
 @keyframes playerVisible {
 	from {
