@@ -174,8 +174,11 @@ let videoContainer = document.querySelector('.video');
 let videoStartBtn = document.querySelector('.video-start-btn');
 let videoPlayerControls = document.querySelector('.video-player-controls');
 
+let hideControlsTimeout;
+
 videoStartBtn.addEventListener('click', function() {
-	setTimeout(function() {
+	clearTimeout(hideControlsTimeout);
+	hideControlsTimeout = setTimeout(function() {
 		videoPlayerControls.style.opacity = '0';
 		videoPlayerControls.style.pointerEvents = 'none';
 		videoPlayerControls.style.webkitPointerEvents = 'none';
@@ -194,8 +197,8 @@ videoContainer.addEventListener('click', function() {
 	videoPlayerControls.style.msPointerEvents = 'auto';
 	videoPlayerControls.style.oPointerEvents = 'auto';
 	videoPlayerControls.style.transition = '300ms all ease';
+	clearTimeout(hideControlsTimeout);
 });
-
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
