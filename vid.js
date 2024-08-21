@@ -112,7 +112,6 @@ let videoContainer = document.querySelector('.video');
 					<div class="video-slider-container">
 						<div class="video-slider-bg">
 							<div class="video-slider-rail"></div>
-							<div class="video-slider-buffer"></div>
 						</div>
 					</div>
 				</div>
