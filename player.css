@@ -446,8 +446,7 @@ body {
 	background: white;
 	border-radius: 9999px;
 	cursor: pointer;
-	transition: 300ms transform linear;
-	transition: 300ms opacity linear;
+	transition: transform 300ms linear, opacity 300ms linear;
 	transform: scale(0);
 	opacity: 0;
 }
@@ -458,8 +457,7 @@ body {
 .video-slider-container:hover .video-slider-buffer {
 	transform: scale(1);
 	opacity: 1;
-	transition: 300ms transform linear;
-	transition: 300ms opacity linear;
+	transition: transform 300ms linear, opacity 300ms linear;
 }
 .video-slider-container:hover .video-slider-bg {
 	background: #ffffff82;
