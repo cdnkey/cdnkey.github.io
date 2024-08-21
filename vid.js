@@ -190,26 +190,35 @@ video.addEventListener('timeupdate', () => {
 	}
 });
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     let video_start_btn = document.querySelector('.video-start-btn');
     let video_player_controls = document.querySelector('.video-player-controls');
     let video_preview = document.querySelector('.video-preview');
 
     if (video_start_btn && video_player_controls && video_preview) {
-        video_start_btn.addEventListener('click', function() {
-            setTimeout(function() {
-                video_player_controls.classList.add('hidden');
+        video_start_btn.addEventListener('click', () => {
+            setTimeout(() => {
+                video_player_controls.style.transition = 'opacity 400ms linear';
+                video_player_controls.style.opacity = '0';
+                video_player_controls.style.pointerEvents = 'none'; // Tıklama olaylarını reddet
+                video_player_controls.style.userSelect = 'none'; // Seçim yapılamaz
             }, 3000);
         });
 
-        video_preview.addEventListener('mouseover', function() {
-            video_player_controls.classList.remove('hidden');
+        video_preview.addEventListener('mouseover', () => {
+            video_player_controls.style.transition = 'opacity 400ms linear';
+            video_player_controls.style.opacity = '1';
+            video_player_controls.style.pointerEvents = 'auto'; // Tıklama olaylarına izin ver
+            video_player_controls.style.userSelect = 'auto'; // Seçim yapılabilir
         });
 
-        video_preview.addEventListener('mouseleave', function() {
-            video_player_controls.classList.add('hidden');
+        video_preview.addEventListener('mouseleave', () => {
+            video_player_controls.style.transition = 'opacity 400ms linear';
+            video_player_controls.style.opacity = '0';
+            video_player_controls.style.pointerEvents = 'none'; // Tıklama olaylarını reddet
+            video_player_controls.style.userSelect = 'none'; // Seçim yapılamaz
         });
     } else {
-        console.error("Elementler bulunamadı!");
+        console.error("Gerekli HTML elemanları bulunamadı!");
     }
 });
