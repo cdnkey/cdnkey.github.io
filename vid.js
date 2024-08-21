@@ -190,21 +190,26 @@ video.addEventListener('timeupdate', () => {
 	}
 });
 
-let video_start_btn = document.querySelector('.video-start-btn');
-let video_player_controls = document.querySelector('.video-player-controls');
-let video_preview = document.querySelector('.video-preview');
+document.addEventListener('DOMContentLoaded', (event) => {
+    let video_start_btn = document.querySelector('.video-start-btn');
+    let video_player_controls = document.querySelector('.video-player-controls');
+    let video_preview = document.querySelector('.video-preview');
 
-video_start_btn.addEventListener('click', function() {
-    // 3 saniye sonra gizle
-    setTimeout(function() {
-        video_player_controls.classList.add('hidden');
-    }, 3000);
-});
+    if (video_start_btn && video_player_controls && video_preview) {
+        video_start_btn.addEventListener('click', function() {
+            setTimeout(function() {
+                video_player_controls.classList.add('hidden');
+            }, 3000);
+        });
 
-video_preview.addEventListener('mouseover', function() {
-    video_player_controls.classList.remove('hidden');
-});
+        video_preview.addEventListener('mouseover', function() {
+            video_player_controls.classList.remove('hidden');
+        });
 
-video_preview.addEventListener('mouseleave', function() {
-    video_player_controls.classList.add('hidden');
+        video_preview.addEventListener('mouseleave', function() {
+            video_player_controls.classList.add('hidden');
+        });
+    } else {
+        console.error("Elementler bulunamadı!");
+    }
 });
