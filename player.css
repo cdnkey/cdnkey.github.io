@@ -288,10 +288,11 @@ body {
 	transform: scale(0);
 	transition: transform 300ms ease, opacity 300ms ease;
 }
-.video-voice-slider-range:hover .video-voice-slider-rail {
+.video-voice-slider-range:hover .video-voice-slider-buffer {
 	opacity: 1;
 	transform: scale(1);
 	transition: transform 300ms ease, opacity 300ms ease;
+}
 .video-voice-slider-range {
 	-webkit-appearance: none;
 	width: 100%;
