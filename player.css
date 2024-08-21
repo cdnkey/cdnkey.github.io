@@ -447,8 +447,8 @@ body {
 	border-radius: 9999px;
 	cursor: pointer;
 	transition: transform 100ms cubic-bezier(0.6, -0.28, 0.74, 0.05);
-	transform: scale(1);
-	opacity: 1;
+	transform: scale(0);
+	opacity: 0;
 }
 .video-slider-buffer:hover {
 	box-shadow: 0 0 26px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 4),
@@ -457,6 +457,7 @@ body {
 .video-slider-container:hover .video-slider-buffer {
 	transform: scale(1);
 	opacity: 1;
+	transition: transform 100ms cubic-beizer(0.6, -0.28, 0.74, 0.05);
 }
 .video-slider-container:hover .video-slider-bg {
 	background: #ffffff82;
