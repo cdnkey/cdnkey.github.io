@@ -189,74 +189,22 @@ video.addEventListener('timeupdate', () => {
 		videoSliderContainer.style.opacity = '1';
 	}
 });
+
 let video_start_btn = document.querySelector('.video-start-btn');
+let video_player_controls = document.querySelector('.video-player-controls');
+let video_preview = document.querySelector('.video-preview');
+
 video_start_btn.addEventListener('click', function() {
-    let video_preview = document.querySelector('.video-preview');
-    let newStyleCreate = document.createElement('style');
-    newStyleCreate.setAttribute('data-c-combined', '');
-    newStyleCreate.innerHTML = `
-        .video-player-controls {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-bottom: 10px;
-            animation: playerHidden 400ms linear forwards;
-        }
-        @keyframes playerHidden {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-                pointer-events: none;
-                -webkit-pointer-events: none;
-                -moz-pointer-events: none;
-                -ms-pointer-events: none;
-                -o-pointer-events: none;
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                -o-user-select: none;
-            }
-        }
-        body:hover .video-player-controls {
-            animation: playerVisible 400ms linear forwards;
-        }
-        @keyframes playerVisible {
-            from {
-                opacity: 0;
-                pointer-events: none;
-                -webkit-pointer-events: none;
-                -moz-pointer-events: none;
-                -ms-pointer-events: none;
-                -o-pointer-events: none;
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                -o-user-select: none;
-            }
-            to {
-                opacity: 1;
-                pointer-events: auto;
-                -webkit-pointer-events: auto;
-                -moz-pointer-events: auto;
-                -ms-pointer-events: auto;
-                -o-pointer-events: auto;
-                user-select: auto;
-                -webkit-user-select: auto;
-                -moz-user-select: auto;
-                -ms-user-select: auto;
-                -o-user-select: auto;
-            }
-        }
-    `;
-    video_preview.appendChild(newStyleCreate);
+    // 3 saniye sonra gizle
+    setTimeout(function() {
+        video_player_controls.classList.add('hidden');
+    }, 3000);
+});
+
+video_preview.addEventListener('mouseover', function() {
+    video_player_controls.classList.remove('hidden');
+});
+
+video_preview.addEventListener('mouseleave', function() {
+    video_player_controls.classList.add('hidden');
 });
