@@ -9,14 +9,12 @@
 		const video_control_btn = $root.find(".video-control-btn");
 		const video_control_play = $root.find(".video-control-play");
 		const video_control_pause = $root.find(".video-control-pause");
-		const video_voice = $root.find(".video-voice");
 		const video_voice_btn = $root.find(".video-voice-btn");
 		const video_voice_on = $root.find(".video-voice-on");
 		const video_voice_off = $root.find(".video-voice-off");
 		const full_screen_btn = $root.find(".full-screen-btn");
 		const full_screen_open = $root.find(".full-screen-open");
 		const full_screen_exit = $root.find(".full-screen-exit");
-		/*const video_voice_slider = $root.find(".video-voice-slider-range");*/
 		const video_slider = $root.find(".video-slider-container");
 		const video_slider_rail = $root.find(".video-slider-rail");
 		const video_slider_buffer = $root.find(".video-slider-buffer");
@@ -111,7 +109,8 @@
 		}
 
 		function skip(event) {
-			const mouseX = event.pageX - video_slider.offset().left;
+			const pageX = event.type.includes('touch') ? event.touches[0].pageX : event.pageX;
+			const mouseX = pageX - video_slider.offset().left;
 			const width = video_slider.outerWidth();
 			vid.currentTime = (mouseX / width) * vid.duration;
 			updatePlayer();
@@ -136,36 +135,18 @@
 		});
 
 		video_voice_btn.click(function () {
-			vid.muted ? voiceOff(): voiceOn();
+			vid.muted ? voiceOff() : voiceOn();
 		});
 
 		full_screen_btn.click(toggleFullscreen);
 
-		$(vid).on("timeupdate",
-			function () {
-				updatePlayer();
-			});
+		$(vid).on("timeupdate", function () {
+			updatePlayer();
+		});
 
-		/*video_voice_slider.on("input change",
-			function () {
-				const volume = $(this).val();
-				vid.volume = volume;
-				$root.find(".video-voice-slider-buffer").css("width", volume * 100 + "%");
-				volume == 0 ? voiceOn(): voiceOff();
-			});
-
-		video_voice_slider.each(function () {
-			const volume = localStorage[this.id] || 1;
-			$(this).val(volume);
-			vid.volume = volume;
-			$root.find(".video-voice-slider-buffer").css("width", volume * 100 + "%");
-			volume == 0 ? voiceOn(): voiceOff();
-		});*/
-
-		$(vid).on("ended",
-			function () {
-				video_reset.css("display", "flex");
-			});
+		$(vid).on("ended", function () {
+			video_reset.css("display", "flex");
+		});
 
 		video_reset_btn.click(function () {
 			vid.currentTime = 0;
@@ -173,32 +154,42 @@
 			video_reset.css("display", "none");
 		});
 
-		$(video_slider).click(skip);
+		video_slider.on("mousedown touchstart", function (event) {
+			event.preventDefault();
 
-		$(vid).on("contextmenu",
-			function (event) {
+			const moveHandler = function (event) {
 				event.preventDefault();
-				video_contextMenu.show().css({
-					top: event.pageY,
-					left: event.pageX
-				});
+				skip(event);
+			};
+
+			$(document).on("mousemove touchmove", moveHandler);
+
+			$(document).on("mouseup touchend", function () {
+				$(document).off("mousemove touchmove", moveHandler);
 			});
+		});
+
+		$(vid).on("contextmenu", function (event) {
+			event.preventDefault();
+			video_contextMenu.show().css({
+				top: event.pageY,
+				left: event.pageX
+			});
+		});
 
 		$(window).click(function () {
 			video_contextMenu.fadeOut("fast");
 		});
 
-		$(vid).on("play",
-			function () {
-				video_control_play.hide();
-				video_control_pause.show();
-			});
+		$(vid).on("play", function () {
+			video_control_play.hide();
+			video_control_pause.show();
+		});
 
-		$(vid).on("pause",
-			function () {
-				video_control_pause.hide();
-				video_control_play.show();
-			});
+		$(vid).on("pause", function () {
+			video_control_pause.hide();
+			video_control_play.show();
+		});
 	}
 
 	$.fn.twitterVideoPlayer = function () {
