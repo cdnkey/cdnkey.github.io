@@ -340,27 +340,6 @@ body {
 	border-radius: 9999px;
 	position: relative;
 }
-.video-slider-buffer {
-	position: absolute;
-	left: 0%;
-	width: 15px;
-	height: 15px;
-	background: white;
-	border-radius: 9999px;
-	cursor: pointer;
-	transition: transform 300ms ease, opacity 300ms ease;
-	transform: scale(0);
-	opacity: 0;
-}
-.video-slider-buffer:hover {
-	box-shadow: 0 0 26px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 4),
-	0 0 0 5px rgba(255, 255, 255, 0.2);
-}
-.video-slider-container:hover .video-slider-buffer {
-	transform: scale(1);
-	opacity: 1;
-	transition: transform 300ms ease, opacity 300ms ease;
-}
 .video-slider-container:hover .video-slider-bg {
 	background: #ffffff82;
 }
