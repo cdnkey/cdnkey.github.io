@@ -446,7 +446,7 @@ body {
 	background: white;
 	border-radius: 9999px;
 	cursor: pointer;
-	transition: 300ms tranform linear;
+	transition: 300ms transform linear;
 	transition: 300ms opacity linear;
 	transform: scale(0);
 	opacity: 0;
