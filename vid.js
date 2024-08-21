@@ -191,49 +191,37 @@ video.addEventListener('timeupdate', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    let video_start_btn = document.querySelector('.video-start-btn');
-    let video_player_controls = document.querySelector('.video-player-controls');
-    let video_preview = document.querySelector('.video-preview');
-    let video = document.getElementById('videoPlayer');
-    let videoSliderContainer = document.querySelector('.video-slider-container');
+    let videoControl = document.querySelector('.video-control');
+    let videoStartBtn = document.querySelector('.video-start-btn');
+    let videoPreview = document.querySelector('.video-preview');
 
-    if (video_start_btn && video_player_controls && video_preview && video && videoSliderContainer) {
-        video_start_btn.addEventListener('click', () => {
+    // Başlangıçta video kontrol panelini gizle
+    if (videoControl) {
+        videoControl.style.display = 'none';
+    }
+
+    if (videoStartBtn) {
+        videoStartBtn.addEventListener('click', () => {
+            // Video kontrol panelini 3 saniye sonra gizle
             setTimeout(() => {
-                video_player_controls.style.transition = 'opacity 400ms linear';
-                video_player_controls.style.opacity = '0';
-                video_player_controls.style.pointerEvents = 'none'; // Tıklama olaylarını reddet
-                video_player_controls.style.userSelect = 'none'; // Seçim yapılamaz
+                if (videoControl) {
+                    videoControl.style.display = 'none';
+                }
             }, 3000);
         });
+    }
 
-        video_preview.addEventListener('mouseover', () => {
-            video_player_controls.style.transition = 'opacity 400ms linear';
-            video_player_controls.style.opacity = '1';
-            video_player_controls.style.pointerEvents = 'auto'; // Tıklama olaylarına izin ver
-            video_player_controls.style.userSelect = 'auto'; // Seçim yapılabilir
-        });
-
-        video_preview.addEventListener('mouseleave', () => {
-            video_player_controls.style.transition = 'opacity 400ms linear';
-            video_player_controls.style.opacity = '0';
-            video_player_controls.style.pointerEvents = 'none'; // Tıklama olaylarını reddet
-            video_player_controls.style.userSelect = 'none'; // Seçim yapılamaz
-        });
-
-        video.addEventListener('timeupdate', () => {
-            if (video.currentTime === video.duration) {
-                video_player_controls.style.display = 'none';
-                videoSliderContainer.style.pointerEvents = 'none';
-                videoSliderContainer.style.opacity = '0.4';
-                videoSliderContainer.style.transition = 'opacity 300ms ease';
-            } else {
-                video_player_controls.style.display = 'block';
-                videoSliderContainer.style.pointerEvents = 'auto';
-                videoSliderContainer.style.opacity = '1';
+    if (videoPreview) {
+        videoPreview.addEventListener('mouseover', () => {
+            if (videoControl) {
+                videoControl.style.display = 'block';
             }
         });
-    } else {
-        console.error("Gerekli HTML elemanları bulunamadı!");
+
+        videoPreview.addEventListener('mouseleave', () => {
+            if (videoControl) {
+                videoControl.style.display = 'none';
+            }
+        });
     }
 });
