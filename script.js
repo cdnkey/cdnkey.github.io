@@ -16,7 +16,7 @@
 		const full_screen_btn = $root.find(".full-screen-btn");
 		const full_screen_open = $root.find(".full-screen-open");
 		const full_screen_exit = $root.find(".full-screen-exit");
-		const video_voice_slider = $root.find(".video-voice-slider-range");
+		/*const video_voice_slider = $root.find(".video-voice-slider-range");*/
 		const video_slider = $root.find(".video-slider-container");
 		const video_slider_rail = $root.find(".video-slider-rail");
 		const video_slider_buffer = $root.find(".video-slider-buffer");
@@ -146,7 +146,7 @@
 				updatePlayer();
 			});
 
-		video_voice_slider.on("input change",
+		/*video_voice_slider.on("input change",
 			function () {
 				const volume = $(this).val();
 				vid.volume = volume;
@@ -160,7 +160,7 @@
 			vid.volume = volume;
 			$root.find(".video-voice-slider-buffer").css("width", volume * 100 + "%");
 			volume == 0 ? voiceOn(): voiceOff();
-		});
+		});*/
 
 		$(vid).on("ended",
 			function () {
