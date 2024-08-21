@@ -189,39 +189,3 @@ video.addEventListener('timeupdate', () => {
 		videoSliderContainer.style.opacity = '1';
 	}
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    let videoControl = document.querySelector('.video-control');
-    let videoStartBtn = document.querySelector('.video-start-btn');
-    let videoPreview = document.querySelector('.video-preview');
-
-    // Başlangıçta video kontrol panelini gizle
-    if (videoControl) {
-        videoControl.style.display = 'none';
-    }
-
-    if (videoStartBtn) {
-        videoStartBtn.addEventListener('click', () => {
-            // Video kontrol panelini 3 saniye sonra gizle
-            setTimeout(() => {
-                if (videoControl) {
-                    videoControl.style.display = 'none';
-                }
-            }, 3000);
-        });
-    }
-
-    if (videoPreview) {
-        videoPreview.addEventListener('mouseover', () => {
-            if (videoControl) {
-                videoControl.style.display = 'block';
-            }
-        });
-
-        videoPreview.addEventListener('mouseleave', () => {
-            if (videoControl) {
-                videoControl.style.display = 'none';
-            }
-        });
-    }
-});
