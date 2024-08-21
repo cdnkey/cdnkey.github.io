@@ -194,8 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let video_start_btn = document.querySelector('.video-start-btn');
     let video_player_controls = document.querySelector('.video-player-controls');
     let video_preview = document.querySelector('.video-preview');
+    let video = document.getElementById('videoPlayer');
+    let videoSliderContainer = document.querySelector('.video-slider-container');
 
-    if (video_start_btn && video_player_controls && video_preview) {
+    if (video_start_btn && video_player_controls && video_preview && video && videoSliderContainer) {
         video_start_btn.addEventListener('click', () => {
             setTimeout(() => {
                 video_player_controls.style.transition = 'opacity 400ms linear';
@@ -217,6 +219,19 @@ document.addEventListener('DOMContentLoaded', () => {
             video_player_controls.style.opacity = '0';
             video_player_controls.style.pointerEvents = 'none'; // Tıklama olaylarını reddet
             video_player_controls.style.userSelect = 'none'; // Seçim yapılamaz
+        });
+
+        video.addEventListener('timeupdate', () => {
+            if (video.currentTime === video.duration) {
+                video_player_controls.style.display = 'none';
+                videoSliderContainer.style.pointerEvents = 'none';
+                videoSliderContainer.style.opacity = '0.4';
+                videoSliderContainer.style.transition = 'opacity 300ms ease';
+            } else {
+                video_player_controls.style.display = 'block';
+                videoSliderContainer.style.pointerEvents = 'auto';
+                videoSliderContainer.style.opacity = '1';
+            }
         });
     } else {
         console.error("Gerekli HTML elemanları bulunamadı!");
