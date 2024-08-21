@@ -175,6 +175,7 @@ let videoContainer = document.querySelector('.video');
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
+let video_start_btn = document.querySelector('.video-start-btn');
 const videoControl = document.querySelector('.video-control');
 const videoSliderContainer = document.querySelector('.video-slider-container');
 
@@ -189,4 +190,76 @@ video.addEventListener('timeupdate', () => {
 		videoSliderContainer.style.pointerEvents = 'auto';
 		videoSliderContainer.style.opacity = '1';
 	}
+});
+
+video_start_btn.addEventListener('click', function() {
+	let video_preview = document.querySelector('.video-preview');
+	let newStyleCreate = document.createElement('style');
+	newStyleCreate.setAttribute('data-c-combined', '');
+	newStyleCreate.innerHTML = '
+		.video-player-controls {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+			display: flex;
+			flex-direction: column;
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			animation: playerHidden 400ms linear forwards;
+		}
+		@keyframes playerHidden {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+				pointer-events: none;
+				-webkit-pointer-events: none;
+				-moz-pointer-events: none;
+				-ms-pointer-events: none;
+				-o-pointer-events: none;
+				user-select: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+			}
+		
+		}
+		body:hover .video-player-controls {
+			animation: playerVisible 400ms linear forwards;
+		}
+		@keyframes playerVisible {
+			from {
+				opacity: 0;
+				pointer-events: none;
+				-webkit-pointer-events: none;
+				-moz-pointer-events: none;
+				-ms-pointer-events: none;
+				-o-pointer-events: none;
+				user-select: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+			}
+			to {
+				opacity: 0;
+				pointer-events: auto;
+				-webkit-pointer-events: auto;
+				-moz-pointer-events: auto;
+				-ms-pointer-events: auto;
+				-o-pointer-events: auto;
+				user-select: auto;
+				-webkit-user-select: auto;
+				-moz-user-select: auto;
+				-ms-user-select: auto;
+				-o-user-select: auto;
+			}
+		}
+		';
+	video_preview.appendChild(newStyleCreate);
 });
