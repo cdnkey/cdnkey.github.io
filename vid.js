@@ -170,33 +170,35 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
-// Kontrollerin görünür olup olmadığını izlemek için bir değişken
-let controlsVisible = true;
+const videoPlayerControls = document.querySelector('.video-player-controls');
+const videoContainer = document.querySelector('.video-container');
 
-function toggleControls() {
-    if (controlsVisible) {
-        // Kontrolleri gizle
-        videoPlayerControls.style.opacity = '0';
-        videoPlayerControls.style.pointerEvents = 'none';
-        videoPlayerControls.style.webkitPointerEvents = 'none';
-        videoPlayerControls.style.mozPointerEvents = 'none';
-        videoPlayerControls.style.msPointerEvents = 'none';
-        videoPlayerControls.style.oPointerEvents = 'none';
-    } else {
-        // Kontrolleri göster
-        videoPlayerControls.style.opacity = '1';
-        videoPlayerControls.style.pointerEvents = 'auto';
-        videoPlayerControls.style.webkitPointerEvents = 'auto';
-        videoPlayerControls.style.mozPointerEvents = 'auto';
-        videoPlayerControls.style.msPointerEvents = 'auto';
-        videoPlayerControls.style.oPointerEvents = 'auto';
+if (videoPlayerControls && videoContainer) {
+    let controlsVisible = true;
+
+    function toggleControls() {
+        if (controlsVisible) {
+            videoPlayerControls.style.opacity = '0';
+            videoPlayerControls.style.pointerEvents = 'none';
+            videoPlayerControls.style.webkitPointerEvents = 'none';
+            videoPlayerControls.style.mozPointerEvents = 'none';
+            videoPlayerControls.style.msPointerEvents = 'none';
+            videoPlayerControls.style.oPointerEvents = 'none';
+        } else {
+            videoPlayerControls.style.opacity = '1';
+            videoPlayerControls.style.pointerEvents = 'auto';
+            videoPlayerControls.style.webkitPointerEvents = 'auto';
+            videoPlayerControls.style.mozPointerEvents = 'auto';
+            videoPlayerControls.style.msPointerEvents = 'auto';
+            videoPlayerControls.style.oPointerEvents = 'auto';
+		    }
+        controlsVisible = !controlsVisible;
     }
-    // Kontrollerin durumunu tersine çevir
-    controlsVisible = !controlsVisible;
-}
 
-// Video konteynerine tıklama olayında kontrolleri göster/gizle
-videoContainer.addEventListener('click', toggleControls);
+    videoContainer.addEventListener('click', toggleControls);
+} else {
+    console.error('Video Player Controls veya Video Container bulunamadı!');
+}
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
