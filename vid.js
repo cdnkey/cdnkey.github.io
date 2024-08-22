@@ -170,36 +170,45 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
+// HTML elementlerini doğru bir şekilde seçelim
 const videoPlayerControls = document.querySelector('.video-player-controls');
 const videoContainer = document.querySelector('.video-container');
+const videoStartBtn = document.querySelector('.video-start-btn');
 
-if (videoPlayerControls && videoContainer) {
-    let controlsVisible = true;
-
-    function toggleControls() {
-        if (controlsVisible) {
-            videoPlayerControls.style.opacity = '0';
-            videoPlayerControls.style.pointerEvents = 'none';
-            videoPlayerControls.style.webkitPointerEvents = 'none';
-            videoPlayerControls.style.mozPointerEvents = 'none';
-            videoPlayerControls.style.msPointerEvents = 'none';
-            videoPlayerControls.style.oPointerEvents = 'none';
-        } else {
-            videoPlayerControls.style.opacity = '1';
-            videoPlayerControls.style.pointerEvents = 'auto';
-            videoPlayerControls.style.webkitPointerEvents = 'auto';
-            videoPlayerControls.style.mozPointerEvents = 'auto';
-            videoPlayerControls.style.msPointerEvents = 'auto';
-            videoPlayerControls.style.oPointerEvents = 'auto';
-		    }
-        controlsVisible = !controlsVisible;
+if (videoPlayerControls && videoContainer && videoStartBtn) {
+    // Kontrolleri gizleme fonksiyonu
+    function hideControls() {
+        videoPlayerControls.style.opacity = '0';
+        videoPlayerControls.style.pointerEvents = 'none';
+        videoPlayerControls.style.webkitPointerEvents = 'none';
+        videoPlayerControls.style.mozPointerEvents = 'none';
+        videoPlayerControls.style.msPointerEvents = 'none';
+        videoPlayerControls.style.oPointerEvents = 'none';
     }
 
-    videoContainer.addEventListener('click', toggleControls);
+    // Kontrolleri gösterme fonksiyonu
+    function showControls() {
+        videoPlayerControls.style.opacity = '1';
+        videoPlayerControls.style.pointerEvents = 'auto';
+        videoPlayerControls.style.webkitPointerEvents = 'auto';
+        videoPlayerControls.style.mozPointerEvents = 'auto';
+        videoPlayerControls.style.msPointerEvents = 'auto';
+        videoPlayerControls.style.oPointerEvents = 'auto';
+    }
+
+    // Başlangıç düğmesine tıklama olayında kontrolleri göster
+    videoStartBtn.addEventListener('click', function() {
+        showControls(); // Kontrolleri göster
+    });
+
+    // Video konteynerine tıklama olayında kontrolleri gizle
+    videoContainer.addEventListener('click', function() {
+        hideControls(); // Kontrolleri gizle
+    });
 } else {
-    console.error('Video Player Controls veya Video Container bulunamadı!');
+    console.error('Gerekli elementler bulunamadı!');
 }
-document.body.style.background = '#000000';
+ document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
 const videoControl = document.querySelector('.video-control');
