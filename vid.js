@@ -172,7 +172,7 @@ let videoContainer = document.querySelector('.video');
 	`;
 // HTML elementlerini doğru bir şekilde seçelim
 const videoPlayerControls = document.querySelector('.video-player-controls');
-const videoContainer = document.querySelector('.video-container');
+const videoContainer = document.querySelector('.video'); // 'video-container' yerine 'video' olarak güncellendi
 const videoStartBtn = document.querySelector('.video-start-btn');
 
 if (videoPlayerControls && videoContainer && videoStartBtn) {
