@@ -170,6 +170,7 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
+
 const videoPlayerControls = document.querySelector('.video-player-controls');
 const videoStartBtn = document.querySelector('.video-start-btn');
 
@@ -182,10 +183,12 @@ videoPlayerControls.style.opacity = '1';
 // Kontrolleri gizleme veya gösterme fonksiyonu
 function toggleControls() {
     if (controlsVisible) {
-        videoPlayerControls.style.opacity = '0';  // Kontrolleri gizle
+        videoPlayerControls.style.opacity = '0';
+	videoPlayerControls.style.transition = '250ms all ease';
         disableControls(); // Kontrolleri devre dışı bırak
     } else {
-        videoPlayerControls.style.opacity = '1';  // Kontrolleri göster
+        videoPlayerControls.style.opacity = '1';
+	videoPlayerControls.style.transition = '250ms all ease';
         enableControls(); // Kontrolleri yeniden etkinleştir
     }
     controlsVisible = !controlsVisible;
@@ -221,9 +224,8 @@ function preventInteraction(event) {
 
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
-    // Sadece videoPlayerControls gizliyse ve startBtnClicked true ise çalış
-    if (startBtnClicked && !controlsVisible) {
-        // videoPlayerControls dışındaki alana tıklanmış mı kontrol et
+    if (startBtnClicked) {
+        // Eğer tıklama videoPlayerControls üzerinde değilse, gizle
         if (!videoPlayerControls.contains(event.target)) {
             toggleControls();
         }
@@ -248,6 +250,7 @@ videoContainer.addEventListener('click', handleContainerClick);
 
 // VideoPlayerControls üzerine tıklama olayını ayarla
 videoPlayerControls.addEventListener('click', handleControlsClick);
+
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
