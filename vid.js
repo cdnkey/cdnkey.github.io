@@ -219,10 +219,13 @@ function preventInteraction(event) {
     event.stopPropagation();
 }
 
-// Video konteynerine tıklama olayında kontrolleri gizle veya göster
-function handleContainerClick() {
+// Video konteynerine tıklama olayında kontrolleri gizle
+function handleContainerClick(event) {
     if (startBtnClicked) {
-        toggleControls();
+        // Eğer tıklama videoPlayerControls üzerinde değilse, gizle
+        if (!videoPlayerControls.contains(event.target)) {
+            toggleControls();
+        }
     }
 }
 
