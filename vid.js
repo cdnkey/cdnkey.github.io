@@ -224,11 +224,9 @@ function preventInteraction(event) {
 
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
-    if (startBtnClicked) {
-        // Eğer tıklama videoPlayerControls üzerinde değilse ve kontroller gizliyse göster
-        if (!videoPlayerControls.contains(event.target) && !controlsVisible) {
-            toggleControls();
-        }
+    // Eğer tıklama videoPlayerControls üzerinde değilse ve kontroller gizliyse göster
+    if (startBtnClicked && !videoPlayerControls.contains(event.target) && !controlsVisible) {
+        toggleControls();
     }
 }
 
@@ -242,8 +240,8 @@ videoStartBtn.addEventListener('click', () => {
 videoContainer.addEventListener('click', handleContainerClick);
 
 // VideoPlayerControls üzerine tıklama olayını ayarla
-videoPlayerControls.addEventListener('click', () => {
-    // Kontroller görünmüyorsa, görünür yap
+videoPlayerControls.addEventListener('click', (event) => {
+    // Eğer tıklama videoPlayerControls üzerinde ve kontroller gizliyse göster
     if (!controlsVisible) {
         toggleControls();
     }
