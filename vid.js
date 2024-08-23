@@ -184,11 +184,11 @@ videoPlayerControls.style.opacity = '1';
 function toggleControls() {
     if (controlsVisible) {
         videoPlayerControls.style.opacity = '0';
-	videoPlayerControls.style.transition = '250ms all ease';
+        videoPlayerControls.style.transition = '250ms all ease';
         disableControls(); // Kontrolleri devre dışı bırak
     } else {
         videoPlayerControls.style.opacity = '1';
-	videoPlayerControls.style.transition = '250ms all ease';
+        videoPlayerControls.style.transition = '250ms all ease';
         enableControls(); // Kontrolleri yeniden etkinleştir
     }
     controlsVisible = !controlsVisible;
@@ -225,8 +225,8 @@ function preventInteraction(event) {
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
     if (startBtnClicked) {
-        // Eğer tıklama videoPlayerControls üzerinde değilse, gizle
-        if (!videoPlayerControls.contains(event.target)) {
+        if (!controlsVisible || !videoPlayerControls.contains(event.target)) {
+            // Kontroller görünmüyorsa veya kontrol dışı bir yere tıklanmışsa, kontrolleri göster veya gizle
             toggleControls();
         }
     }
