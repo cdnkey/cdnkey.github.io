@@ -219,11 +219,15 @@ function preventInteraction(event) {
     event.stopPropagation();
 }
 
-// Video konteynerine tıklama olayında kontrolleri gizle
+// Video konteynerine veya video kontrol öğesine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
     if (startBtnClicked) {
         // Eğer tıklama videoPlayerControls üzerinde değilse, gizle
-        if (!videoPlayerControls.contains(event.target)) {
+        if (!videoPlayerControls.contains(event.target) && event.target !== videoPlayerControls) {
+            toggleControls();
+        }
+        // Eğer tıklama videoPlayerControls üzerinde ise kontrolleri yeniden göster
+        else if (videoPlayerControls.contains(event.target) && !controlsVisible) {
             toggleControls();
         }
     }
@@ -237,7 +241,7 @@ videoStartBtn.addEventListener('click', () => {
 
 // Video konteynerine tıklama olayını ayarla
 videoContainer.addEventListener('click', handleContainerClick);
- document.body.style.background = '#000000';
+document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
 const videoControl = document.querySelector('.video-control');
