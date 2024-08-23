@@ -191,6 +191,7 @@ if (videoPlayerControls && videoContainer && videoStartBtn) {
 
     // Video konteynerine tıklama olayında kontrolleri gizle
     videoContainer.addEventListener('click', hideControls);
+
 } else {
     console.error('Gerekli elementler bulunamadı!');
 }
