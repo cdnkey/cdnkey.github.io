@@ -170,6 +170,28 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
+const videoPlayerControls = document.querySelector('.video-player-controls');
+
+let controlsVisible = true;
+
+// Başlangıçta kontroller görünür olmalı
+videoPlayerControls.style.opacity = '1';
+videoPlayerControls.style.pointerEvents = 'auto';
+
+// Kontrolleri gizleme fonksiyonu
+function toggleControls() {
+    if (controlsVisible) {
+        videoPlayerControls.style.opacity = '0';
+        videoPlayerControls.style.pointerEvents = 'none';
+    } else {
+        videoPlayerControls.style.opacity = '1';
+        videoPlayerControls.style.pointerEvents = 'auto';
+    }
+    controlsVisible = !controlsVisible;
+}
+
+// Video konteynerine tıklama olayında kontrolleri gizle veya göster
+videoContainer.addEventListener('click', toggleControls);
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
