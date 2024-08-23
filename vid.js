@@ -170,11 +170,7 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
-// SVG kodu (değişiklik yapılmasına gerek yok, ancak gereksiz SVG kodunu kaldırabilirsiniz)
-
-// Video elemanlarını doğru bir şekilde seçelim
 const videoPlayerControls = document.querySelector('.video-player-controls');
-const videoContainer = document.querySelector('.video'); // Burada 'video-container' yerine 'video' olarak güncellendi
 const videoStartBtn = document.querySelector('.video-start-btn');
 
 if (videoPlayerControls && videoContainer && videoStartBtn) {
