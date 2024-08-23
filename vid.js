@@ -178,18 +178,45 @@ let startBtnClicked = false;
 
 // Başlangıçta kontroller görünür olmalı
 videoPlayerControls.style.opacity = '1';
-videoPlayerControls.style.pointerEvents = 'auto';
 
 // Kontrolleri gizleme veya gösterme fonksiyonu
 function toggleControls() {
     if (controlsVisible) {
         videoPlayerControls.style.opacity = '0';
-        videoPlayerControls.style.pointerEvents = 'none';
+        disableControls(); // Kontrolleri devre dışı bırak
     } else {
         videoPlayerControls.style.opacity = '1';
-        videoPlayerControls.style.pointerEvents = 'auto';
+        enableControls(); // Kontrolleri yeniden etkinleştir
     }
     controlsVisible = !controlsVisible;
+}
+
+// Kontrolleri devre dışı bırakma
+function disableControls() {
+    videoPlayerControls.addEventListener('mousedown', preventInteraction);
+    videoPlayerControls.addEventListener('mousemove', preventInteraction);
+    videoPlayerControls.addEventListener('mouseup', preventInteraction);
+    videoPlayerControls.addEventListener('click', preventInteraction);
+    videoPlayerControls.addEventListener('touchstart', preventInteraction);
+    videoPlayerControls.addEventListener('touchmove', preventInteraction);
+    videoPlayerControls.addEventListener('touchend', preventInteraction);
+}
+
+// Kontrolleri yeniden etkinleştirme
+function enableControls() {
+    videoPlayerControls.removeEventListener('mousedown', preventInteraction);
+    videoPlayerControls.removeEventListener('mousemove', preventInteraction);
+    videoPlayerControls.removeEventListener('mouseup', preventInteraction);
+    videoPlayerControls.removeEventListener('click', preventInteraction);
+    videoPlayerControls.removeEventListener('touchstart', preventInteraction);
+    videoPlayerControls.removeEventListener('touchmove', preventInteraction);
+    videoPlayerControls.removeEventListener('touchend', preventInteraction);
+}
+
+// Etkileşimleri engelleme fonksiyonu
+function preventInteraction(event) {
+    event.preventDefault();
+    event.stopPropagation();
 }
 
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
@@ -207,7 +234,7 @@ videoStartBtn.addEventListener('click', () => {
 
 // Video konteynerine tıklama olayını ayarla
 videoContainer.addEventListener('click', handleContainerClick);
-document.body.style.background = '#000000';
+ document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
 const videoControl = document.querySelector('.video-control');
