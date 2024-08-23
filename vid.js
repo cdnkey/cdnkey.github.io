@@ -182,10 +182,10 @@ videoPlayerControls.style.opacity = '1';
 // Kontrolleri gizleme veya gösterme fonksiyonu
 function toggleControls() {
     if (controlsVisible) {
-        videoPlayerControls.style.opacity = '0';
+        videoPlayerControls.style.opacity = '0';  // Kontrolleri gizle
         disableControls(); // Kontrolleri devre dışı bırak
     } else {
-        videoPlayerControls.style.opacity = '1';
+        videoPlayerControls.style.opacity = '1';  // Kontrolleri göster
         enableControls(); // Kontrolleri yeniden etkinleştir
     }
     controlsVisible = !controlsVisible;
@@ -236,13 +236,6 @@ function handleControlsClick(event) {
     }
 }
 
-// Video konteyneri tıklama olayında videoPlayerControls tekrar görünür olacak şekilde ayarla
-function handleContainerClickForControls(event) {
-    if (!controlsVisible && !videoPlayerControls.contains(event.target)) {
-        toggleControls();
-    }
-}
-
 // Başlangıç düğmesine tıklama olayında durumu güncelle
 videoStartBtn.addEventListener('click', () => {
     startBtnClicked = true;
@@ -250,7 +243,7 @@ videoStartBtn.addEventListener('click', () => {
 });
 
 // Video konteynerine tıklama olayını ayarla
-videoContainer.addEventListener('click', handleContainerClickForControls);
+videoContainer.addEventListener('click', handleContainerClick);
 
 // VideoPlayerControls üzerine tıklama olayını ayarla
 videoPlayerControls.addEventListener('click', handleControlsClick);
