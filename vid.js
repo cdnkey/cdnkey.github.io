@@ -170,6 +170,7 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
+
 const videoPlayerControls = document.querySelector('.video-player-controls');
 const videoStartBtn = document.querySelector('.video-start-btn');
 
@@ -231,6 +232,14 @@ function handleContainerClick(event) {
     }
 }
 
+// VideoPlayerControls üzerine tıklama olayında kontrolleri göster
+function handleControlsClick(event) {
+    // Kontroller görünür değilse, görünür yap
+    if (!controlsVisible) {
+        toggleControls();
+    }
+}
+
 // Başlangıç düğmesine tıklama olayında durumu güncelle
 videoStartBtn.addEventListener('click', () => {
     startBtnClicked = true;
@@ -239,6 +248,9 @@ videoStartBtn.addEventListener('click', () => {
 
 // Video konteynerine tıklama olayını ayarla
 videoContainer.addEventListener('click', handleContainerClick);
+
+// VideoPlayerControls üzerine tıklama olayını ayarla
+videoPlayerControls.addEventListener('click', handleControlsClick);
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
