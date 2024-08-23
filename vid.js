@@ -174,6 +174,10 @@ const videoPlayerControls = document.querySelector('.video-player-controls');
 const videoStartBtn = document.querySelector('.video-start-btn');
 
 if (videoPlayerControls && videoContainer && videoStartBtn) {
+    // Kontrolleri başlangıçta gizle
+    videoPlayerControls.style.opacity = '0';
+    videoPlayerControls.style.pointerEvents = 'none';
+
     // Kontrolleri gizleme fonksiyonu
     function hideControls() {
         videoPlayerControls.style.opacity = '0';
@@ -184,13 +188,12 @@ if (videoPlayerControls && videoContainer && videoStartBtn) {
     function showControls() {
         videoPlayerControls.style.opacity = '1';
         videoPlayerControls.style.pointerEvents = 'auto';
+        // Video konteynerine tıklanınca kontrolleri gizle
+        videoContainer.addEventListener('click', hideControls, { once: true });
     }
 
     // Başlangıç düğmesine tıklama olayında kontrolleri göster
     videoStartBtn.addEventListener('click', showControls);
-
-    // Video konteynerine tıklama olayında kontrolleri gizle
-    videoContainer.addEventListener('click', hideControls);
 
 } else {
     console.error('Gerekli elementler bulunamadı!');
