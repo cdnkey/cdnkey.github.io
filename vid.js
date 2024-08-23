@@ -170,7 +170,6 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
-
 const videoPlayerControls = document.querySelector('.video-player-controls');
 const videoStartBtn = document.querySelector('.video-start-btn');
 
@@ -226,18 +225,10 @@ function preventInteraction(event) {
 function handleContainerClick(event) {
     if (startBtnClicked) {
         // Eğer tıklama videoPlayerControls üzerinde değilse, gizle veya göster
-        if (!videoPlayerControls.contains(event.target) || !controlsVisible) {
+        if (!controlsVisible || !videoPlayerControls.contains(event.target)) {
             toggleControls();
         }
     }
-}
-
-// VideoPlayerControls üzerinde tıklama olayında kontrolleri göster
-function handleControlsClick(event) {
-    if (!controlsVisible) {
-        toggleControls();
-    }
-    event.stopPropagation(); // Tıklamanın videoContainer'a ulaşmasını engelle
 }
 
 // Başlangıç düğmesine tıklama olayında durumu güncelle
@@ -248,9 +239,6 @@ videoStartBtn.addEventListener('click', () => {
 
 // Video konteynerine tıklama olayını ayarla
 videoContainer.addEventListener('click', handleContainerClick);
-
-// VideoPlayerControls üzerine tıklama olayını ayarla
-videoPlayerControls.addEventListener('click', handleControlsClick);
 
 document.body.style.background = '#000000';
 
