@@ -170,9 +170,11 @@ let videoContainer = document.querySelector('.video');
 			</div>
 		</div>
 	`;
-// HTML elementlerini doğru bir şekilde seçelim
+// SVG kodu (değişiklik yapılmasına gerek yok, ancak gereksiz SVG kodunu kaldırabilirsiniz)
+
+// Video elemanlarını doğru bir şekilde seçelim
 const videoPlayerControls = document.querySelector('.video-player-controls');
-const videoContainer = document.querySelector('.video'); // 'video-container' yerine 'video' olarak güncellendi
+const videoContainer = document.querySelector('.video'); // Burada 'video-container' yerine 'video' olarak güncellendi
 const videoStartBtn = document.querySelector('.video-start-btn');
 
 if (videoPlayerControls && videoContainer && videoStartBtn) {
@@ -180,31 +182,19 @@ if (videoPlayerControls && videoContainer && videoStartBtn) {
     function hideControls() {
         videoPlayerControls.style.opacity = '0';
         videoPlayerControls.style.pointerEvents = 'none';
-        videoPlayerControls.style.webkitPointerEvents = 'none';
-        videoPlayerControls.style.mozPointerEvents = 'none';
-        videoPlayerControls.style.msPointerEvents = 'none';
-        videoPlayerControls.style.oPointerEvents = 'none';
     }
 
     // Kontrolleri gösterme fonksiyonu
     function showControls() {
         videoPlayerControls.style.opacity = '1';
         videoPlayerControls.style.pointerEvents = 'auto';
-        videoPlayerControls.style.webkitPointerEvents = 'auto';
-        videoPlayerControls.style.mozPointerEvents = 'auto';
-        videoPlayerControls.style.msPointerEvents = 'auto';
-        videoPlayerControls.style.oPointerEvents = 'auto';
     }
 
     // Başlangıç düğmesine tıklama olayında kontrolleri göster
-    videoStartBtn.addEventListener('click', function() {
-        showControls(); // Kontrolleri göster
-    });
+    videoStartBtn.addEventListener('click', showControls);
 
     // Video konteynerine tıklama olayında kontrolleri gizle
-    videoContainer.addEventListener('click', function() {
-        hideControls(); // Kontrolleri gizle
-    });
+    videoContainer.addEventListener('click', hideControls);
 } else {
     console.error('Gerekli elementler bulunamadı!');
 }
