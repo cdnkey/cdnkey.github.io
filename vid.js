@@ -236,6 +236,13 @@ function handleControlsClick(event) {
     }
 }
 
+// Video konteyneri tıklama olayında videoPlayerControls tekrar görünür olacak şekilde ayarla
+function handleContainerClickForControls(event) {
+    if (!controlsVisible && !videoPlayerControls.contains(event.target)) {
+        toggleControls();
+    }
+}
+
 // Başlangıç düğmesine tıklama olayında durumu güncelle
 videoStartBtn.addEventListener('click', () => {
     startBtnClicked = true;
@@ -243,7 +250,7 @@ videoStartBtn.addEventListener('click', () => {
 });
 
 // Video konteynerine tıklama olayını ayarla
-videoContainer.addEventListener('click', handleContainerClick);
+videoContainer.addEventListener('click', handleContainerClickForControls);
 
 // VideoPlayerControls üzerine tıklama olayını ayarla
 videoPlayerControls.addEventListener('click', handleControlsClick);
