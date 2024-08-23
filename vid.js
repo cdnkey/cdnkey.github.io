@@ -87,165 +87,158 @@ setTimeout(function() {
 }, 400);
 
 let videoContainer = document.querySelector('.video');
-	videoContainer.innerHTML = `
-		<div class="video-preview">
-				<button class="video-start-btn">
-					<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-   						<defs>
-							<filter id="filter">
-								<feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#c7a7ac"/>
-							</filter>
-							<linearGradient id="grad0" x1="0" y1="0" x2="100%" y2="100%">
-								<stop offset="0" stop-color="#a42892"/>
-								<stop offset="100%" stop-color="#f3f3f3"/>
-							</linearGradient>
-						</defs>  
-						<path fill="url(#grad0)" filter="url(#filter)" d="M256,0C114.833,0,0,114.844,0,256s114.833,256,256,256s256-114.844,256-256S397.167,0,256,0z M357.771,264.969l-149.333,96c-1.75,1.135-3.771,1.698-5.771,1.698c-1.75,0-3.521-0.438-5.104-1.302C194.125,359.49,192,355.906,192,352V160c0-3.906,2.125-7.49,5.563-9.365c3.375-1.854,7.604-1.74,10.875,0.396l149.333,96c3.042,1.958,4.896,5.344,4.896,8.969S360.813,263.01,357.771,264.969z" />
-					</svg>
-				</button>
-			</div>
-			<div class="video-reset">
-				<button class="video-reset-btn"></button>
-			</div>
-			<div class="video-player-controls">
-				<div class="video-slider">
-					<div class="video-slider-container">
-						<div class="video-slider-bg">
-							<div class="video-slider-rail"></div>
-						</div>
-					</div>
+videoContainer.innerHTML = `
+	<div class="video-preview">
+		<button class="video-start-btn">
+			<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+				<defs>
+					<filter id="filter">
+						<feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#c7a7ac"/>
+					</filter>
+					<linearGradient id="grad0" x1="0" y1="0" x2="100%" y2="100%">
+						<stop offset="0" stop-color="#a42892"/>
+						<stop offset="100%" stop-color="#f3f3f3"/>
+					</linearGradient>
+				</defs>
+				<path fill="url(#grad0)" filter="url(#filter)" d="M256,0C114.833,0,0,114.844,0,256s114.833,256,256,256s256-114.844,256-256S397.167,0,256,0z M357.771,264.969l-149.333,96c-1.75,1.135-3.771,1.698-5.771,1.698c-1.75,0-3.521-0.438-5.104-1.302C194.125,359.49,192,355.906,192,352V160c0-3.906,2.125-7.49,5.563-9.365c3.375-1.854,7.604-1.74,10.875,0.396l149.333,96c3.042,1.958,4.896,5.344,4.896,8.969S360.813,263.01,357.771,264.969z"/>
+			</svg>
+		</button>
+	</div>
+	<div class="video-reset">
+		<button class="video-reset-btn"></button>
+	</div>
+	<div class="video-overlay"></div>
+	<div class="video-player-controls">
+		<div class="video-slider">
+			<div class="video-slider-container">
+				<div class="video-slider-bg">
+					<div class="video-slider-rail"></div>
 				</div>
-				<div class="row">
-					<div class="wrap">
-						<div class="video-control">
-							<button class="video-control-btn">
-								<svg class="video-control-play" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
-									<polygon points="5 3 19 12 5 21 5 3" fill="currentColor">
-									</polygon>
-								</svg>
-								<svg class="video-control-pause" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
-									<rect x="6" y="4" width="4" height="16" fill="currentColor"></rect>
-									<rect x="14" y="4" width="4" height="16" fill="currentColor"></rect>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<div class="wrap">
-						<div class="video-counts">
-							<span class="video-count-time"></span><span class="video-count-line"></span><span class="video-count-fulltime"></span>
-						</div>
-						<div class="video-voice">
-							<button class="video-voice-btn">
-								<svg class="video-voice-on" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-									<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-									<path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"></path>
-								</svg>
-								<svg class="video-voice-off" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-									<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-									<path d="M23 9l-6 6"></path>
-									<path d="M17 9l6 6"></path>
-								</svg></button>
-						</div>
-						<div class="full-screen">
-							<button class="full-screen-btn">
-								<svg class="full-screen-open" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-									<path d="M15 3h6v6"></path>
-									<path d="M9 21H3v-6"></path>
-									<path d="M21 3l-7 7"></path>
-									<path d="M3 21l7-7"></path>
-								</svg>
-								<svg class="full-screen-exit" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-									<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path>
-									<path d="M14 10l7-7"></path>
-									<path d="M3 21l7-7"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="video-player">
-				<video id="videoPlayer" data-video allowfullscreen="false" poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
-				</video>
 			</div>
 		</div>
-	`;
+		<div class="row">
+			<div class="wrap">
+				<div class="video-control">
+					<button class="video-control-btn">
+						<svg class="video-control-play" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+							<polygon points="5 3 19 12 5 21 5 3" fill="currentColor">
+							</polygon>
+						</svg>
+						<svg class="video-control-pause" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+							<rect x="6" y="4" width="4" height="16" fill="currentColor"></rect>
+							<rect x="14" y="4" width="4" height="16" fill="currentColor"></rect>
+						</svg>
+					</button>
+				</div>
+			</div>
+			<div class="wrap">
+				<div class="video-counts">
+					<span class="video-count-time"></span><span class="video-count-line"></span><span class="video-count-fulltime"></span>
+				</div>
+				<div class="video-voice">
+					<button class="video-voice-btn">
+						<svg class="video-voice-on" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+							<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+							<path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"></path>
+						</svg>
+						<svg class="video-voice-off" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+							<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+							<path d="M23 9l-6 6"></path>
+							<path d="M17 9l6 6"></path>
+						</svg>
+				</button>
+			</div>
+				<div class="full-screen">
+						<button class="full-screen-btn">
+							<svg class="full-screen-open" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+							<path d="M15 3h6v6"></path>
+							<path d="M9 21H3v-6"></path>
+							<path d="M21 3l-7 7"></path>
+							<path d="M3 21l7-7"></path>
+						</svg>
+						<svg class="full-screen-exit" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+							<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path>
+							<path d="M14 10l7-7"></path>
+							<path d="M3 21l7-7"></path>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="video-player">
+			<video id="videoPlayer" data-video allowfullscreen="false" poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
+			</video>
+		</div>
+	</div>
+`;
 
 const videoPlayerControls = document.querySelector('.video-player-controls');
 const videoStartBtn = document.querySelector('.video-start-btn');
+const videoResetBtn = document.querySelector('.video-reset-btn');
 
 let controlsVisible = true;
 let startBtnClicked = false;
 
-// Başlangıçta kontroller görünür olmalı
 videoPlayerControls.style.opacity = '1';
 
-// Kontrolleri gizleme veya gösterme fonksiyonu
 function toggleControls() {
-    if (controlsVisible) {
-        videoPlayerControls.style.opacity = '0';
-        videoPlayerControls.style.transition = '250ms all ease';
-        disableControls(); // Kontrolleri devre dışı bırak
-    } else {
-        videoPlayerControls.style.opacity = '1';
-        videoPlayerControls.style.transition = '250ms all ease';
-        enableControls(); // Kontrolleri yeniden etkinleştir
-    }
-    controlsVisible = !controlsVisible;
+	if (controlsVisible) {
+		let videoOverlay = document.querySelector('.video-overlay');
+		videoOverlay.style.display = 'block';
+		videoPlayerControls.style.opacity = '0';
+		videoPlayerControls.style.transition = '250ms all ease';
+		disableControls();
+	} else {
+		let videoOverlay = document.querySelector('.video-overlay');
+		videoOverlay.style.display = 'none';
+		videoPlayerControls.style.opacity = '1';
+		videoPlayerControls.style.transition = '250ms all ease';
+		enableControls();
+	}
+	controlsVisible = !controlsVisible;
 }
 
-// Kontrolleri devre dışı bırakma
 function disableControls() {
-    videoPlayerControls.addEventListener('mousedown', preventInteraction, true);
-    videoPlayerControls.addEventListener('mousemove', preventInteraction, true);
-    videoPlayerControls.addEventListener('mouseup', preventInteraction, true);
-    videoPlayerControls.addEventListener('click', preventInteraction, true);
-    videoPlayerControls.addEventListener('touchstart', preventInteraction, true);
-    videoPlayerControls.addEventListener('touchmove', preventInteraction, true);
-    videoPlayerControls.addEventListener('touchend', preventInteraction, true);
+	videoPlayerControls.addEventListener('mousedown', preventInteraction, true);
+	videoPlayerControls.addEventListener('mousemove', preventInteraction, true);
+	videoPlayerControls.addEventListener('mouseup', preventInteraction, true);
+	videoPlayerControls.addEventListener('click', preventInteraction, true);
+	videoPlayerControls.addEventListener('touchstart', preventInteraction, true);
+	videoPlayerControls.addEventListener('touchmove', preventInteraction, true);
+	videoPlayerControls.addEventListener('touchend', preventInteraction, true);
 }
 
-// Kontrolleri yeniden etkinleştirme
 function enableControls() {
-    videoPlayerControls.removeEventListener('mousedown', preventInteraction, true);
-    videoPlayerControls.removeEventListener('mousemove', preventInteraction, true);
-    videoPlayerControls.removeEventListener('mouseup', preventInteraction, true);
-    videoPlayerControls.removeEventListener('click', preventInteraction, true);
-    videoPlayerControls.removeEventListener('touchstart', preventInteraction, true);
-    videoPlayerControls.removeEventListener('touchmove', preventInteraction, true);
-    videoPlayerControls.removeEventListener('touchend', preventInteraction, true);
+	videoPlayerControls.removeEventListener('mousedown', preventInteraction, true);
+	videoPlayerControls.removeEventListener('mousemove', preventInteraction, true);
+	videoPlayerControls.removeEventListener('mouseup', preventInteraction, true);
+	videoPlayerControls.removeEventListener('click', preventInteraction, true);
+	videoPlayerControls.removeEventListener('touchstart', preventInteraction, true);
+	videoPlayerControls.removeEventListener('touchmove', preventInteraction, true);
+	videoPlayerControls.removeEventListener('touchend', preventInteraction, true);
 }
 
-// Etkileşimleri engelleme fonksiyonu
 function preventInteraction(event) {
-    event.preventDefault();
-    event.stopPropagation();
+	event.preventDefault();
+	event.stopPropagation();
 }
 
-// Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
-    // Eğer tıklama videoPlayerControls üzerinde değilse ve kontroller gizliyse göster
-    if (startBtnClicked && !videoPlayerControls.contains(event.target) && !controlsVisible) {
-        toggleControls();
-    }
+	if (startBtnClicked) {
+		if (!videoPlayerControls.contains(event.target) && !videoResetBtn.contains(event.target)) {
+			toggleControls();
+		}
+	}
 }
 
-// Başlangıç düğmesine tıklama olayında durumu güncelle
 videoStartBtn.addEventListener('click', () => {
-    startBtnClicked = true;
-    toggleControls();
+	startBtnClicked = true;
+	toggleControls();
 });
 
-// Video konteynerine tıklama olayını ayarla
 videoContainer.addEventListener('click', handleContainerClick);
 
-// VideoPlayerControls üzerine tıklama olayını ayarla
-videoPlayerControls.addEventListener('click', (event) => {
-    // Eğer tıklama videoPlayerControls üzerinde ve kontroller gizliyse göster
-    if (!controlsVisible) {
-        toggleControls();
-    }
-});
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
