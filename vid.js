@@ -184,50 +184,18 @@ function toggleControls() {
     if (controlsVisible) {
         videoPlayerControls.style.opacity = '0';
         videoPlayerControls.style.transition = '250ms all ease';
-        disableControls(); // Kontrolleri devre dışı bırak
     } else {
         videoPlayerControls.style.opacity = '1';
         videoPlayerControls.style.transition = '250ms all ease';
-        enableControls(); // Kontrolleri yeniden etkinleştir
     }
     controlsVisible = !controlsVisible;
 }
 
-// Kontrolleri devre dışı bırakma
-function disableControls() {
-    videoPlayerControls.addEventListener('mousedown', preventInteraction, true);
-    videoPlayerControls.addEventListener('mousemove', preventInteraction, true);
-    videoPlayerControls.addEventListener('mouseup', preventInteraction, true);
-    videoPlayerControls.addEventListener('click', preventInteraction, true);
-    videoPlayerControls.addEventListener('touchstart', preventInteraction, true);
-    videoPlayerControls.addEventListener('touchmove', preventInteraction, true);
-    videoPlayerControls.addEventListener('touchend', preventInteraction, true);
-}
-
-// Kontrolleri yeniden etkinleştirme
-function enableControls() {
-    videoPlayerControls.removeEventListener('mousedown', preventInteraction, true);
-    videoPlayerControls.removeEventListener('mousemove', preventInteraction, true);
-    videoPlayerControls.removeEventListener('mouseup', preventInteraction, true);
-    videoPlayerControls.removeEventListener('click', preventInteraction, true);
-    videoPlayerControls.removeEventListener('touchstart', preventInteraction, true);
-    videoPlayerControls.removeEventListener('touchmove', preventInteraction, true);
-    videoPlayerControls.removeEventListener('touchend', preventInteraction, true);
-}
-
-// Etkileşimleri engelleme fonksiyonu
-function preventInteraction(event) {
-    event.preventDefault();
-    event.stopPropagation();
-}
-
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
-    if (startBtnClicked) {
-        // Eğer tıklama videoPlayerControls üzerinde değilse, gizle veya göster
-        if (!controlsVisible || !videoPlayerControls.contains(event.target)) {
-            toggleControls();
-        }
+    // Eğer tıklama videoPlayerControls üzerinde değilse ve kontroller gizliyse göster
+    if (!controlsVisible || !videoPlayerControls.contains(event.target)) {
+        toggleControls();
     }
 }
 
