@@ -222,8 +222,8 @@ function preventInteraction(event) {
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
     if (startBtnClicked) {
-        // Eğer tıklama videoPlayerControls üzerinde değilse, gizle
-        if (!videoPlayerControls.contains(event.target)) {
+        // Eğer videoPlayerControls üzerinde tıklama yapılmamışsa ve kontroller gizlenmişse, görünür yap
+        if (!videoPlayerControls.contains(event.target) && !controlsVisible) {
             toggleControls();
         }
     }
