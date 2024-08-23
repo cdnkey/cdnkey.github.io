@@ -184,40 +184,61 @@ function toggleControls() {
     if (controlsVisible) {
         videoPlayerControls.style.opacity = '0';
         videoPlayerControls.style.transition = '250ms all ease';
+        disableControls(); // Kontrolleri devre dışı bırak
     } else {
         videoPlayerControls.style.opacity = '1';
         videoPlayerControls.style.transition = '250ms all ease';
+        enableControls(); // Kontrolleri yeniden etkinleştir
     }
     controlsVisible = !controlsVisible;
 }
 
-// Video konteynerine tıklama olayında kontrolleri gizle veya göster
-function handleContainerClick(event) {
-    // startBtnClicked true olsun veya olmasın, her durumda tıklamalara göre toggle yap
-    if (!videoPlayerControls.contains(event.target)) {
-        toggleControls();
-    }
+// Kontrolleri devre dışı bırakma
+function disableControls() {
+    videoPlayerControls.addEventListener('mousedown', preventInteraction, true);
+    videoPlayerControls.addEventListener('mousemove', preventInteraction, true);
+    videoPlayerControls.addEventListener('mouseup', preventInteraction, true);
+    videoPlayerControls.addEventListener('click', preventInteraction, true);
+    videoPlayerControls.addEventListener('touchstart', preventInteraction, true);
+    videoPlayerControls.addEventListener('touchmove', preventInteraction, true);
+    videoPlayerControls.addEventListener('touchend', preventInteraction, true);
 }
 
-// VideoPlayerControls üzerine tıklama olayında kontrolleri göster
-function handleControlsClick(event) {
-    if (!controlsVisible) {
-        toggleControls();
+// Kontrolleri yeniden etkinleştirme
+function enableControls() {
+    videoPlayerControls.removeEventListener('mousedown', preventInteraction, true);
+    videoPlayerControls.removeEventListener('mousemove', preventInteraction, true);
+    videoPlayerControls.removeEventListener('mouseup', preventInteraction, true);
+    videoPlayerControls.removeEventListener('click', preventInteraction, true);
+    videoPlayerControls.removeEventListener('touchstart', preventInteraction, true);
+    videoPlayerControls.removeEventListener('touchmove', preventInteraction, true);
+    videoPlayerControls.removeEventListener('touchend', preventInteraction, true);
+}
+
+// Etkileşimleri engelleme fonksiyonu
+function preventInteraction(event) {
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+// Video konteynerine tıklama olayında kontrolleri gizle veya göster
+function handleContainerClick(event) {
+    if (startBtnClicked) {
+        // Eğer tıklama videoPlayerControls üzerinde değilse, gizle veya göster
+        if (!videoPlayerControls.contains(event.target)) {
+            toggleControls();
+        }
     }
 }
 
 // Başlangıç düğmesine tıklama olayında durumu güncelle
 videoStartBtn.addEventListener('click', () => {
     startBtnClicked = true;
-    // Kontrolleri de hemen gizlemek için toggle ekliyoruz
     toggleControls();
 });
 
 // Video konteynerine tıklama olayını ayarla
 videoContainer.addEventListener('click', handleContainerClick);
-
-// VideoPlayerControls üzerine tıklama olayını ayarla
-videoPlayerControls.addEventListener('click', handleControlsClick);
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
