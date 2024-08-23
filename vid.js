@@ -171,14 +171,16 @@ let videoContainer = document.querySelector('.video');
 		</div>
 	`;
 const videoPlayerControls = document.querySelector('.video-player-controls');
+const videoStartBtn = document.querySelector('.video-start-btn');
 
 let controlsVisible = true;
+let startBtnClicked = false;
 
 // Başlangıçta kontroller görünür olmalı
 videoPlayerControls.style.opacity = '1';
 videoPlayerControls.style.pointerEvents = 'auto';
 
-// Kontrolleri gizleme fonksiyonu
+// Kontrolleri gizleme veya gösterme fonksiyonu
 function toggleControls() {
     if (controlsVisible) {
         videoPlayerControls.style.opacity = '0';
@@ -191,7 +193,20 @@ function toggleControls() {
 }
 
 // Video konteynerine tıklama olayında kontrolleri gizle veya göster
-videoContainer.addEventListener('click', toggleControls);
+function handleContainerClick() {
+    if (startBtnClicked) {
+        toggleControls();
+    }
+}
+
+// Başlangıç düğmesine tıklama olayında durumu güncelle
+videoStartBtn.addEventListener('click', () => {
+    startBtnClicked = true;
+    toggleControls();
+});
+
+// Video konteynerine tıklama olayını ayarla
+videoContainer.addEventListener('click', handleContainerClick);
 document.body.style.background = '#000000';
 
 const video = document.getElementById('videoPlayer');
