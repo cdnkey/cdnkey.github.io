@@ -193,24 +193,24 @@ function toggleControls() {
 
 // Kontrolleri devre dışı bırakma
 function disableControls() {
-    videoPlayerControls.addEventListener('mousedown', preventInteraction);
-    videoPlayerControls.addEventListener('mousemove', preventInteraction);
-    videoPlayerControls.addEventListener('mouseup', preventInteraction);
-    videoPlayerControls.addEventListener('click', preventInteraction);
-    videoPlayerControls.addEventListener('touchstart', preventInteraction);
-    videoPlayerControls.addEventListener('touchmove', preventInteraction);
-    videoPlayerControls.addEventListener('touchend', preventInteraction);
+    videoPlayerControls.addEventListener('mousedown', preventInteraction, true);
+    videoPlayerControls.addEventListener('mousemove', preventInteraction, true);
+    videoPlayerControls.addEventListener('mouseup', preventInteraction, true);
+    videoPlayerControls.addEventListener('click', preventInteraction, true);
+    videoPlayerControls.addEventListener('touchstart', preventInteraction, true);
+    videoPlayerControls.addEventListener('touchmove', preventInteraction, true);
+    videoPlayerControls.addEventListener('touchend', preventInteraction, true);
 }
 
 // Kontrolleri yeniden etkinleştirme
 function enableControls() {
-    videoPlayerControls.removeEventListener('mousedown', preventInteraction);
-    videoPlayerControls.removeEventListener('mousemove', preventInteraction);
-    videoPlayerControls.removeEventListener('mouseup', preventInteraction);
-    videoPlayerControls.removeEventListener('click', preventInteraction);
-    videoPlayerControls.removeEventListener('touchstart', preventInteraction);
-    videoPlayerControls.removeEventListener('touchmove', preventInteraction);
-    videoPlayerControls.removeEventListener('touchend', preventInteraction);
+    videoPlayerControls.removeEventListener('mousedown', preventInteraction, true);
+    videoPlayerControls.removeEventListener('mousemove', preventInteraction, true);
+    videoPlayerControls.removeEventListener('mouseup', preventInteraction, true);
+    videoPlayerControls.removeEventListener('click', preventInteraction, true);
+    videoPlayerControls.removeEventListener('touchstart', preventInteraction, true);
+    videoPlayerControls.removeEventListener('touchmove', preventInteraction, true);
+    videoPlayerControls.removeEventListener('touchend', preventInteraction, true);
 }
 
 // Etkileşimleri engelleme fonksiyonu
@@ -219,7 +219,7 @@ function preventInteraction(event) {
     event.stopPropagation();
 }
 
-// Video konteynerine veya video kontrol öğesine tıklama olayında kontrolleri gizle veya göster
+// Video konteynerine tıklama olayında kontrolleri gizle veya göster
 function handleContainerClick(event) {
     if (startBtnClicked) {
         // Eğer tıklama videoPlayerControls üzerinde değilse, gizle
