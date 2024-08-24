@@ -66,6 +66,8 @@ article:hover svg {
 article.folder {
 	box-shadow: none;
 	transition: 300ms all linear;
+	word-wrap: break-word;
+	word-break: break-word;
 }
 article.folder:hover {
 	transform: none;
