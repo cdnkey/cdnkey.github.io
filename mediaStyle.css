@@ -37,6 +37,7 @@ header {
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
 	justify-content: center;
 	padding-bottom: 50px;
 }
@@ -45,7 +46,7 @@ article {
 	-2px 0px 4px #303030,
 	0px 2px 4px #303030,
 	0px -2px 4px #303030;
-	width: 42%;
+	width: 40%;
 	height: auto;
 	margin-top: 1pc;
 	margin-left: 1pc;
