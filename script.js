@@ -90,6 +90,11 @@
 			});
 			video_count_time.text(getFormattedTime());
 			video_count_fulltime.text(getFormattedFullTime());
+
+			// Video bitmediyse butonu gizle
+			if (vid.currentTime < vid.duration) {
+				video_reset.css("display", "none");
+			}
 		}
 
 		function getFormattedTime() {
