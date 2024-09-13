@@ -246,14 +246,15 @@ const videoControl = document.querySelector('.video-control');
 const videoSliderContainer = document.querySelector('.video-slider-container');
 
 video.addEventListener('timeupdate', () => {
-	if (video.currentTime === video.duration) {
-		videoControl.style.display = 'none';
-		videoSliderContainer.style.pointerEvents = 'none';
-		videoSliderContainer.style.opacity = '0.4';
-		videoSliderContainer.style.transition = 'opacity 300ms ease';
-	} else {
-		videoControl.style.display = 'block';
-		videoSliderContainer.style.pointerEvents = 'auto';
-		videoSliderContainer.style.opacity = '1';
-	}
+    const tolerance = 0.1;
+    if (video.duration - video.currentTime < tolerance) {
+        videoControl.style.display = 'none';
+        videoSliderContainer.style.pointerEvents = 'none';
+        videoSliderContainer.style.opacity = '0.4';
+        videoSliderContainer.style.transition = 'opacity 300ms ease';
+    } else {
+        videoControl.style.display = 'block';
+        videoSliderContainer.style.pointerEvents = 'auto';
+        videoSliderContainer.style.opacity = '1';
+    }
 });
