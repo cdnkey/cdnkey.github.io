@@ -245,14 +245,15 @@ const video = document.getElementById('videoPlayer');
 const videoControl = document.querySelector('.video-control');
 const videoSliderContainer = document.querySelector('.video-slider-container');
 
+video.addEventListener('ended', () => {
+    videoControl.style.display = 'none';
+    videoSliderContainer.style.pointerEvents = 'none';
+    videoSliderContainer.style.opacity = '0.4';
+    videoSliderContainer.style.transition = 'opacity 300ms ease';
+});
+
 video.addEventListener('timeupdate', () => {
-    const tolerance = 0.1;
-    if (video.duration - video.currentTime < tolerance) {
-        videoControl.style.display = 'none';
-        videoSliderContainer.style.pointerEvents = 'none';
-        videoSliderContainer.style.opacity = '0.4';
-        videoSliderContainer.style.transition = 'opacity 300ms ease';
-    } else {
+    if (!video.ended) {
         videoControl.style.display = 'block';
         videoSliderContainer.style.pointerEvents = 'auto';
         videoSliderContainer.style.opacity = '1';
