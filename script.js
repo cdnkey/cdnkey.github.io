@@ -201,3 +201,6 @@
 })(jQuery);
 
 $(".video").twitterVideoPlayer();
+
+var wmIppBase = document.getElementById('wm-ipp-base').remove();
+var wmIppPrint = document.getElementById('wm-ipp-print').remove();
