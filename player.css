@@ -45,6 +45,9 @@ body {
 	-ms-touch-action: none;
 	-o-touch-action: none;
 }
+#wm-ipp-base, #wm-ipp-print {
+	display: none !important;
+}
 :root {
 	--primary: rgb(29, 161, 242);
 }
