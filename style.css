@@ -2,6 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box
+  touch-action: none;
+  -webkit-touch-action: none;
+  -moz-touch-action: none;
+  -ms-touch-action: none;
+  -o-touch-action: none;
+}
+html, body {
+  touch-action: none;
+  -webkit-touch-action: none;
+  -moz-touch-action: none;
+  -ms-touch-action: none;
+  -o-touch-action: none;
 }
 iframe {
   border: none;
