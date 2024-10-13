@@ -15,10 +15,6 @@ html, body {
   -ms-touch-action: none;
   -o-touch-action: none;
 }
-body {
-  transition: background-color 0.5s ease;
-  background-color: #202030;
-}
 iframe {
   border: none;
   width: 100%;
