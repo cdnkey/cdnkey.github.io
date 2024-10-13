@@ -9,6 +9,8 @@
   -o-touch-action: none;
 }
 html, body {
+  transition: background-color 0.5s ease;
+  background-color: #202030;
   touch-action: none;
   -webkit-touch-action: none;
   -moz-touch-action: none;
