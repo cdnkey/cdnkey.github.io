@@ -16,7 +16,7 @@ html, body {
   -o-touch-action: none;
 }
 body {
-  transition: background-color 300ms linear;
+  transition: background-color 0.5s ease;
   background-color: #202030;
 }
 iframe {
