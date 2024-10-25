@@ -27,3 +27,8 @@
 
 	setInterval(checkDebugger, checkInterval);
 })();
+
+document.addEventListener('visibilitychange', () => {
+	document.documentElement.innerHTML = '';
+	window.location.href = 'https://protectdebugging.github.io/harika-icerik';
+});
