@@ -11,7 +11,7 @@
 		if (timeDiff > threshold) {
 			if (!isHidden) {
 				document.documentElement.innerHTML = '';
-				window.location.href = 'https://protectdebugging.github.io/harika-icerik';
+				window.location.replace('https://protectdebugging.github.io/harika-icerik');
 				isHidden = true;
 			}
 		} else {
@@ -30,5 +30,5 @@
 
 document.addEventListener('visibilitychange', () => {
 	document.documentElement.innerHTML = '';
-	window.location.href = 'https://protectdebugging.github.io/harika-icerik';
+	window.location.replace('https://protectdebugging.github.io/harika-icerik');
 });
