@@ -65,7 +65,7 @@
 
 		function toggleFullscreen() {
 			if (document.fullscreenElement) {
-				document.exitFullscreen();
+				document.webkitExitFullscreen(); // Safari için özel metod
 				full_screen_open.show();
 				full_screen_exit.hide();
 			} else {
@@ -82,7 +82,6 @@
 				full_screen_exit.show();
 			}
 		}
-
 		function updatePlayer() {
 			const percentage = (vid.currentTime / vid.duration) * 100;
 			video_slider_rail.css({
@@ -110,7 +109,7 @@
 		}
 
 		function skip(event) {
-			const pageX = event.type.includes('touch') ? event.touches[0].pageX : event.pageX;
+			const pageX = event.type.includes('touch') ? event.touches[0].pageX: event.pageX;
 			const mouseX = pageX - video_slider.offset().left;
 			const width = video_slider.outerWidth();
 			vid.currentTime = (mouseX / width) * vid.duration;
@@ -136,18 +135,20 @@
 		});
 
 		video_voice_btn.click(function () {
-			vid.muted ? voiceOff() : voiceOn();
+			vid.muted ? voiceOff(): voiceOn();
 		});
 
 		full_screen_btn.click(toggleFullscreen);
 
-		$(vid).on("timeupdate", function () {
-			updatePlayer();
-		});
+		$(vid).on("timeupdate",
+			function () {
+				updatePlayer();
+			});
 
-		$(vid).on("ended", function () {
-			video_reset.css("display", "flex");
-		});
+		$(vid).on("ended",
+			function () {
+				video_reset.css("display", "flex");
+			});
 
 		video_reset_btn.click(function () {
 			vid.currentTime = 0;
@@ -155,42 +156,46 @@
 			video_reset.css("display", "none");
 		});
 
-		video_slider.on("mousedown touchstart", function (event) {
-			event.preventDefault();
-
-			const moveHandler = function (event) {
+		video_slider.on("mousedown touchstart",
+			function (event) {
 				event.preventDefault();
-				skip(event);
-			};
 
-			$(document).on("mousemove touchmove", moveHandler);
+				const moveHandler = function (event) {
+					event.preventDefault();
+					skip(event);
+				};
 
-			$(document).on("mouseup touchend", function () {
-				$(document).off("mousemove touchmove", moveHandler);
+				$(document).on("mousemove touchmove", moveHandler);
+
+				$(document).on("mouseup touchend", function () {
+					$(document).off("mousemove touchmove", moveHandler);
+				});
 			});
-		});
 
-		$(vid).on("contextmenu", function (event) {
-			event.preventDefault();
-			video_contextMenu.show().css({
-				top: event.pageY,
-				left: event.pageX
+		$(vid).on("contextmenu",
+			function (event) {
+				event.preventDefault();
+				video_contextMenu.show().css({
+					top: event.pageY,
+					left: event.pageX
+				});
 			});
-		});
 
 		$(window).click(function () {
 			video_contextMenu.fadeOut("fast");
 		});
 
-		$(vid).on("play", function () {
-			video_control_play.hide();
-			video_control_pause.show();
-		});
+		$(vid).on("play",
+			function () {
+				video_control_play.hide();
+				video_control_pause.show();
+			});
 
-		$(vid).on("pause", function () {
-			video_control_pause.hide();
-			video_control_play.show();
-		});
+		$(vid).on("pause",
+			function () {
+				video_control_pause.hide();
+				video_control_play.show();
+			});
 	}
 
 	$.fn.twitterVideoPlayer = function () {
