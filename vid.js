@@ -167,7 +167,7 @@ videoContainer.innerHTML = `
 		</div>
 		</div>
 		<div class="video-player">
-			<video id="videoPlayer" data-video webkit-playsinline playsinline poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
+			<video id="videoPlayer" data-video poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
 			</video>
 		</div>
 	</div>
