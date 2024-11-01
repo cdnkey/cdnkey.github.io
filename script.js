@@ -64,18 +64,28 @@
 		}
 
 		function toggleFullscreen() {
-			if (document.fullscreenElement) {
-				document.exitFullscreen();
+			const element = document.getElementById('videoElement');
+			if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.webkitExitFullscreen) {
+					// Safari
+					document.webkitExitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.msExitFullscreen) {
+					document.msExitFullscreen();
+				}
 				full_screen_open.show();
 				full_screen_exit.hide();
 			} else {
 				if (element.requestFullscreen) {
 					element.requestFullscreen();
+				} else if (element.webkitRequestFullscreen) {
+					// Safari
+					element.webkitRequestFullscreen();
 				} else if (element.mozRequestFullScreen) {
 					element.mozRequestFullScreen();
-				} else if (element.webkitRequestFullscreen) {
-					// Değiştirildi
-					element.webkitRequestFullscreen();
 				} else if (element.msRequestFullscreen) {
 					element.msRequestFullscreen();
 				}
@@ -83,6 +93,7 @@
 				full_screen_exit.show();
 			}
 		}
+
 
 
 		function updatePlayer() {
