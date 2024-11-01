@@ -69,16 +69,13 @@
 				full_screen_open.show();
 				full_screen_exit.hide();
 			} else {
-				const videoContainer = element.parentNode;
-
-				if (videoContainer.webkitEnterFullScreen) {
-					videoContainer.webkitEnterFullScreen(); // Parent element üzerinde webkitEnterFullScreen() çağırın
-				} else if (element.requestFullscreen) {
+				if (element.requestFullscreen) {
 					element.requestFullscreen();
 				} else if (element.mozRequestFullScreen) {
 					element.mozRequestFullScreen();
-				} else if (element.webkitRequestFullscreen) {
-					element.webkitRequestFullscreen();
+				} else if (element.webkitEnterFullscreen) {
+					// Değiştirildi
+					element.webkitEnterFullscreen();
 				} else if (element.msRequestFullscreen) {
 					element.msRequestFullscreen();
 				}
