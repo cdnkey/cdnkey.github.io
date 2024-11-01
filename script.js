@@ -64,25 +64,19 @@
 		}
 
 		function toggleFullscreen() {
-			if (document.fullscreenElement || document.webkitFullscreenElement) {
-				// Çıkış
-				if (document.exitFullscreen) {
-					document.exitFullscreen();
-				} else if (document.webkitExitFullscreen) {
-					document.webkitExitFullscreen();
-				}
+			if (document.fullscreenElement) {
+				document.exitFullscreen();
 				full_screen_open.show();
 				full_screen_exit.hide();
 			} else {
-				// Giriş
-				if (video_element.requestFullscreen) {
-					video_element.requestFullscreen();
-				} else if (video_element.webkitRequestFullscreen) {
-					video_element.webkitRequestFullscreen();
-				} else if (video_element.mozRequestFullScreen) {
-					video_element.mozRequestFullScreen();
-				} else if (video_element.msRequestFullscreen) {
-					video_element.msRequestFullscreen();
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				} else if (element.webkitRequestFullscreen) {
+					element.webkitRequestFullscreen();
+				} else if (element.msRequestFullscreen) {
+					element.msRequestFullscreen();
 				}
 				full_screen_open.hide();
 				full_screen_exit.show();
