@@ -259,3 +259,7 @@ video.addEventListener('timeupdate', () => {
         videoSliderContainer.style.opacity = '1';
     }
 });
+
+if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+    alert('Bu site Safari ile uyumlu değildir.');
+}
