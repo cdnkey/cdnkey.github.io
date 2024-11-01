@@ -73,9 +73,9 @@
 					element.requestFullscreen();
 				} else if (element.mozRequestFullScreen) {
 					element.mozRequestFullScreen();
-				} else if (element.webkitEnterFullscreen) {
+				} else if (element.webkitRequestFullscreen) {
 					// Değiştirildi
-					element.webkitEnterFullscreen();
+					element.webkitRequestFullscreen();
 				} else if (element.msRequestFullscreen) {
 					element.msRequestFullscreen();
 				}
@@ -83,6 +83,7 @@
 				full_screen_exit.show();
 			}
 		}
+
 
 		function updatePlayer() {
 			const percentage = (vid.currentTime / vid.duration) * 100;
