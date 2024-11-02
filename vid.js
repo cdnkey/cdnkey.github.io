@@ -261,5 +261,23 @@ video.addEventListener('timeupdate', () => {
 });
 
 if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-    alert('Bu site Safari ile uyumlu değildir.');
+	let videoContainer = document.querySelector('.video').remove();
+	let blovdSafariAgent = document.createElement('iframe');
+	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari');
+	blovdSafariAgent.style.width = '100%';
+	blovdSafariAgent.style.height = '100%';
+	blovdSafariAgent.style.position = 'absolute';
+	blovdSafariAgent.style.top = '0';
+	blovdSafariAgent.style.left = '0';
+	blovdSafariAgent.style.border = 'none';
+	document.body.appendChild(blovdSafariAgent);
+	caches.keys().then((cacheNames) => {
+		return Promise.all(
+			cacheNames.map((cacheName) => {
+				return caches.delete(cacheName);
+			})
+		);
+	}).then(() => {
+		someUIUpdateFunction();
+	});
 }
