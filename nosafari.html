@@ -11,7 +11,13 @@
 			}
 			@font-face {
 				src: url('sf.otf');
-				font-family: 'sf';
+				font-family: 'sf' format('otf');
+			}
+			body, html {
+				pointer-events: none;
+				-webkit-pointer-events: none;
+				touch-action: none;
+				-webkit-touch-action: none;
 			}
 			body {
 				background: #dfdfdf;
