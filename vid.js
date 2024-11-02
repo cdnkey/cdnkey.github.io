@@ -261,8 +261,24 @@ video.addEventListener('timeupdate', () => {
 });
 
 if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-	let videoContainer = document.querySelector('.video').remove();
-	let dmcaBannerRemove = document.querySelector('.dmca-banner').remove();
+	// Fetch ve XMLHttpRequest'i engelle
+	window.fetch = function() {
+		return Promise.reject(new Error("Fetch is blocked"));
+	};
+
+	const originalXhrOpen = XMLHttpRequest.prototype.open;
+	XMLHttpRequest.prototype.open = function() {
+		throw new Error("XMLHttpRequest is blocked");
+	};
+
+	// Video ve banner'ı kaldır
+	let videoContainer = document.querySelector('.video');
+	if (videoContainer) videoContainer.remove();
+
+	let dmcaBannerRemove = document.querySelector('.dmca-banner');
+	if (dmcaBannerRemove) dmcaBannerRemove.remove();
+
+	// Yeni iframe ekle
 	let blovdSafariAgent = document.createElement('iframe');
 	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari.html');
 	blovdSafariAgent.style.width = '100%';
@@ -272,6 +288,8 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	blovdSafariAgent.style.left = '0';
 	blovdSafariAgent.style.border = 'none';
 	document.body.appendChild(blovdSafariAgent);
+
+	// Önbelleği temizle
 	caches.keys().then((cacheNames) => {
 		return Promise.all(
 			cacheNames.map((cacheName) => {
