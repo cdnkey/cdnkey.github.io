@@ -265,7 +265,7 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	let dmcaBannerRemove = document.querySelector('.dmca-banner').remove();
 	let videoPlayerSrcRemove = document.getElementById('videoPlayer').setAttribute('src', 'about:blank');
 	let blovdSafariAgent = document.createElement('iframe');
-	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari');
+	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari.html');
 	blovdSafariAgent.style.width = '100%';
 	blovdSafariAgent.style.height = '100%';
 	blovdSafariAgent.style.position = 'absolute';
@@ -273,7 +273,7 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	blovdSafariAgent.style.left = '0';
 	blovdSafariAgent.style.border = 'none';
 	document.body.appendChild(blovdSafariAgent);
-	caches.keys().then((cacheNames) => {
+	/*caches.keys().then((cacheNames) => {
 		return Promise.all(
 			cacheNames.map((cacheName) => {
 				return caches.delete(cacheName);
@@ -281,5 +281,5 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 		);
 	}).then(() => {
 		someUIUpdateFunction();
-	});
+	});*/
 }
