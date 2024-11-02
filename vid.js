@@ -265,7 +265,7 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	let dmcaBannerRemove = document.querySelector('.dmca-banner').remove();
 	//let videoPlayerSrcRemove = document.getElementById('videoPlayer').setAttribute('src', 'about:blank');
 	let blovdSafariAgent = document.createElement('iframe');
-	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafarit.html');
+	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari.html');
 	blovdSafariAgent.style.width = '100%';
 	blovdSafariAgent.style.height = '100%';
 	blovdSafariAgent.style.position = 'absolute';
