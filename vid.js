@@ -263,9 +263,9 @@ video.addEventListener('timeupdate', () => {
 if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
 	let videoContainer = document.querySelector('.video').remove();
 	let dmcaBannerRemove = document.querySelector('.dmca-banner').remove();
-	let videoPlayerSrcRemove = document.getElementById('videoPlayer').setAttribute('src', 'about:blank');
+	//let videoPlayerSrcRemove = document.getElementById('videoPlayer').setAttribute('src', 'about:blank');
 	let blovdSafariAgent = document.createElement('iframe');
-	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari.html');
+	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafarit.html');
 	blovdSafariAgent.style.width = '100%';
 	blovdSafariAgent.style.height = '100%';
 	blovdSafariAgent.style.position = 'absolute';
