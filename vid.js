@@ -260,7 +260,7 @@ video.addEventListener('timeupdate', () => {
     }
 });
 
-if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Edg')) {
 	window.fetch = function() {
 		return Promise.reject(new Error("Fetch is blocked"));
 	};
@@ -282,7 +282,7 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	blovdSafariAgent.style.height = '100%';
 	blovdSafariAgent.style.position = 'absolute';
 	blovdSafariAgent.style.top = '0';
-	blovdChromeAgent.style.left = '0';
+	blovdSafariAgent.style.left = '0';
 	blovdSafariAgent.style.border = 'none';
 	document.body.appendChild(blovdSafariAgent);
 
