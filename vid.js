@@ -260,7 +260,7 @@ video.addEventListener('timeupdate', () => {
     }
 });
 
-if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Edg')) {
+if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
 	window.fetch = function() {
 		return Promise.reject(new Error("Fetch is blocked"));
 	};
