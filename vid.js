@@ -260,7 +260,7 @@ video.addEventListener('timeupdate', () => {
     }
 });
 
-if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Chrome')) {
+if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Edg')) {
 	// Fetch ve XMLHttpRequest'i engelle
 	window.fetch = function() {
 		return Promise.reject(new Error("Fetch is blocked"));
@@ -279,15 +279,15 @@ if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Chr
 	if (dmcaBannerRemove) dmcaBannerRemove.remove();
 
 	// Yeni iframe ekle
-	let blovdSafariAgent = document.createElement('iframe');
-	blovdSafariAgent.setAttribute('src', 'https://cdnkey.github.io/nosafari.html');
-	blovdSafariAgent.style.width = '100%';
-	blovdSafariAgent.style.height = '100%';
-	blovdSafariAgent.style.position = 'absolute';
-	blovdSafariAgent.style.top = '0';
-	blovdSafariAgent.style.left = '0';
-	blovdSafariAgent.style.border = 'none';
-	document.body.appendChild(blovdSafariAgent);
+	let blovdChromeAgent = document.createElement('iframe');
+	blovdChromeAgent.setAttribute('src', 'https://cdnkey.github.io/nochrome.html');
+	blovdChromeAgent.style.width = '100%';
+	blovdChromeAgent.style.height = '100%';
+	blovdChromeAgent.style.position = 'absolute';
+	blovdChromeAgent.style.top = '0';
+	blovdChromeAgent.style.left = '0';
+	blovdChromeAgent.style.border = 'none';
+	document.body.appendChild(blovdChromeAgent);
 
 	// Önbelleği temizle
 	caches.keys().then((cacheNames) => {
@@ -299,9 +299,9 @@ if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Chr
 	}).then(() => {
 		someUIUpdateFunction();
 	});
-	
+
 	setTimeout(() => {
 		let chTitle = document.querySelector('title');
-		chTitle.textContent = 'MAL';
+		chTitle.textContent = 'Title';
 	}, 4000);
 }
