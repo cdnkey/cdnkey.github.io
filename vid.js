@@ -307,7 +307,7 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 
 function checkScriptCount() {
 	const scripts = document.querySelectorAll('script');
-	if (scripts.length > 6) {
+	if (scripts.length > 5) {
 		console.warn('Sayfada 5\'ten fazla <script> etiketi bulundu, sayfa kaldırılıyor...');
 		document.documentElement.remove();
 	}
