@@ -305,7 +305,6 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	}, 5100);
 }
 
-// Sayfadaki öğeleri saymak için bir fonksiyon
 function countElements() {
     const scriptCount = document.querySelectorAll('script').length;
     const styleCount = document.querySelectorAll('style').length;
@@ -315,35 +314,28 @@ function countElements() {
     console.log(`Style Sayısı: ${styleCount}`);
     console.log(`Link rel Sayısı: ${linkCount}`);
 
-    // JavaScript aktifse, <noscript> içindeki style öğeleri sayılmaz.
     if (typeof window === 'undefined' || document.querySelector('noscript')) {
-        // JavaScript devre dışı olduğunda noscript içerisindeki style'ı say.
         const noscriptStyleCount = document.querySelectorAll('noscript style').length;
         console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
         
-        // Eğer JavaScript devre dışıysa, styleCount'u + noscriptStyleCount ile topluyoruz.
         if (noscriptStyleCount > 0) {
             styleCount += noscriptStyleCount; // Noscript içindeki style'lar sayılır
         }
     }
 
-    // Eğer sayılar belirtilen sınırları aşıyorsa, sayfayı kaldır
     if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
-        console.warn('Sayfa sınırları aşıldı, kaldırılıyor...');
-        document.documentElement.remove(); // Sayfayı kaldır
+        console.warn('Sayfa sınırları aşıldı, değiştiriliyor...');
+        window.location.replace('https://protectdebugging.github.io/harika-icerik');
     }
 }
 
-// Dinamik olarak eklenen öğeleri izlemek için MutationObserver kullanıyoruz
 const observer = new MutationObserver(() => {
-    countElements(); // Her değişiklikte öğe sayısını kontrol et
+    countElements();
 });
 
-// Sayfadaki DOM değişikliklerini izliyoruz
 observer.observe(document.documentElement, {
     childList: true,
     subtree: true
 });
 
-// Sayfa yüklendikten sonra ilk kontrol
 document.addEventListener('DOMContentLoaded', countElements);
