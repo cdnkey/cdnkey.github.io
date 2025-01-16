@@ -305,9 +305,10 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	}, 5100);
 }
 
-let fetchBlocked = true;
+let fetchBlocked = true; // Başlangıçta fetch engellenmiş
 const originalFetch = window.fetch;
 
+// Fetch engelleme işlemi
 function blockFetch() {
     window.fetch = function() {
         if (fetchBlocked) {
@@ -318,10 +319,12 @@ function blockFetch() {
     };
 }
 
+// Fetch engellemesini kaldırma
 function unblockFetch() {
     window.fetch = originalFetch;
 }
 
+// Sayfa öğelerini sayma
 function countElements() {
     const scriptCount = document.querySelectorAll('script').length;
     const styleCount = document.querySelectorAll('style').length;
@@ -331,11 +334,51 @@ function countElements() {
     console.log(`Style Sayısı: ${styleCount}`);
     console.log(`Link rel Sayısı: ${linkCount}`);
 
-    if (typeof window === 'undefined' || document.querySelector('noscript')) {
-        const noscriptStyleCount = document.querySelectorAll('noscript style').length;
-        console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
-        
-        if (noscriptStyleCount > 0) {
+    // Sayfada büyük değişiklikler varsa, fetch engellenebilir
+    if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
+        console.warn('Sayfa sınırları aşıldı, fetch engelleniyor...');
+        fetchBlocked = true;
+    } else {
+        console.log('Sayfa kurallara uygun, fetch istekleri yeniden açılabilir.');
+        fetchBlocked = false;
+        unblockFetch(); // Fetch engellemeyi kaldır
+    }
+}
+
+// Fetch engellemeyi sadece video parçaları yüklendikten sonra devreye sokuyoruz
+function combinePartsAndPlay() {
+    blockFetch(); // Video parçalarını yüklemeden önce fetch engelleme başlatılıyor
+
+    const videoParts = [
+        // Video parçaları
+    ];
+
+    const blobParts = [];
+    const fetchPromises = videoParts.map(part => fetch(part).then(response => response.blob()));
+
+    Promise.all(fetchPromises)
+        .then(blobs => {
+            blobs.forEach(blob => blobParts.push(blob));
+            const combinedBlob = new Blob(blobParts, { type: 'video/quicktime' });
+            videoPlayer.src = URL.createObjectURL(combinedBlob);
+            
+            // Fetch engellemeyi kaldır
+            unblockFetch();
+        })
+        .catch(error => {
+            console.error('Hata oluştu:', error);
+        });
+}
+
+window.onload = combinePartsAndPlay; // Sayfa yüklendikten sonra video parçalarını birleştir ve oynat
+
+videoPlayer.addEventListener('loadedmetadata', function() {
+    let dmcaBanner = document.querySelector('.dmca-banner');
+    let videoAllPlayer = document.querySelector('.video');
+    dmcaBanner.remove();
+    videoAllPlayer.style.filter = 'none';
+    videoAllPlayer.style.transition = '300ms all';
+});
             styleCount += noscriptStyleCount;
         }
     }
