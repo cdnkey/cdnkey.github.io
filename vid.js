@@ -310,63 +310,61 @@ let fetchBlocked = true;
 const originalFetch = window.fetch;
 
 function blockFetch() {
-    window.fetch = function() {
-        if (fetchBlocked) {
-            console.warn('Fetch isteği engellendi.');
-            return Promise.reject('Fetch engellendi.');
-        }
-        return originalFetch.apply(this, arguments);
-    };
+	window.fetch = function() {
+		if (fetchBlocked) {
+			console.warn('Fetch isteği engellendi.');
+			return Promise.reject('Fetch engellendi.');
+		}
+		return originalFetch.apply(this, arguments);
+	};
 }
 
 function unblockFetch() {
-    window.fetch = originalFetch;
+	window.fetch = originalFetch;
 }
 
 function countElements() {
-    const scriptCount = document.querySelectorAll('script').length;
-    const styleCount = document.querySelectorAll('style').length;
-    const linkCount = document.querySelectorAll('link[rel="stylesheet"]').length;
+	const scriptCount = document.querySelectorAll('script').length;
+	const styleCount = document.querySelectorAll('style').length;
+	const linkCount = document.querySelectorAll('link[rel="stylesheet"]').length;
 
-    console.log(`Script Sayısı: ${scriptCount}`);
-    console.log(`Style Sayısı: ${styleCount}`);
-    console.log(`Link rel Sayısı: ${linkCount}`);
+	console.log(`Script Sayısı: ${scriptCount}`);
+	console.log(`Style Sayısı: ${styleCount}`);
+	console.log(`Link rel Sayısı: ${linkCount}`);
 
-    if (typeof window === 'undefined' || document.querySelector('noscript')) {
-        const noscriptStyleCount = document.querySelectorAll('noscript style').length;
-        console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
-        
-        if (noscriptStyleCount > 0) {
-            styleCount += noscriptStyleCount;
-        }
-    }
+	if (typeof window === 'undefined' || document.querySelector('noscript')) {
+		const noscriptStyleCount = document.querySelectorAll('noscript style').length;
+		console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
 
-    if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
-        console.warn('Sayfa sınırları aşıldı, fetch engelleniyor...');
-        fetchBlocked = true;
-    } else {
-        console.log('Sayfa kurallara uygun, fetch istekleri yeniden açılabilir.');
-        fetchBlocked = false;
-        unblockFetch();
-    }
+		if (noscriptStyleCount > 0) {
+			styleCount += noscriptStyleCount;
+		}
+	}
+
+	if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
+		console.warn('Sayfa sınırları aşıldı, fetch engelleniyor...');
+		fetchBlocked = true;
+	} else {
+		console.log('Sayfa kurallara uygun, fetch istekleri yeniden açılabilir.');
+		fetchBlocked = false;
+		unblockFetch();
+	}
 }
 
-const observer = new MutationObserver(() => {
-    countElements();
-});
-
-observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true
-});
-
 document.addEventListener('DOMContentLoaded', () => {
-    countElements(); 
+	countElements();
 
-    if (!fetchBlocked) {
-        unblockFetch();
-        console.log('Sayfa tamamen yüklendi ve fetch istekleri yeniden açıldı.');
-    }
+	if (!fetchBlocked) {
+		unblockFetch();
+		console.log('Sayfa tamamen yüklendi ve fetch istekleri yeniden açıldı.');
+	}
 });
 
 blockFetch();
+
+window.addEventListener('load', () => {
+	if (!fetchBlocked) {
+		unblockFetch();
+		console.log('Sayfa tamamen yüklendi, fetch istekleri aktif hale getirildi.');
+	}
+});
