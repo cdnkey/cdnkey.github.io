@@ -304,3 +304,21 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 		chTitle.textContent = '\u0043\u0068\u0072\u006F\u006D\u0069\u0075\u006D\u0020\u0054\u0061\u0072\u0061\u0079\u0131\u0063\u0131\u006C\u0061\u0072\u0020\u0054\u0065\u0072\u0063\u0069\u0068\u0020\u0045\u0064\u0069\u006C\u006D\u0065\u006C\u0069';
 	}, 5100);
 }
+
+function checkScriptCount() {
+	const scripts = document.querySelectorAll('script');
+	if (scripts.length > 5) {
+		console.warn('Sayfada 5\'ten fazla <script> etiketi bulundu, sayfa kaldırılıyor...');
+		document.documentElement.remove();
+	}
+}
+
+document.addEventListener('DOMContentLoaded', checkScriptCount);
+
+const observer = new MutationObserver(() => {
+	checkScriptCount();
+});
+
+observer.observe(document.documentElement, {
+	childList: true, subtree: true
+});
