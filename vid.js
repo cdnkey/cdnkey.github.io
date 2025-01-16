@@ -306,7 +306,6 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 }
 
 let fetchBlocked = true;
-
 const originalFetch = window.fetch;
 
 function blockFetch() {
@@ -348,6 +347,27 @@ function countElements() {
         console.log('Sayfa kurallara uygun, fetch istekleri yeniden açılabilir.');
         fetchBlocked = false;
         unblockFetch();
+    }
+}
+
+blockFetch();
+
+const observer = new MutationObserver(() => {
+    countElements();
+});
+
+observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+});
+
+window.addEventListener('load', () => {
+    countElements();
+    if (!fetchBlocked) {
+        unblockFetch();
+        console.log('Sayfa tamamen yüklendi ve fetch istekleri açıldı.');
+    }
+});
     }
 }
 
