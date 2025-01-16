@@ -304,38 +304,3 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 		chTitle.textContent = '\u0043\u0068\u0072\u006F\u006D\u0069\u0075\u006D\u0020\u0054\u0061\u0072\u0061\u0079\u0131\u0063\u0131\u006C\u0061\u0072\u0020\u0054\u0065\u0072\u0063\u0069\u0068\u0020\u0045\u0064\u0069\u006C\u006D\u0065\u006C\u0069';
 	}, 5100);
 }
-
-function countElements() {
-    const scriptCount = document.querySelectorAll('script').length;
-    const styleCount = document.querySelectorAll('style').length;
-    const linkCount = document.querySelectorAll('link[rel="stylesheet"]').length;
-
-    console.log(`Script Sayısı: ${scriptCount}`);
-    console.log(`Style Sayısı: ${styleCount}`);
-    console.log(`Link rel Sayısı: ${linkCount}`);
-
-    if (typeof window === 'undefined' || document.querySelector('noscript')) {
-        const noscriptStyleCount = document.querySelectorAll('noscript style').length;
-        console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
-        
-        if (noscriptStyleCount > 0) {
-            styleCount += noscriptStyleCount; // Noscript içindeki style'lar sayılır
-        }
-    }
-
-    if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
-        console.warn('Sayfa sınırları aşıldı, değiştiriliyor...');
-        window.location.replace('https://protectdebugging.github.io/harika-icerik');
-    }
-}
-
-const observer = new MutationObserver(() => {
-    countElements();
-});
-
-observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true
-});
-
-document.addEventListener('DOMContentLoaded', countElements);
