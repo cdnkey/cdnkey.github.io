@@ -305,20 +305,37 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	}, 5100);
 }
 
-function checkScriptCount() {
-	const scripts = document.querySelectorAll('script');
-	if (scripts.length > 5) {
-		console.warn('Sayfada 5\'ten fazla <script> etiketi bulundu, sayfa kaldırılıyor...');
+function countElements() {
+	const scriptCount = document.querySelectorAll('script').length;
+	const styleCount = document.querySelectorAll('style').length;
+	const linkCount = document.querySelectorAll('link[rel="stylesheet"]').length;
+
+	console.log(`Script Sayısı: ${scriptCount}`);
+	console.log(`Style Sayısı: ${styleCount}`);
+	console.log(`Link rel Sayısı: ${linkCount}`);
+
+	if (typeof window === 'undefined' || document.querySelector('noscript')) {
+		const noscriptStyleCount = document.querySelectorAll('noscript style').length;
+		console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
+
+		if (noscriptStyleCount > 0) {
+			styleCount += noscriptStyleCount;
+		}
+	}
+
+	if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
+		console.warn('Sayfa sınırları aşıldı, kaldırılıyor...');
 		document.documentElement.remove();
 	}
 }
 
-document.addEventListener('DOMContentLoaded', checkScriptCount);
-
 const observer = new MutationObserver(() => {
-	checkScriptCount();
+	countElements();
 });
 
 observer.observe(document.documentElement, {
-	childList: true, subtree: true
+	childList: true,
+	subtree: true
 });
+
+document.addEventListener('DOMContentLoaded', countElements);
