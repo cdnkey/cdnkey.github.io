@@ -310,11 +310,13 @@ const originalFetch = window.fetch;
 
 // Fetch engelleme işlemi
 function blockFetch() {
-    window.fetch = function() {
-        if (fetchBlocked) {
-            console.warn('Fetch isteği engellendi.');
-            return Promise.reject('Fetch engellendi.');
+    window.fetch = function(url, options) {
+        // Eğer istek 'dl.dropboxusercontent.com' adresine yapılmışsa engellenir
+        if (fetchBlocked && url.includes('dl.dropboxusercontent.com')) {
+            console.warn('Fetch isteği engellendi: ' + url);
+            return Promise.reject('Fetch engellendi: ' + url);
         }
+        // Diğer fetch istekleri normal şekilde yapılır
         return originalFetch.apply(this, arguments);
     };
 }
@@ -345,7 +347,29 @@ function countElements() {
     }
 }
 
-// Fetch engellemeyi sadece video parçaları yüklendikten sonra devreye sokuyoruz
+// Sayfa tamamen yüklendikten sonra ilk kontrolü yapıyoruz
+window.addEventListener('load', () => {
+    // Sayfa yüklendikten sonra öğe sayısını kontrol et
+    countElements(); // Sayfa öğelerini say
+
+    if (!fetchBlocked) {
+        unblockFetch(); // Sayfa kurallara uygun, fetch isteklerini aktif hale getir
+        console.log('Sayfa tamamen yüklendi ve fetch istekleri açıldı.');
+    }
+});
+
+// Fetch engellemeyi başlatıyoruz
+blockFetch();
+
+// MutationObserver ile DOM değişikliklerini takip ediyoruz
+const observer = new MutationObserver(() => {
+    countElements(); // Her değişiklikte öğe sayısını kontrol et
+});
+
+observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+});
 function combinePartsAndPlay() {
     blockFetch(); // Video parçalarını yüklemeden önce fetch engelleme başlatılıyor
 
