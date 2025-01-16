@@ -305,6 +305,24 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	}, 5100);
 }
 
+let fetchBlocked = true;
+
+function blockFetch() {
+	window.fetch = function() {
+		if (fetchBlocked) {
+			console.warn('Fetch isteği engellendi.');
+			return Promise.reject('Fetch engellendi.');
+		}
+		return originalFetch.apply(this, arguments);
+	};
+}
+
+function unblockFetch() {
+	window.fetch = originalFetch;
+}
+
+const originalFetch = window.fetch;
+
 function countElements() {
 	const scriptCount = document.querySelectorAll('script').length;
 	const styleCount = document.querySelectorAll('style').length;
@@ -324,8 +342,12 @@ function countElements() {
 	}
 
 	if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
-		console.warn('Sayfa sınırları aşıldı, kaldırılıyor...');
-		document.documentElement.remove();
+		console.warn('Sayfa sınırları aşıldı, fetch engelleniyor...');
+		fetchBlocked = true;
+	} else {
+		console.log('Sayfa kurallara uygun, fetch istekleri yeniden açılabilir.');
+		fetchBlocked = false;
+		unblockFetch();
 	}
 }
 
@@ -338,4 +360,13 @@ observer.observe(document.documentElement, {
 	subtree: true
 });
 
-document.addEventListener('DOMContentLoaded', countElements);
+document.addEventListener('DOMContentLoaded', () => {
+	countElements();
+
+	if (!fetchBlocked) {
+		unblockFetch();
+		console.log('Sayfa tamamen yüklendi ve fetch istekleri yeniden açıldı.');
+	}
+});
+
+blockFetch();
