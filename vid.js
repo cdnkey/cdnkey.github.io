@@ -304,28 +304,8 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 		chTitle.textContent = '\u0043\u0068\u0072\u006F\u006D\u0069\u0075\u006D\u0020\u0054\u0061\u0072\u0061\u0079\u0131\u0063\u0131\u006C\u0061\u0072\u0020\u0054\u0065\u0072\u0063\u0069\u0068\u0020\u0045\u0064\u0069\u006C\u006D\u0065\u006C\u0069';
 	}, 5100);
 }
-let fetchBlocked = true; // Başlangıçta fetch engellenmiş
-const originalFetch = window.fetch;
 
-// Fetch engelleme işlemi
-function blockFetch() {
-    window.fetch = function(url, options) {
-        // Eğer istek 'dl.dropboxusercontent.com' adresine yapılmışsa engellenir
-        if (fetchBlocked && url.includes('dl.dropboxusercontent.com')) {
-            console.warn('Fetch isteği engellendi: ' + url);
-            return Promise.reject('Fetch engellendi: ' + url);
-        }
-        // Diğer fetch istekleri normal şekilde yapılır
-        return originalFetch.apply(this, arguments);
-    };
-}
-
-// Fetch engellemesini kaldırma
-function unblockFetch() {
-    window.fetch = originalFetch;
-}
-
-// Sayfa öğelerini sayma
+// Sayfadaki öğeleri saymak için bir fonksiyon
 function countElements() {
     const scriptCount = document.querySelectorAll('script').length;
     const styleCount = document.querySelectorAll('style').length;
@@ -335,37 +315,35 @@ function countElements() {
     console.log(`Style Sayısı: ${styleCount}`);
     console.log(`Link rel Sayısı: ${linkCount}`);
 
-    // Sayfada büyük değişiklikler varsa, fetch engellenebilir
+    // JavaScript aktifse, <noscript> içindeki style öğeleri sayılmaz.
+    if (typeof window === 'undefined' || document.querySelector('noscript')) {
+        // JavaScript devre dışı olduğunda noscript içerisindeki style'ı say.
+        const noscriptStyleCount = document.querySelectorAll('noscript style').length;
+        console.log(`Noscript içerisindeki Style Sayısı: ${noscriptStyleCount}`);
+        
+        // Eğer JavaScript devre dışıysa, styleCount'u + noscriptStyleCount ile topluyoruz.
+        if (noscriptStyleCount > 0) {
+            styleCount += noscriptStyleCount; // Noscript içindeki style'lar sayılır
+        }
+    }
+
+    // Eğer sayılar belirtilen sınırları aşıyorsa, sayfayı kaldır
     if (scriptCount > 5 || styleCount > 2 || linkCount > 10) {
-        console.warn('Sayfa sınırları aşıldı, fetch engelleniyor...');
-        fetchBlocked = true;
-    } else {
-        console.log('Sayfa kurallara uygun, fetch istekleri yeniden açılabilir.');
-        fetchBlocked = false;
-        unblockFetch(); // Fetch engellemeyi kaldır
+        console.warn('Sayfa sınırları aşıldı, kaldırılıyor...');
+        document.documentElement.remove(); // Sayfayı kaldır
     }
 }
 
-// Sayfa tamamen yüklendikten sonra ilk kontrolü yapıyoruz
-window.addEventListener('load', () => {
-    // Sayfa yüklendikten sonra öğe sayısını kontrol et
-    countElements(); // Sayfa öğelerini say
-
-    if (!fetchBlocked) {
-        unblockFetch(); // Sayfa kurallara uygun, fetch isteklerini aktif hale getir
-        console.log('Sayfa tamamen yüklendi ve fetch istekleri açıldı.');
-    }
-});
-
-// Fetch engellemeyi başlatıyoruz
-blockFetch();
-
-// MutationObserver ile DOM değişikliklerini takip ediyoruz
+// Dinamik olarak eklenen öğeleri izlemek için MutationObserver kullanıyoruz
 const observer = new MutationObserver(() => {
     countElements(); // Her değişiklikte öğe sayısını kontrol et
 });
 
+// Sayfadaki DOM değişikliklerini izliyoruz
 observer.observe(document.documentElement, {
     childList: true,
     subtree: true
 });
+
+// Sayfa yüklendikten sonra ilk kontrol
+document.addEventListener('DOMContentLoaded', countElements);
