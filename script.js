@@ -26,12 +26,6 @@
 
 		var vid = video_element;
 
-		function handleFullscreenChange() {
-			const isFull = document.fullscreenElement || document.mozFullScreenElement;
-			full_screen_open.toggle(!isFull);
-			full_screen_exit.toggle(isFull);
-		}
-
 		function play() {
 			if (vid && vid.paused) {
 				vid.play();
@@ -70,20 +64,24 @@
 		}
 
 		function toggleFullscreen() {
-			const isFull = document.fullscreenElement || document.mozFullScreenElement;
-			
-			if (isFull) {
-				if (document.exitFullscreen) document.exitFullscreen();
-				else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-				else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+			if (document.fullscreenElement) {
+				document.webkitExitFullscreen(); // Safari için özel metod
+				full_screen_open.show();
+				full_screen_exit.hide();
 			} else {
-				if (element.requestFullscreen) element.requestFullscreen();
-				else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
-				else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
-				else if (element.msRequestFullscreen) element.msRequestFullscreen();
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				} else if (element.webkitRequestFullscreen) {
+					element.webkitRequestFullscreen();
+				} else if (element.msRequestFullscreen) {
+					element.msRequestFullscreen();
+				}
+				full_screen_open.hide();
+				full_screen_exit.show();
 			}
 		}
-
 		function updatePlayer() {
 			const percentage = (vid.currentTime / vid.duration) * 100;
 			video_slider_rail.css({
@@ -92,6 +90,7 @@
 			video_count_time.text(getFormattedTime());
 			video_count_fulltime.text(getFormattedFullTime());
 
+			// Video bitmediyse butonu gizle
 			if (vid.currentTime < vid.duration) {
 				video_reset.css("display", "none");
 			}
@@ -116,9 +115,6 @@
 			vid.currentTime = (mouseX / width) * vid.duration;
 			updatePlayer();
 		}
-
-		document.addEventListener('fullscreenchange', handleFullscreenChange);
-		document.addEventListener('mozfullscreenchange', handleFullscreenChange);
 
 		video_start_btn.click(function () {
 			video_preview.hide();
