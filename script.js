@@ -195,6 +195,18 @@
             video_control_pause.hide();
             video_control_play.show();
         });
+
+        // Firefox için özel kontrol
+        if (navigator.userAgent.indexOf("Firefox") !== -1) {
+            $(vid).on("loadedmetadata", function () {
+                if (isNaN(vid.duration)) {
+                    vid.currentTime = 0; // Duration bilgisini yeniden yükle
+                    vid.play().catch(function () {
+                        // Oto-play engellenmişse hata yakalanır
+                    });
+                }
+            });
+        }
     }
 
     $.fn.twitterVideoPlayer = function () {
