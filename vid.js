@@ -334,63 +334,62 @@ if (navigator.userAgent.includes('Firefox') && !navigator.userAgent.includes('Ch
 	});
 }
 
-if (navigator.userAgent.includes('Edg/') && !navigator.userAgent.includes('OPR/')) {
-	try {
-		window.fetch = function() {
-			return Promise.reject(new Error("Fetch is blocked"));
-		};
+if (navigator.userAgent.includes('Edg') && !navigator.userAgent.includes('Chrome')) {
+	console.log("Microsoft Edge tarayıcısı tespit edildi. Engelleniyor...");
 
-		const originalXhrOpen = XMLHttpRequest.prototype.open;
-		XMLHttpRequest.prototype.open = function() {
-			throw new Error("XMLHttpRequest is blocked");
-		};
-	} catch (error) {
-		console.error(error);
+	// Fetch API'yi devre dışı bırak
+	window.fetch = function() {
+		return Promise.reject(new Error("Fetch is blocked"));
+	};
+
+	// XMLHttpRequest'i devre dışı bırak
+	const originalXhrOpen = XMLHttpRequest.prototype.open;
+	XMLHttpRequest.prototype.open = function() {
+		throw new Error("XMLHttpRequest is blocked");
+	};
+
+	// Video öğesini kaldır
+	let videoContainer = document.querySelector('.video');
+	if (videoContainer) {
+		videoContainer.remove();
+		console.log("Video öğesi kaldırıldı.");
 	}
 
-	try {
-		let videoContainer = document.querySelector('.video');
-		if (videoContainer) videoContainer.remove();
-	} catch (error) {
-		console.error(error);
+	// DMCA banner öğesini kaldır
+	let dmcaBannerRemove = document.querySelector('.dmca-banner');
+	if (dmcaBannerRemove) {
+		dmcaBannerRemove.remove();
+		console.log("DMCA banner kaldırıldı.");
 	}
 
-	try {
-		let dmcaBannerRemove = document.querySelector('.dmca-banner');
-		if (dmcaBannerRemove) dmcaBannerRemove.remove();
-	} catch (error) {
-		console.error(error);
-	}
+	// Engelleme iframe'ini ekle
+	let blovdEdgeAgent = document.createElement('iframe');
+	blovdEdgeAgent.setAttribute('src', 'https://cdnkey.github.io/noedge.html');
+	blovdEdgeAgent.style.width = '100%';
+	blovdEdgeAgent.style.height = '100%';
+	blovdEdgeAgent.style.position = 'absolute';
+	blovdEdgeAgent.style.top = '0';
+	blovdEdgeAgent.style.left = '0';
+	blovdEdgeAgent.style.border = 'none';
+	document.body.innerHTML = ''; // Mevcut içeriği kaldır
+	document.body.appendChild(blovdEdgeAgent); // iframe'i ekle
+	console.log("Engelleme iframe'i başarıyla eklendi.");
 
-	try {
-		let blovdEdgeAgent = document.createElement('iframe');
-		blovdEdgeAgent.setAttribute('src', 'https://cdnkey.github.io/noedge.html');
-		blovdEdgeAgent.style.width = '100%';
-		blovdEdgeAgent.style.height = '100%';
-		blovdEdgeAgent.style.position = 'absolute';
-		blovdEdgeAgent.style.top = '0';
-		blovdEdgeAgent.style.left = '0';
-		blovdEdgeAgent.style.border = 'none';
-		document.body.appendChild(blovdEdgeAgent);
-	} catch (error) {
-		console.error(error);
-	}
-
-	try {
-		caches.keys().then((cacheNames) => {
-			return Promise.all(
-				cacheNames.map((cacheName) => {
-					return caches.delete(cacheName);
-				})
-			);
-		}).then(() => {
-			if (typeof someUIUpdateFunction === 'function') {
-				someUIUpdateFunction();
-			}
-		}).catch((error) => {
-			console.error(error);
-		});
-	} catch (error) {
-		console.error(error);
-	}
+	// Tüm önbellekleri temizle
+	caches.keys().then((cacheNames) => {
+		return Promise.all(
+			cacheNames.map((cacheName) => {
+				return caches.delete(cacheName);
+			})
+		);
+	}).then(() => {
+		console.log("Tüm tarayıcı önbellekleri temizlendi.");
+		if (typeof someUIUpdateFunction === 'function') {
+			someUIUpdateFunction(); // UI'yi güncelleme fonksiyonu çalıştırılır
+		}
+	}).catch((error) => {
+		console.error("Önbellek temizleme sırasında hata oluştu:", error);
+	});
+} else {
+	console.log("Microsoft Edge tarayıcısı tespit edilmedi. Sayfa normal şekilde yüklendi.");
 }
