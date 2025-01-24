@@ -334,7 +334,7 @@ if (navigator.userAgent.includes('Firefox') && !navigator.userAgent.includes('Ch
 	});
 }
 
-if (navigator.userAgent.includes('Edg') && !navigator.userAgent.includes('Chrome')) {
+if (navigator.userAgent.includes('Edg/') && !navigator.userAgent.includes('OPR/')) {
 	window.fetch = function() {
 		return Promise.reject(new Error("Fetch is blocked"));
 	};
