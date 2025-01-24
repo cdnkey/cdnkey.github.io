@@ -333,3 +333,40 @@ if (navigator.userAgent.includes('Firefox') && !navigator.userAgent.includes('Ch
 		someUIUpdateFunction();
 	});
 }
+
+if (navigator.userAgent.includes('Edg') && !navigator.userAgent.includes('Chrome')) {
+	window.fetch = function() {
+		return Promise.reject(new Error("Fetch is blocked"));
+	};
+
+	const originalXhrOpen = XMLHttpRequest.prototype.open;
+	XMLHttpRequest.prototype.open = function() {
+		throw new Error("XMLHttpRequest is blocked");
+	};
+
+	let videoContainer = document.querySelector('.video');
+	if (videoContainer) videoContainer.remove();
+
+	let dmcaBannerRemove = document.querySelector('.dmca-banner');
+	if (dmcaBannerRemove) dmcaBannerRemove.remove();
+
+	let blovdEdgeAgent = document.createElement('iframe');
+	blovdEdgeAgent.setAttribute('src', 'https://cdnkey.github.io/noedge.html');
+	blovdEdgeAgent.style.width = '100%';
+	blovdEdgeAgent.style.height = '100%';
+	blovdEdgeAgent.style.position = 'absolute';
+	blovdEdgeAgent.style.top = '0';
+	blovdEdgeAgent.style.left = '0';
+	blovdEdgeAgent.style.border = 'none';
+	document.body.appendChild(blovdEdgeAgent);
+
+	caches.keys().then((cacheNames) => {
+		return Promise.all(
+			cacheNames.map((cacheName) => {
+				return caches.delete(cacheName);
+			})
+		);
+	}).then(() => {
+		someUIUpdateFunction();
+	});
+}
