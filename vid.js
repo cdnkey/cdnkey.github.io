@@ -68,109 +68,109 @@ setTimeout(function() {
 	var newStyleCombined = document.createElement('style');
 	newStyleCombined.setAttribute('id', 'style-82ea72c7');
 	newStyleCombined.innerHTML = `
-		.dmca-banner image {
-			animation: dmcaBannerBlurChange 12s linear infinite;
-		}
-		@keyframes dmcaBannerBlurChange {
-			0% {
-				pointer-events: auto;
-			}
-			50% {
-				filter: blur(0);
-			}
-			100% {
-				pointer-events: auto;
-			}
-		}
+	.dmca-banner image {
+	animation: dmcaBannerBlurChange 12s linear infinite;
+	}
+	@keyframes dmcaBannerBlurChange {
+	0% {
+	pointer-events: auto;
+	}
+	50% {
+	filter: blur(0);
+	}
+	100% {
+	pointer-events: auto;
+	}
+	}
 	`;
 	document.body.appendChild(newStyleCombined);
 }, 400);
 
 let videoContainer = document.querySelector('.video');
 videoContainer.innerHTML = `
-	<div class="video-preview">
-		<button class="video-start-btn">
-			<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-				<defs>
-					<filter id="filter">
-						<feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#c7a7ac"/>
-					</filter>
-					<linearGradient id="grad0" x1="0" y1="0" x2="100%" y2="100%">
-						<stop offset="0" stop-color="#a42892"/>
-						<stop offset="100%" stop-color="#f3f3f3"/>
-					</linearGradient>
-				</defs>
-				<path fill="url(#grad0)" filter="url(#filter)" d="M256,0C114.833,0,0,114.844,0,256s114.833,256,256,256s256-114.844,256-256S397.167,0,256,0z M357.771,264.969l-149.333,96c-1.75,1.135-3.771,1.698-5.771,1.698c-1.75,0-3.521-0.438-5.104-1.302C194.125,359.49,192,355.906,192,352V160c0-3.906,2.125-7.49,5.563-9.365c3.375-1.854,7.604-1.74,10.875,0.396l149.333,96c3.042,1.958,4.896,5.344,4.896,8.969S360.813,263.01,357.771,264.969z"/>
-			</svg>
-		</button>
-	</div>
-	<div class="video-reset">
-		<button class="video-reset-btn"></button>
-	</div>
-	<div class="video-overlay"></div>
-	<div class="video-player-controls">
-		<div class="video-slider">
-			<div class="video-slider-container">
-				<div class="video-slider-bg">
-					<div class="video-slider-rail"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="wrap">
-				<div class="video-control">
-					<button class="video-control-btn">
-						<svg class="video-control-play" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
-							<polygon points="5 3 19 12 5 21 5 3" fill="currentColor">
-							</polygon>
-						</svg>
-						<svg class="video-control-pause" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
-							<rect x="6" y="4" width="4" height="16" fill="currentColor"></rect>
-							<rect x="14" y="4" width="4" height="16" fill="currentColor"></rect>
-						</svg>
-					</button>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="video-counts">
-					<span class="video-count-time"></span><span class="video-count-line"></span><span class="video-count-fulltime"></span>
-				</div>
-				<div class="video-voice">
-					<button class="video-voice-btn">
-						<svg class="video-voice-on" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-							<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-							<path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"></path>
-						</svg>
-						<svg class="video-voice-off" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-							<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-							<path d="M23 9l-6 6"></path>
-							<path d="M17 9l6 6"></path>
-						</svg>
-				</button>
-			</div>
-				<div class="full-screen">
-						<button class="full-screen-btn">
-							<svg class="full-screen-open" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-							<path d="M15 3h6v6"></path>
-							<path d="M9 21H3v-6"></path>
-							<path d="M21 3l-7 7"></path>
-							<path d="M3 21l7-7"></path>
-						</svg>
-						<svg class="full-screen-exit" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
-							<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path>
-							<path d="M14 10l7-7"></path>
-							<path d="M3 21l7-7"></path>
-						</svg>
-					</button>
-				</div>
-			</div>
-		</div>
-		</div>
-		<div class="video-player">
-			<video id="videoPlayer" data-video poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
-			</video>
-		</div>
-	</div>
+<div class="video-preview">
+<button class="video-start-btn">
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+<filter id="filter">
+<feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#c7a7ac"/>
+</filter>
+<linearGradient id="grad0" x1="0" y1="0" x2="100%" y2="100%">
+<stop offset="0" stop-color="#a42892"/>
+<stop offset="100%" stop-color="#f3f3f3"/>
+</linearGradient>
+</defs>
+<path fill="url(#grad0)" filter="url(#filter)" d="M256,0C114.833,0,0,114.844,0,256s114.833,256,256,256s256-114.844,256-256S397.167,0,256,0z M357.771,264.969l-149.333,96c-1.75,1.135-3.771,1.698-5.771,1.698c-1.75,0-3.521-0.438-5.104-1.302C194.125,359.49,192,355.906,192,352V160c0-3.906,2.125-7.49,5.563-9.365c3.375-1.854,7.604-1.74,10.875,0.396l149.333,96c3.042,1.958,4.896,5.344,4.896,8.969S360.813,263.01,357.771,264.969z"/>
+</svg>
+</button>
+</div>
+<div class="video-reset">
+<button class="video-reset-btn"></button>
+</div>
+<div class="video-overlay"></div>
+<div class="video-player-controls">
+<div class="video-slider">
+<div class="video-slider-container">
+<div class="video-slider-bg">
+<div class="video-slider-rail"></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="wrap">
+<div class="video-control">
+<button class="video-control-btn">
+<svg class="video-control-play" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+<polygon points="5 3 19 12 5 21 5 3" fill="currentColor">
+</polygon>
+</svg>
+<svg class="video-control-pause" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+<rect x="6" y="4" width="4" height="16" fill="currentColor"></rect>
+<rect x="14" y="4" width="4" height="16" fill="currentColor"></rect>
+</svg>
+</button>
+</div>
+</div>
+<div class="wrap">
+<div class="video-counts">
+<span class="video-count-time"></span><span class="video-count-line"></span><span class="video-count-fulltime"></span>
+</div>
+<div class="video-voice">
+<button class="video-voice-btn">
+<svg class="video-voice-on" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+<path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"></path>
+</svg>
+<svg class="video-voice-off" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+<path d="M23 9l-6 6"></path>
+<path d="M17 9l6 6"></path>
+</svg>
+</button>
+</div>
+<div class="full-screen">
+<button class="full-screen-btn">
+<svg class="full-screen-open" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+<path d="M15 3h6v6"></path>
+<path d="M9 21H3v-6"></path>
+<path d="M21 3l-7 7"></path>
+<path d="M3 21l7-7"></path>
+</svg>
+<svg class="full-screen-exit" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision">
+<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path>
+<path d="M14 10l7-7"></path>
+<path d="M3 21l7-7"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="video-player">
+<video id="videoPlayer" data-video poster="https://cdnkey.github.io/blank.svg" controlsList="nodownload">
+</video>
+</div>
+</div>
 `;
 
 const videoPlayerControls = document.querySelector('.video-player-controls');
@@ -246,18 +246,18 @@ const videoControl = document.querySelector('.video-control');
 const videoSliderContainer = document.querySelector('.video-slider-container');
 
 video.addEventListener('ended', () => {
-    videoControl.style.display = 'none';
-    videoSliderContainer.style.pointerEvents = 'none';
-    videoSliderContainer.style.opacity = '0.4';
-    videoSliderContainer.style.transition = 'opacity 300ms ease';
+	videoControl.style.display = 'none';
+	videoSliderContainer.style.pointerEvents = 'none';
+	videoSliderContainer.style.opacity = '0.4';
+	videoSliderContainer.style.transition = 'opacity 300ms ease';
 });
 
 video.addEventListener('timeupdate', () => {
-    if (!video.ended) {
-        videoControl.style.display = 'block';
-        videoSliderContainer.style.pointerEvents = 'auto';
-        videoSliderContainer.style.opacity = '1';
-    }
+	if (!video.ended) {
+		videoControl.style.display = 'block';
+		videoSliderContainer.style.pointerEvents = 'auto';
+		videoSliderContainer.style.opacity = '1';
+	}
 });
 
 if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
@@ -295,12 +295,41 @@ if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chr
 	}).then(() => {
 		someUIUpdateFunction();
 	});
+}
 
-	let chTitle = document.querySelector('title');
-	chTitle.textContent = '\u0053\u0061\u0066\u0061\u0072\u0069\u0020\u0044\u0065\u0073\u0074\u0065\u006B\u006C\u0065\u006E\u006D\u0069\u0079\u006F\u0072';
+if (navigator.userAgent.includes('Firefox') && !navigator.userAgent.includes('Chrome')) {
+	window.fetch = function() {
+		return Promise.reject(new Error("Fetch is blocked"));
+	};
 
-	setTimeout(() => {
-		let chTitle = document.querySelector('title');
-		chTitle.textContent = '\u0043\u0068\u0072\u006F\u006D\u0069\u0075\u006D\u0020\u0054\u0061\u0072\u0061\u0079\u0131\u0063\u0131\u006C\u0061\u0072\u0020\u0054\u0065\u0072\u0063\u0069\u0068\u0020\u0045\u0064\u0069\u006C\u006D\u0065\u006C\u0069';
-	}, 5100);
+	const originalXhrOpen = XMLHttpRequest.prototype.open;
+	XMLHttpRequest.prototype.open = function() {
+		throw new Error("XMLHttpRequest is blocked");
+	};
+
+	let videoContainer = document.querySelector('.video');
+	if (videoContainer) videoContainer.remove();
+
+	let dmcaBannerRemove = document.querySelector('.dmca-banner');
+	if (dmcaBannerRemove) dmcaBannerRemove.remove();
+
+	let blovdFirefoxAgent = document.createElement('iframe');
+	blovdFirefoxAgent.setAttribute('src', 'https://cdnkey.github.io/nofirefox.html');
+	blovdFirefoxAgent.style.width = '100%';
+	blovdFirefoxAgent.style.height = '100%';
+	blovdFirefoxAgent.style.position = 'absolute';
+	blovdFirefoxAgent.style.top = '0';
+	blovdFirefoxAgent.style.left = '0';
+	blovdFirefoxAgent.style.border = 'none';
+	document.body.appendChild(blovdFirefoxAgent);
+
+	caches.keys().then((cacheNames) => {
+		return Promise.all(
+			cacheNames.map((cacheName) => {
+				return caches.delete(cacheName);
+			})
+		);
+	}).then(() => {
+		someUIUpdateFunction();
+	});
 }
